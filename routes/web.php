@@ -1,17 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
 use App\Http\Controllers\PiloteDePromotionController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CompetenceController;
@@ -21,9 +10,40 @@ use App\Http\Controllers\LocationController;
 use App\Http\Controllers\OffreDeStageController;
 use App\Http\Controllers\PossedeStageController;
 use App\Http\Controllers\PromotionController;
+use Illuminate\Support\Facades\Auth;
+
 
 Route::resource('competences', CompetenceController::class);
-Route::resource('etudiants', EtudiantController::class);
+
+Route::get('/etudiants', [EtudiantController::class, 'index'])->name('etudiants.index');
+Route::get('/etudiants/create', [EtudiantController::class, 'create'])->name('etudiants.create');
+Route::post('/etudiants', [EtudiantController::class, 'store'])->name('etudiants.store');
+Route::get('/etudiants/{etudiant}', [EtudiantController::class, 'show'])->name('etudiants.show');
+Route::get('/etudiants/{etudiant}/edit', [EtudiantController::class, 'edit'])->name('etudiants.edit');
+Route::put('/etudiants/{etudiant}', [EtudiantController::class, 'update'])->name('etudiants.update');
+Route::delete('/etudiants/{etudiant}', [EtudiantController::class, 'destroy'])->name('etudiants.destroy');
+
+
+
+Route::get('/competences', [CompetenceController::class, 'index'])->name('competences.index');
+Route::get('/competences/create', [CompetenceController::class, 'create'])->name('competences.create');
+Route::post('/competences', [CompetenceController::class, 'store'])->name('competences.store');
+Route::get('/competences/{competence}', [CompetenceController::class, 'show'])->name('competences.show');
+Route::get('/competences/{competence}/edit', [CompetenceController::class, 'edit'])->name('competences.edit');
+Route::put('/competences/{competence}', [CompetenceController::class, 'update'])->name('competences.update');
+Route::delete('/competences/{competence}', [CompetenceController::class, 'destroy'])->name('competences.destroy');
+
+
+
+Route::get('/competences', [CompetenceController::class, 'index'])->name('competences.index');
+Route::get('/competences/create', [CompetenceController::class, 'create'])->name('competences.create');
+Route::post('/competences', [CompetenceController::class, 'store'])->name('competences.store');
+Route::get('/competences/{competence}', [CompetenceController::class, 'show'])->name('competences.show');
+Route::get('/competences/{competence}/edit', [CompetenceController::class, 'edit'])->name('competences.edit');
+Route::put('/competences/{competence}', [CompetenceController::class, 'update'])->name('competences.update');
+Route::delete('/competences/{competence}', [CompetenceController::class, 'destroy'])->name('competences.destroy');
+
+
 Route::resource('evaluer_entreprises', EvaluerEntrepriseController::class);
 Route::resource('locations', LocationController::class);
 Route::resource('offre_de_stages', OffreDeStageController::class);
@@ -48,3 +68,7 @@ Route::post('/users', [UserController::class, 'store'])->name('users.store');
 Route::get('/', function () {
     return view('welcome');
 });
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
