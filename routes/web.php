@@ -65,6 +65,12 @@ Route::get('/users/create', [UserController::class, 'create'])->name('users.crea
 Route::post('/users', [UserController::class, 'store'])->name('users.store');
 // Define other CRUD routes here
 
+
+// routes/web.php
+Route::get('/enterprises/create', 'EnterpriseController@create')->name('enterprises.create');
+Route::post('/enterprises', 'EnterpriseController@store')->name('enterprises.store');
+
+
 Route::get('/', function () {
     return view('welcome');
 });

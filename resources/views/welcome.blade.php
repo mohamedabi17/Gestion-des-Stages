@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Gestion des offres de stage</title>
+    <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Figtree', sans-serif;
             margin: 0;
             padding: 0;
             background-color: #f4f4f4;
@@ -67,19 +68,21 @@
         }
     </style>
 </head>
-<body>
+<body class="antialiased">
     <header>
         <h1>Gestion des offres de stage pour les étudiants</h1>
     </header>
 
-    <nav>
-        <ul>
-            <li><a href="#">Accueil</a></li>
-            <li><a href="#">Offres de stage</a></li>
-            <li><a href="#">Profil</a></li>
-            <li><a href="#">Déconnexion</a></li>
-        </ul>
-    </nav>
+   <nav>
+    <ul>
+        <li><a href="#">Accueil</a></li>
+        <li><a href="#">Offres de stage</a></li>
+        <li><a href="#">Profil</a></li>
+        <li><a href="{{ route('login') }}">Connexion</a></li>
+        <li><a href="{{ route('entreprises.create') }}">Créer une entreprise</a></li>
+    </ul>
+</nav>
+
 
     <div class="container">
         <h2>Liste des offres de stage disponibles pour les étudiants gérées par les pôles de management :</h2>
