@@ -10,7 +10,6 @@ class Etudiant extends Model
 
     protected $fillable = [
         'name'
-        // Add other fillable attributes as needed
     ];
 
     // Getters and setters

@@ -12,13 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         // Create the "entreprise" table first
-        Schema::create('entreprise', function (Blueprint $table) {
+        Schema::create('entreprises', function (Blueprint $table) {
             $table->id('entreprise_id');
             $table->string('name')->unique(); // Add a column for the company name
-            $table->string('secteur'); // Add a column for the industry the company belongs to
+            $table->string('secteur')->nullable(); // Add a column for the industry the company belongs to
             $table->timestamps();
         });
-
      
     }
 
@@ -28,6 +27,6 @@ return new class extends Migration
     public function down(): void
     {
 
-        Schema::dropIfExists('entreprise');
+        Schema::dropIfExists('entreprises');
     }
 };

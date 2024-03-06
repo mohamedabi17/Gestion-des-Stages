@@ -19,7 +19,7 @@ return new class extends Migration
             // Foreign key constraint referencing the existing "etudiant" table
             $table->foreign('etudiant_id')
                 ->references('etudiant_id') // Reference the primary key of "etudiant" table
-                ->on('etudiant')
+                ->on('etudiants')
                 ->onDelete('CASCADE');
 
             $table->unsignedBigInteger('pilote_id'); // Ensure it's unsigned
@@ -27,7 +27,7 @@ return new class extends Migration
             // Foreign key constraint referencing the existing "etudiant" table (assuming "pilote" represents students)
             $table->foreign('pilote_id')
                 ->references('pilote_id') // Reference the primary key of "etudiant" table
-                ->on('pilote_de_promotion')
+                ->on('pilote_de_promotions')
                 ->onDelete('CASCADE');
         });
     }

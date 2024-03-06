@@ -3,7 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PiloteDePromotionController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\CompetenceController;
 use App\Http\Controllers\EtudiantController;
 use App\Http\Controllers\EvaluerEntrepriseController;
@@ -11,6 +11,7 @@ use App\Http\Controllers\LocationController;
 use App\Http\Controllers\OffreDeStageController;
 use App\Http\Controllers\PossedeStageController;
 use App\Http\Controllers\PromotionController;
+use App\Http\Controllers\EntrepriseController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,7 +31,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 // Routes for API endpoints
 
 Route::resource('competences', CompetenceController::class);
-Route::resource('evaluer_entreprises', EvaluerEntrepriseController::class);
+Route::resource('evaluer_entreprise', EvaluerEntrepriseController::class);
 Route::resource('locations', LocationController::class);
 Route::resource('offre_de_stages', OffreDeStageController::class);
 Route::resource('pilote_de_promotions', PiloteDePromotionController::class);
@@ -53,6 +54,10 @@ Route::get('/pilotes/{pilote}/edit', [PiloteDePromotionController::class, 'edit'
 Route::put('/pilotes/{pilote}', [PiloteDePromotionController::class, 'update'])->name('pilotes.update');
 Route::delete('/pilotes/{pilote}', [PiloteDePromotionController::class, 'destroy'])->name('pilotes.destroy');
 
-Route::get('/users', [UserController::class, 'index'])->name('users.index');
-Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
-Route::post('/users', [UserController::class, 'store'])->name('users.store');
+Route::get('/users', [RegisterController::class, 'index'])->name('users.index');
+Route::get('/users/create', [RegisterController::class, 'create'])->name('users.create');
+Route::post('/users', [RegisterController::class, 'store'])->name('users.store');
+
+Route::get('/entreprises', [EntrepriseController::class, 'index'])->name('entreprise.index');
+Route::get('/entreprises/create', [EntrepriseController::class, 'create'])->name('entreprise.create');
+Route::post('/entreprises', [EntrepriseController::class, 'store'])->name('entreprise.store');

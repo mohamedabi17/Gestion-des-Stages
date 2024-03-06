@@ -24,7 +24,7 @@ class LocationController extends Controller
             'numero_de_batiment' => 'required|max:255',
             'ville' => 'required|max:255',
             'pays' => 'required|max:255',
-            'entreprise_id' => 'required|exists:entreprises,id', // Assuming "entreprises" is the table name for Entreprise model
+            'entreprise_id' => 'required|exists:entreprise,id', // Assuming "entreprise" is the table name for Entreprise model
         ]);
 
         Location::create($request->all());
@@ -50,7 +50,7 @@ class LocationController extends Controller
             'numero_de_batiment' => 'required|max:255',
             'ville' => 'required|max:255',
             'pays' => 'required|max:255',
-            'entreprise_id' => 'required|exists:entreprises,id', // Assuming "entreprises" is the table name for Entreprise model
+            'entreprise_id' => 'required|exists:entreprise,id', // Assuming "entreprise" is the table name for Entreprise model
         ]);
 
         $location->update($request->all());

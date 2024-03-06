@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pilote de Promotion Dashboard</title>
-    <!-- Include any necessary CSS stylesheets or libraries here -->
+        @vite(['resources/css/pilote.css', 'resources/js/app.js'])
     <style>
         /* Add custom CSS styles here */
     </style>

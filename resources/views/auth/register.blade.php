@@ -8,7 +8,8 @@
                 <div class="card-header">{{ __('Register') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+                    <form method="POST" action="{{ route('register.store') }}"id="registerForm">
+
                         @csrf
 
                         <div class="row mb-3">
@@ -65,13 +66,13 @@
                             <label for="user-type" class="col-md-4 col-form-label text-md-end">{{ __('User Type') }}</label>
 
                             <div class="col-md-6">
-                                <select id="user-type" class="form-control @error('user_type') is-invalid @enderror" name="user_type" required>
+                                <select id="user-type" class="form-control @error('usertype') is-invalid @enderror" name="usertype" required>
                                     <option value="etudiant">Etudiant</option>
                                     <option value="entreprise">Entreprise</option>
                                     <option value="pilotedestage">Pilote de Stage</option>
                                 </select>
 
-                                @error('user_type')
+                                @error('usertype')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -103,6 +104,7 @@
 
         // Fetch the form data
         const formData = new FormData(this);
+        console.log(formData);
 
         // Send a POST request to the server
         fetch(this.action, {
@@ -112,17 +114,28 @@
         .then(response => {
             // Check if the response is OK (status code 200-299)
             if (response.ok) {
-                // If successful, log the success message to the console
-                console.log('Registration successful!');
-                // You can also redirect the user to another page here if needed
+                // If successful, parse the JSON response
+                console.log(response);
+                return response.json();
             } else {
-                // If there was an error, log the error message to the console
-                console.error('Registration failed:', response.statusText);
+                // If there was an error, throw an error with the status text
+                console.log(response);
+                throw new Error(response.statusText);
             }
         })
+        .then(data => {
+            // Log the response data to the console
+            console.log('Response:', data);
+
+            // Handle the response here, e.g., display a success message
+            alert('Registration successful!');
+        })
         .catch(error => {
-            // If there was an error with the fetch request, log it to the console
+            // Log any errors to the console
             console.error('Error:', error);
+            console.log(error);
+            // Display an error message to the user
+            alert('Registration failed: ' + error.message);
         });
     });
 </script>

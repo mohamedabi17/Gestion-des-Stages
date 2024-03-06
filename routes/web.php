@@ -2,14 +2,16 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EntrepriseController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\Auth\RegisterController;
 use Illuminate\Support\Facades\Auth;
 
-// Define routes for user registration
-Route::get('/register', [UserController::class, 'create'])->name('register');
-Route::post('/register', [UserController::class, 'store'])->name('register.store');
+// Define route for displaying the registration form
+Route::get('/register', [RegisterController::class, 'create'])->name('register');
 
-// Other routes for entreprise operations
+// Define route for handling the registration form submission
+Route::post('/User/register', [RegisterController::class, 'store'])->name('register.store');
+
+
 Route::get('/entreprise/create', [EntrepriseController::class, 'create'])->name('entreprise.create');
 Route::post('/entreprise', [EntrepriseController::class, 'store'])->name('entreprise.store');
 Route::get('/entreprise/{entreprise}/edit', [EntrepriseController::class, 'edit'])->name('entreprise.edit');

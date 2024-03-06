@@ -22,7 +22,7 @@ return new class extends Migration
             // Foreign key constraint referencing the existing "entreprise" table
             $table->foreign('entreprise_id')
                 ->references('entreprise_id')  // Use the correct column name in "entreprise" table
-                ->on('entreprise')
+                ->on('entreprises')
                 ->onDelete('CASCADE');
 
         });

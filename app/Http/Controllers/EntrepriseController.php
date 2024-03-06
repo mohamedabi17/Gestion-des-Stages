@@ -8,16 +8,17 @@ use App\Models\Entreprise;
 class EntrepriseController extends Controller
 {
     // Display a listing of the entreprises.
-    public function index()
-    {
-        $entreprises = Entreprise::all();
-        return view('entreprises.index', compact('entreprises'));
-    }
+public function index()
+{
+    $entreprises = Entreprise::all();
+    return view('entreprises.index', compact('entreprises'));
+}
+
 
     // Show the form for creating a new entreprise.
     public function create()
     {
-        return view('enterprises.create');
+        return view('entreprise.create');
     }
 
     // Store a newly created entreprise in the database.
@@ -26,19 +27,18 @@ class EntrepriseController extends Controller
         $request->validate([
             'name' => 'required|unique:entreprises',
             'secteur' => 'required',
-            // Add more validation rules as needed
         ]);
 
         Entreprise::create($request->all());
 
-        return redirect()->route('entreprises.index')
+        return redirect()->route('entreprise.index')
                          ->with('success', 'Entreprise created successfully.');
     }
 
     // Show the form for editing the specified entreprise.
     public function edit(Entreprise $entreprise)
     {
-        return view('entreprises.edit', compact('entreprise'));
+        return view('entreprise.edit', compact('entreprise'));
     }
 
     // Update the specified entreprise in the database.
@@ -47,12 +47,11 @@ class EntrepriseController extends Controller
         $request->validate([
             'name' => 'required|unique:entreprises,name,'.$entreprise->id,
             'secteur' => 'required',
-            // Add more validation rules as needed
         ]);
 
         $entreprise->update($request->all());
 
-        return redirect()->route('entreprises.index')
+        return redirect()->route('entreprise.index')
                          ->with('success', 'Entreprise updated successfully');
     }
 
@@ -61,7 +60,7 @@ class EntrepriseController extends Controller
     {
         $entreprise->delete();
 
-        return redirect()->route('entreprises.index')
+        return redirect()->route('entreprise.index')
                          ->with('success', 'Entreprise deleted successfully');
     }
 }

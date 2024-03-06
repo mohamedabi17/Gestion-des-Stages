@@ -23,7 +23,7 @@ class OffreDeStageController extends Controller
         $request->validate([
             'type' => 'required|max:255',
             'duree' => 'required|max:255',
-            'entreprise_id' => 'required|exists:entreprises,id', // Assuming "entreprises" is the table name for Entreprise model
+            'entreprise_id' => 'required|exists:entreprise,id', // Assuming "entreprise" is the table name for Entreprise model
         ]);
 
         OffreDeStage::create($request->all());
@@ -47,7 +47,7 @@ class OffreDeStageController extends Controller
         $request->validate([
             'type' => 'required|max:255',
             'duree' => 'required|max:255',
-            'entreprise_id' => 'required|exists:entreprises,id', // Assuming "entreprises" is the table name for Entreprise model
+            'entreprise_id' => 'required|exists:entreprise,id', // Assuming "entreprise" is the table name for Entreprise model
         ]);
 
         $offre->update($request->all());
