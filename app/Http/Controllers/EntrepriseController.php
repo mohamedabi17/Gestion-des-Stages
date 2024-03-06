@@ -20,29 +20,13 @@ class EntrepriseController extends Controller
         return view('enterprises.create');
     }
 
-    public function store(Request $request)
-    {
-        // Validation logic
-        $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
-            'description' => 'nullable|string',
-            // Add more validation rules as needed
-        ]);
-
-        // Create a new enterprise record
-        Entreprise::create($validatedData);
-
-        // Redirect the user after successful creation
-        return redirect()->route('enterprises.index')->with('success', 'Enterprise created successfully!');
-    }
-
     // Store a newly created entreprise in the database.
     public function store(Request $request)
     {
-        
         $request->validate([
             'name' => 'required|unique:entreprises',
             'secteur' => 'required',
+            // Add more validation rules as needed
         ]);
 
         Entreprise::create($request->all());
@@ -63,6 +47,7 @@ class EntrepriseController extends Controller
         $request->validate([
             'name' => 'required|unique:entreprises,name,'.$entreprise->id,
             'secteur' => 'required',
+            // Add more validation rules as needed
         ]);
 
         $entreprise->update($request->all());

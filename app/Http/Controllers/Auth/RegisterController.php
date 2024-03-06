@@ -3,70 +3,74 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Etudiant;
+use App\Models\PiloteDePromotion;
+use App\Models\Entreprise;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\Request;
+
 
 class RegisterController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Register Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles the registration of new users as well as their
-    | validation and creation. By default this controller uses a trait to
-    | provide this functionality without requiring any additional code.
-    |
-    */
-
     use RegistersUsers;
 
-    /**
-     * Where to redirect users after registration.
-     *
-     * @var string
-     */
     protected $redirectTo = '/home';
 
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
     public function __construct()
     {
         $this->middleware('guest');
     }
 
-    /**
-     * Get a validator for an incoming registration request.
-     *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
     protected function validator(array $data)
     {
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'usertype' => ['required', 'string', 'in:etudiant,pilote_de_stage,entreprise'],
         ]);
     }
 
-    /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return \App\Models\User
-     */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'usertype' => $data['usertype'],
         ]);
+
+        if ($data['usertype'] === 'etudiant') {
+            Etudiant::create([
+                'user_id' => $user->id,
+                // Add other etudiant fields here
+            ]);
+        } elseif ($data['usertype'] === 'pilote_de_stage') {
+            PiloteDePromotion::create([
+                'user_id' => $user->id,
+                // Add other pilote_de_stage fields here
+            ]);
+        } elseif ($data['usertype'] === 'entreprise') {
+            Entreprise::create([
+                'user_id' => $user->id,
+                // Add other entreprise fields here
+            ]);
+        }
+
+        return $user;
+    }
+
+    protected function registered(Request $request, $user)
+    {
+        if ($user->usertype === 'etudiant') {
+            return redirect()->route('etudiant.dashboard');
+        } elseif ($user->usertype === 'pilote_de_stage') {
+            return redirect()->route('pilote_de_stage.dashboard');
+        } elseif ($user->usertype === 'entreprise') {
+            return redirect()->route('entreprise.dashboard');
+        }
     }
 }
