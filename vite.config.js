@@ -12,6 +12,8 @@ export default defineConfig({
                 'resources/css/pilote.css',
                 'resources/css/entreprise.css',
                 'resources/css/etudiant.css',
+                'resources/css/offers.css',
+                'resources/css/dashboardoffers.css',
             ],
             refresh: true,
         }),

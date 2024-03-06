@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class OffreDeStage extends Model
+class Offers extends Model
 {
     protected $primaryKey = 'id'; // Assuming 'id' is the primary key
 

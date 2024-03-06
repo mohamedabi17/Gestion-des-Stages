@@ -9,7 +9,7 @@ return new class extends Migration
     public function up(): void
     {
           // Create the "offre_de_stage" table with the foreign key
-        Schema::create('offre_de_stage', function (Blueprint $table) {
+        Schema::create('offers', function (Blueprint $table) {
             $table->id();
             $table->string('type');
             $table->string('duree');
@@ -27,6 +27,6 @@ return new class extends Migration
 
     public function down(): void
     {
-        Schema::dropIfExists('offre_de_stage');
+        Schema::dropIfExists('offers');
     }
 };

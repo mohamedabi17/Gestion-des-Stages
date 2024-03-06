@@ -111,7 +111,7 @@
     window.onload = function() {
         // Perform the redirection based on conditions
         // Example: Redirect to the appropriate page based on user type
-        let userType = '{{ Auth::user() ? Auth::user()->type : null }}'; // Get the user type from the authenticated user
+        let userType = '{{ Auth::user() ? Auth::user()->usertype : null }}'; // Get the user type from the authenticated user
         if (userType !== null) {
             if (userType === 'etudiant') {
                 window.location.href = "{{ route('etudiant.etudiant') }}"; // Redirect to etudiant index page

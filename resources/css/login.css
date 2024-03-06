@@ -1,0 +1,56 @@
+/* login.css */
+
+.container {
+    margin-top: 50px;
+}
+
+.card {
+    border: none;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+    background-color: #ff6600;
+    /* Primary color */
+    color: #fff;
+    /* White text */
+    text-align: center;
+}
+
+.card-body {
+    padding: 30px;
+}
+
+.form-control {
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+}
+
+.btn-primary {
+    background-color: #ff6600;
+    /* Primary color */
+    border-color: #ff6600;
+    /* Primary color */
+}
+
+.btn-primary:hover {
+    background-color: #ff6600;
+    /* Darker shade of primary color on hover */
+    border-color: #ff6600;
+    /* Darker shade of primary color on hover */
+}
+
+.form-check-input {
+    margin-top: 7px;
+}
+
+.btn-link {
+    color: rgb(75, 31, 5);
+    /* Primary color */
+}
+
+.btn-link:hover {
+    text-decoration: none;
+    color: rgb(75, 31, 5);
+    /* Darker shade of primary color on hover */
+}

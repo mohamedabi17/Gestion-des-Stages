@@ -3,28 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>entreprise Dashboard</title>
-    <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet">
-    @vite(['resources/css/entreprise.css'])
-    
+    <title>Entreprise Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ mix('resources/css/entreprise.css') }}">
+       @vite(['resources/css/app.css', 'resources/css/entreprise.css'])
 </head>
 <body>
     <header>
-        <h1>Gestion des offres de stage pour les étudiants</h1>
+        <h1>Entreprise Dashboard</h1>
     </header>
-
-    <div class="container">
-        <h2>entreprise Dashboard</h2>
-           <!-- Operation Selection Section -->
-        <button class="operation-btn" id="editBtn">Edit entreprise</button>
-        <button class="operation-btn" id="statisticsBtn">View entreprise Statistics</button>
-        <button class="operation-btn" id="createBtn">Create New entreprise</button>
-    </div>
-
+    <nav>
+        <ul>
+            <li><a href="/">Accueil</a></li>
+            <li><a href="{{ route('offers.index') }}">Offres de stage</a></li>
+            <li><a href="#">Profil</a></li>
+            <li><a href="{{ route('login') }}">Connexion</a></li>
+            <li><a href="{{ route('register') }}">Register</a></li>
+            <li><a href="{{ route('offers.create') }}">Creé un offre de Stage</a></li>
+            <li>
+                <form action="{{ route('search.entreprise') }}" method="GET">
+                    <input type="text" name="query" placeholder="Rechercher entreprise...">
+                    <button type="submit">Rechercher</button>
+                </form>
+            </li>
+        </ul>
+    </nav>
+    <main>
+        <div class="container">
+            <h2>Operations</h2>
+            <div class="operations">
+                <button id="editBtn">Edit entreprise</button>
+                <button id="statisticsBtn">View entreprise Statistics</button>
+                <button id="createBtn">Create New entreprise</button>
+            </div>
+        </div>
+    </main>
     <footer>
         <p>Projet de gestion des stages - Copyright © 2024</p>
     </footer>
-
     <script>
         document.getElementById("editBtn").addEventListener("click", function() {
             window.location.href = "{{ route('entreprise.edit', ['entreprise' => 1]) }}";

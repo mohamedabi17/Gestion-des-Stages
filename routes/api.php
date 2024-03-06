@@ -13,6 +13,7 @@ use App\Http\Controllers\PossedeStageController;
 use App\Http\Controllers\PromotionController;
 use App\Http\Controllers\EntrepriseController;
 
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -61,3 +62,13 @@ Route::post('/users', [RegisterController::class, 'store'])->name('users.store')
 Route::get('/entreprises', [EntrepriseController::class, 'index'])->name('entreprise.index');
 Route::get('/entreprises/create', [EntrepriseController::class, 'create'])->name('entreprise.create');
 Route::post('/entreprises', [EntrepriseController::class, 'store'])->name('entreprise.store');
+
+
+
+Route::get('/offers', [OffreDeStageController::class, 'index'])->name('offers.index');
+Route::get('/offers/create', [OffreDeStageController::class, 'create'])->name('offers.create');
+Route::post('/offers', [OffreDeStageController::class, 'store'])->name('offers.store');
+Route::get('/offers/{offer}', [OffreDeStageController::class, 'show'])->name('offers.show');
+Route::get('/offers/{offer}/edit', [OffreDeStageController::class, 'edit'])->name('offers.edit');
+Route::put('/offers/{offer}', [OffreDeStageController::class, 'update'])->name('offers.update');
+Route::delete('/offers/{offer}', [OffreDeStageController::class, 'destroy'])->name('offers.destroy');

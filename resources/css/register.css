@@ -1,0 +1,207 @@
+/* Global styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+    /* Light gray background */
+    color: #333;
+    /* Dark text */
+}
+
+.container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    /* White background */
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    /* Soft shadow */
+}
+
+/* Card styles */
+.card {
+    background-color: #fff;
+    /* White background */
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    /* Soft shadow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    /* Lift card on hover */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    /* Slightly stronger shadow on hover */
+}
+
+.card-header {
+    background-color: #ff6600;
+    color: #fff;
+    /* White text */
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    padding: 15px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+/* Form styles */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-label {
+    font-weight: bold;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: border-color 0.3s ease;
+}
+
+.form-control:focus {
+    border-color: #ff6600;
+    /* Orange border on focus */
+    outline: none;
+}
+
+.btn {
+    padding: 10px 20px;
+    background-color: #ff6600;
+    /* Orange button */
+    color: #fff;
+    /* White text */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #cc5500;
+    /* Darker orange on hover */
+}
+
+/* Error message */
+.error-message {
+    color: #dc3545;
+    /* Red text for error messages */
+}
+
+/* Responsive styles */
+@media only screen and (max-width: 600px) {
+    .container {
+        max-width: 100%;
+    }
+}/* Search form style */
+    form {
+        margin-top: 20px;
+        text-align: center;
+    }
+
+    input[type="text"] {
+        padding: 8px;
+        width: 200px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    button[type="submit"] {
+        padding: 8px 16px;
+        background-color: #333;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    button[type="submit"] {
+        background-color: #555;
+        /* Darker background on hover */
+    }
+
+    /* Responsive styles */
+    @media only screen and (max-width: 600px) {
+        .container {
+            max-width: 100%;
+        }
+    }
+
+    h2{
+        color: #000;
+    }
+
+
+          .card {
+              margin-bottom: 20px;
+              background-color: #ff6600;
+              border: 1px solid #ff6600;
+              border-radius: 5px;
+              box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+              transition: all 0.3s ease;
+          }
+    
+          .card:hover {
+              background-color: #111;
+              border-color: #ff6600;
+              color: #ff6600;
+          }
+    
+          .card-title {
+              color: #000;
+              font-size: 20px;
+              font-weight: bold;
+          }
+    
+          .card-text {
+              color: #000;
+              font-size: 16px;
+          }
+    
+          .btn-primary {
+              background-color: #000;
+              color: #ff6600;
+              border: none;
+              border-radius: 5px;
+              padding: 8px 16px;
+              font-size: 16px;
+              cursor: pointer;
+              transition: background-color 0.3s ease;
+          }
+    
+          .btn-primary:hover {
+              background-color: #ff6600;
+              color: #000;
+          }
+
+         .card:hover {
+            background-color: #111;
+            border-color: #ff6600;
+            color: #ff6600;
+                            /* Change text color to yellow */
+      }
+
+          .card:hover p {
+              background-color: #111;
+              border-color: #ff6600;
+              color: #ff6600;
+              /* Change text color to yellow */
+          }
+
+         .card:hover h5 {
+             color: white;
+             /* Change text color to yellow */
+         }
+
+
+         
