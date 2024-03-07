@@ -16,7 +16,7 @@
 <ul>
     <li><a href="#">Accueil</a></li>
     <li><a href="#">Offres de stage</a></li>
-    <li><a href="#">Profil</a></li>
+    <li><a href="{{ route('profile.profile') }}">Profil</a></li>
     <li><a href="{{ route('login') }}">Connexion</a></li>
     <li><a href="{{ route('entreprise.create') }}">Créer une entreprise</a></li>
     <li><a href="{{ route('etudiant.etudiant') }}">Dashboard Étudiant</a></li>
@@ -108,20 +108,20 @@
     </footer>
 <script>
     // JavaScript code to redirect
-    window.onload = function() {
-        // Perform the redirection based on conditions
-        // Example: Redirect to the appropriate page based on user type
-        let userType = '{{ Auth::user() ? Auth::user()->usertype : null }}'; // Get the user type from the authenticated user
-        if (userType !== null) {
-            if (userType === 'etudiant') {
-                window.location.href = "{{ route('etudiant.etudiant') }}"; // Redirect to etudiant index page
-            } else if (userType === 'pilotedestage') {
-                window.location.href = "{{ route('pilotePromotion.pilote') }}"; // Redirect to pilotedestage index page
-            } else if (userType === 'entreprise') {
-                window.location.href = "{{ route('entreprise.dashboard') }}"; // Redirect to entreprise index page
-            }
-        }
-    };
+    // window.onload = function() {
+    //     // Perform the redirection based on conditions
+    //     // Example: Redirect to the appropriate page based on user type
+    //     let userType = '{{ Auth::user() ? Auth::user()->usertype : null }}'; // Get the user type from the authenticated user
+    //     if (userType !== null) {
+    //         if (userType === 'etudiant') {
+    //             window.location.href = "{{ route('etudiant.etudiant') }}"; // Redirect to etudiant index page
+    //         } else if (userType === 'pilotedestage') {
+    //             window.location.href = "{{ route('pilotePromotion.pilote') }}"; // Redirect to pilotedestage index page
+    //         } else if (userType === 'entreprise') {
+    //             window.location.href = "{{ route('entreprise.dashboard') }}"; // Redirect to entreprise index page
+    //         }
+    //     }
+    // };
 </script>
 
 

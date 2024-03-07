@@ -12,6 +12,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class RegisterController extends Controller
 {
@@ -23,7 +24,13 @@ class RegisterController extends Controller
     {
         $this->middleware('guest');
     }
+     
 
+      public function show()
+    {
+        $user = Auth::user();
+        return view('profile.show', compact('user'));
+    }
     protected function validator(array $data)
     {
         return Validator::make($data, [
@@ -45,14 +52,17 @@ class RegisterController extends Controller
 
         if ($data['usertype'] === 'etudiant') {
             Etudiant::create([
+                 'etudiant_id'=>$user['id'],
                  'name' => $data['name'],
             ]);
         } elseif ($data['usertype'] === 'pilotedestage') {
             PiloteDePromotion::create([
+                'pilote_id'=>$user['id'],
                 'name' => $data['name'],
             ]);
         } elseif ($data['usertype'] === 'entreprise') {
             Entreprise::create([
+                 'entreprise_id'=>$user['id'],
                 'name' => $data['name'],
             ]);
         }
@@ -64,12 +74,34 @@ class RegisterController extends Controller
     {
         if ($user->usertype === 'etudiant') {
             return redirect()->route('etudiant.etudiant');
-        } elseif ($user->usertype === 'pilote_de_stage') {
+        } elseif ($user->usertype === 'pilotedestage') {
             return redirect()->route('pilotePromotion.pilote');
         } elseif ($user->usertype === 'entreprise') {
             return redirect()->route('entreprise.dashboard');
         }
     }
+
+    
+
+public function update(Request $request)
+{
+    $user = Auth::user();
+
+    $validatedData = $request->validate([
+        'name' => 'required|string|max:255',
+        'email' => 'required|string|email|max:255|unique:users,email,' . $user->id,
+        // Add more validation rules for other fields if needed
+    ]);
+
+    $user->name = $validatedData['name'];
+    $user->email = $validatedData['email'];
+    // Update other fields as needed
+
+    $user->save();
+
+    return redirect()->route('profile.show')->with('success', 'Profile updated successfully.');
+}
+
 
 
      public function store(Request $request)

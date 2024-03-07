@@ -42,7 +42,8 @@ class UserController extends Controller
     {
         return view('users.edit', compact('user'));
     }
-
+    
+    
     // Update the specified user in the database.
     public function update(Request $request, User $user)
     {

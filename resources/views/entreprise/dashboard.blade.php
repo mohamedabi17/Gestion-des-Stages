@@ -15,11 +15,12 @@
     <nav>
         <ul>
             <li><a href="/">Accueil</a></li>
-            <li><a href="{{ route('offers.index') }}">Offres de stage</a></li>
             <li><a href="#">Profil</a></li>
+            <li><a href="{{ route('offers.index') }}">Les Offres de stage</a></li>
+            <li><a href="{{ route('offers.create') }}">Creé un offre de Stage</a></li>
             <li><a href="{{ route('login') }}">Connexion</a></li>
             <li><a href="{{ route('register') }}">Register</a></li>
-            <li><a href="{{ route('offers.create') }}">Creé un offre de Stage</a></li>
+            <li><a href="{{ route('logout') }}">logout</a></li>
             <li>
                 <form action="{{ route('search.entreprise') }}" method="GET">
                     <input type="text" name="query" placeholder="Rechercher entreprise...">

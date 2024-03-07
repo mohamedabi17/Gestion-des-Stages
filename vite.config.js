@@ -14,6 +14,7 @@ export default defineConfig({
                 'resources/css/etudiant.css',
                 'resources/css/offers.css',
                 'resources/css/dashboardoffers.css',
+                'resources/css/profile.css',
             ],
             refresh: true,
         }),

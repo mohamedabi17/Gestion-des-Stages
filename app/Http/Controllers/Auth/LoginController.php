@@ -21,14 +21,14 @@ class LoginController extends Controller
     // Override the authenticated method to redirect users based on their user type
     protected function authenticated(Request $request, $user)
     {
-        if ($user->usertype === 'etudiant') {
-            return redirect()->route('etudiant.dashboard');
+          if ($user->usertype === 'etudiant') {
+            return redirect()->route('etudiant.etudiant');
+        } elseif ($user->usertype === 'pilotedestage') {
+            return redirect()->route('pilotePromotion.pilote');
         } elseif ($user->usertype === 'entreprise') {
             return redirect()->route('entreprise.dashboard');
-        } elseif ($user->usertype === 'pilotedestage') {
-            return redirect()->route('pilotedestage.dashboard');
-        } else {
-            return redirect()->route('home');
         }
     }
 }
+
+

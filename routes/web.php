@@ -27,6 +27,10 @@ Route::post('/offers', [OffreDeStageController::class, 'store'])->name('offers.s
 Route::get('/offers/{offer}/edit', [OffreDeStageController::class, 'edit'])->name('offers.edit');
 Route::get('/offers/offeroffers', [OffreDeStageController::class, 'search'])->name('offers.offer');
 
+
+Route::get('/profile', [OffreDeStageController::class, 'create'])->name('profile.profile');
+
+
 // Define routes for the homepage
 Route::get('/', function () {
     return view('welcome');

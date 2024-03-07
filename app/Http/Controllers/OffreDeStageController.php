@@ -4,17 +4,22 @@ namespace App\Http\Controllers;
 
 use App\Models\Offers;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 class OffreDeStageController extends Controller
 {
     public function index()
-    {
+    {  
         $offers = Offers::all();
         return view('offers.dashboard', compact('offers'));
     }
 
     public function create()
-    {
+    {   
+
+        // Ensure authentication
+        if (!Auth::check()) {
+            return redirect()->route('login'); // Redirect to login page if user is not authenticated
+        }
         return view('offers.create');
     }
 

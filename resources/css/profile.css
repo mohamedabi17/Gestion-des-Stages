@@ -1,0 +1,107 @@
+body {
+    font-family: 'Figtree', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #000;
+    color: #ff6600;
+    /* Yellow text */
+    animation: fadeIn ease 1s;
+    animation-iteration-count: 1;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.container {
+    max-width: 95%;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #ff6600;
+    /* Yellow background */
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    overflow-x: auto;
+    /* Enable horizontal scrolling on small screens */
+}
+
+h1,
+h2 {
+    color: #000;
+}
+
+footer {
+    background-color: #000;
+    color: #ff6600;
+    /* Yellow text */
+    text-align: center;
+    padding: 20px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+footer p {
+    margin: 0;
+}
+
+.details {
+    margin-top: 20px;
+}
+
+/* Responsive styles */
+@media only screen and (max-width: 600px) {
+    .container {
+        max-width: 100%;
+    }
+}
+
+.card {
+    margin-bottom: 20px;
+    background-color: #ff6600;
+    border: 1px solid #ff6600;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    background-color: #111;
+    /* Darker background */
+    border-color: #ff6600;
+    color: #ff6600;
+    /* Change text color to yellow */
+}
+
+.card-title {
+    color: #000;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.card-text {
+    color: #000;
+    font-size: 16px;
+}
+
+.btn-primary {
+    background-color: #000;
+    color: #ff6600;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 16px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #ff6600;
+    color: #000;
+}
