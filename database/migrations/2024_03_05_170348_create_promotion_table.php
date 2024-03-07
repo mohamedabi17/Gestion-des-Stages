@@ -8,28 +8,19 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('promotions', function (Blueprint $table) {
-            $table->id();
-            $table->string('nom_promotion');
-            // Add other columns as needed
-            $table->timestamps();
+                Schema::create('promotions', function (Blueprint $table) {
+                $table->id();
+                $table->string('nom_promotion');
+                $table->unsignedBigInteger('pilote_id'); // Ensure it's unsigned
 
-            $table->unsignedBigInteger('etudiant_id'); // Ensure it's unsigned
+                // Foreign key constraint referencing the existing "pilote_de_promotions" table
+                $table->foreign('pilote_id')
+                    ->references('pilote_id') // Reference the primary key of "pilote_de_promotions" table
+                    ->on('pilote_de_promotions')
+                    ->onDelete('CASCADE');
 
-            // Foreign key constraint referencing the existing "etudiant" table
-            $table->foreign('etudiant_id')
-                ->references('etudiant_id') // Reference the primary key of "etudiant" table
-                ->on('etudiants')
-                ->onDelete('CASCADE');
-
-            $table->unsignedBigInteger('pilote_id'); // Ensure it's unsigned
-
-            // Foreign key constraint referencing the existing "etudiant" table (assuming "pilote" represents students)
-            $table->foreign('pilote_id')
-                ->references('pilote_id') // Reference the primary key of "etudiant" table
-                ->on('pilote_de_promotions')
-                ->onDelete('CASCADE');
-        });
+                $table->timestamps();
+            });
     }
 
     public function down(): void

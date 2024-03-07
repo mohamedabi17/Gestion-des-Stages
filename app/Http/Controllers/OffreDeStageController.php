@@ -26,6 +26,7 @@ class OffreDeStageController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'name' => 'required|max:255',
             'type' => 'required|max:255',
             'duree' => 'required|max:255',
             'entreprise_id' => 'required|exists:entreprise,id', // Assuming "entreprise" is the table name for Entreprise model
@@ -50,6 +51,7 @@ class OffreDeStageController extends Controller
     public function update(Request $request, Offers $offre)
     {
         $request->validate([
+             'name' => 'required|max:255',
             'type' => 'required|max:255',
             'duree' => 'required|max:255',
             'entreprise_id' => 'required|exists:entreprise,id', // Assuming "entreprise" is the table name for Entreprise model

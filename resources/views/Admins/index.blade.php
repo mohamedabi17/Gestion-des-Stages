@@ -9,14 +9,14 @@
 </head>
 <body class="antialiased">
     <header>
-        <h1>Bienvenu dans L'Application de Gestion des offres de stage </h1>
+        <h1>Gestion des offres de stage pour les étudiants</h1>
     </header>
 
    <nav>
 <ul>
     <li><a href="/">Accueil</a></li>
-    <li><a href="{{ route('profile.profile') }}">profile</a></li>
-    <li><a href="/">Offres de stage</a></li>
+    <li><a href="#">Offres de stage</a></li>
+    <li><a href="{{ route('profile.profile') }}">Profil</a></li>
     <li><a href="{{ route('login') }}">Connexion</a></li>
     <li><a href="{{ route('entreprise.create') }}">Créer une entreprise</a></li>
     <li><a href="{{ route('etudiant.etudiant') }}">Dashboard Étudiant</a></li>
@@ -65,8 +65,9 @@
                 <!-- More rows here -->
             </tbody>
         </table>
-
+        <h2>Admin Dashboard</h2>
         <div class="row">
+               
         <!-- Student Card -->
         <div class="col-md-4">
             <div class="card">
@@ -106,23 +107,7 @@
     <footer>
         <p>Projet de gestion des stages - Copyright © 2024</p>
     </footer>
-<script>
-    // JavaScript code to redirect
-    // window.onload = function() {
-    //     // Perform the redirection based on conditions
-    //     // Example: Redirect to the appropriate page based on user type
-    //     let userType = '{{ Auth::user() ? Auth::user()->usertype : null }}'; // Get the user type from the authenticated user
-    //     if (userType !== null) {
-    //         if (userType === 'etudiant') {
-    //             window.location.href = "{{ route('etudiant.etudiant') }}"; // Redirect to etudiant index page
-    //         } else if (userType === 'pilotedestage') {
-    //             window.location.href = "{{ route('pilotePromotion.pilote') }}"; // Redirect to pilotedestage index page
-    //         } else if (userType === 'entreprise') {
-    //             window.location.href = "{{ route('entreprise.dashboard') }}"; // Redirect to entreprise index page
-    //         }
-    //     }
-    // };
-</script>
+
 
 
 

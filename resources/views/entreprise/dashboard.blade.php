@@ -35,7 +35,8 @@
             <div class="operations">
                 <button id="editBtn">Edit entreprise</button>
                 <button id="statisticsBtn">View entreprise Statistics</button>
-                <button id="createBtn">Create New entreprise</button>
+                <button id="createBtn">Create New Offre De Stage</button>
+                <button id="ViewBtn">View Offers</button>
             </div>
         </div>
     </main>
@@ -52,7 +53,10 @@
         });
 
         document.getElementById("createBtn").addEventListener("click", function() {
-            window.location.href = "{{ route('entreprise.create') }}";
+            window.location.href = "{{ route('offers.create') }}";
+        });
+        document.getElementById("ViewBtn").addEventListener("click", function() {
+            window.location.href = "{{ route('offers.index') }}";
         });
     </script>
 </body>

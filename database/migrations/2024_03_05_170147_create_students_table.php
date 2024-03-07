@@ -13,6 +13,18 @@ return new class extends Migration
             $table->string('name');
             // Add other columns as needed
             $table->timestamps();
+
+            $table->unsignedBigInteger('user_id');
+
+            // Foreign key constraint referencing the existing "users" table
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('CASCADE');
+
+            $table->unsignedBigInteger('promotion_id')->nullable();
+
+            
         });
     }
 

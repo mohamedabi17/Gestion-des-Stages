@@ -6,21 +6,23 @@ use Illuminate\Database\Eloquent\Model;
 
 class EvaluerParPilote extends Model
 {
+    protected $table = 'evaluer_par_pilote';
+
     protected $fillable = [
-        'note', 'commentaire'
-        // Add other fillable attributes as needed
+        'note',
+        'commentaire',
+        'entreprise_id',
+        'pilote_id',
     ];
 
-    // Getters and setters
-    public function getNoteAttribute($value)
+    // Define relationships
+    public function entreprise()
     {
-        return intval($value); // Example: convert the note to an integer
+        return $this->belongsTo(Entreprise::class, 'entreprise_id');
     }
 
-    public function setNoteAttribute($value)
+    public function piloteDePromotion()
     {
-        $this->attributes['note'] = (string) $value; // Example: ensure note is stored as a string
+        return $this->belongsTo(PiloteDePromotion::class, 'pilote_id');
     }
-
-    // Similarly, implement getters and setters for other attributes as needed
 }

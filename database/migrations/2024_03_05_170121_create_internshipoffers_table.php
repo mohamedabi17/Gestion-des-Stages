@@ -11,6 +11,7 @@ return new class extends Migration
           // Create the "offre_de_stage" table with the foreign key
         Schema::create('offers', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
             $table->string('type');
             $table->string('duree');
             $table->unsignedBigInteger('entreprise_id'); // Ensure it's unsigned

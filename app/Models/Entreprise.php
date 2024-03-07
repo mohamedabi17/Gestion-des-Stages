@@ -6,30 +6,19 @@ use Illuminate\Database\Eloquent\Model;
 
 class Entreprise extends Model
 {
-    protected $primaryKey = 'entreprise_id'; // Assuming 'entreprise_id' is the primary key
+    protected $table = 'entreprises';
+
+    protected $primaryKey = 'entreprise_id'; // Specify the custom primary key column
 
     protected $fillable = [
-        'name', 'secteur'
+        'name',
+        'secteur',
+        'user_id',
     ];
 
-    // Getters and setters
-    public function getNameAttribute($value)
+    // Define relationship with User model assuming 'user_id' is the foreign key
+    public function user()
     {
-        return ucfirst($value); // Example: capitalize the company name
-    }
-
-    public function setNameAttribute($value)
-    {
-        $this->attributes['name'] = strtolower($value); // Example: convert the company name to lowercase
-    }
-
-    public function getSecteurAttribute($value)
-    {
-        return ucfirst($value); // Example: capitalize the sector
-    }
-
-    public function setSecteurAttribute($value)
-    {
-        $this->attributes['secteur'] = strtolower($value); // Example: convert the sector to lowercase
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

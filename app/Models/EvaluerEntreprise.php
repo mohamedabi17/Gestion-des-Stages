@@ -6,21 +6,23 @@ use Illuminate\Database\Eloquent\Model;
 
 class EvaluerEntreprise extends Model
 {
+    protected $table = 'evaluer_entreprise';
+
     protected $fillable = [
-        'nom', 'commentaire'
-        // Add other fillable attributes as needed
+        'nom',
+        'commentaire',
+        'entreprise_id',
+        'etudiant_id',
     ];
 
-    // Getters and setters
-    public function getNomAttribute($value)
+    // Define relationships
+    public function entreprise()
     {
-        return ucfirst($value); // Example: capitalize the name
+        return $this->belongsTo(Entreprise::class, 'entreprise_id');
     }
 
-    public function setNomAttribute($value)
+    public function etudiant()
     {
-        $this->attributes['nom'] = strtolower($value); // Example: convert the name to lowercase
+        return $this->belongsTo(Etudiant::class, 'etudiant_id');
     }
-
-    // Similarly, implement getters and setters for other attributes as needed
 }

@@ -6,22 +6,25 @@ use Illuminate\Database\Eloquent\Model;
 
 class Etudiant extends Model
 {
-    protected $primaryKey = 'etudiant_id'; // Assuming 'etudiant_id' is the primary key
+    protected $table = 'etudiants';
+
+    protected $primaryKey = 'etudiant_id'; // Specify the custom primary key column
 
     protected $fillable = [
-        'name'
+        'name',
+        'user_id',
+        'promotion_id',
     ];
 
-    // Getters and setters
-    public function getNameAttribute($value)
+    // Define relationship with User model assuming 'user_id' is the foreign key
+    public function user()
     {
-        return ucfirst($value); // Example: capitalize the name
+        return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function setNameAttribute($value)
+    // Define relationship with Promotion model assuming 'promotion_id' is the foreign key
+    public function promotion()
     {
-        $this->attributes['name'] = strtolower($value); // Example: convert the name to lowercase
+        return $this->belongsTo(Promotion::class, 'promotion_id');
     }
-
-    // Similarly, implement getters and setters for other attributes as needed
 }

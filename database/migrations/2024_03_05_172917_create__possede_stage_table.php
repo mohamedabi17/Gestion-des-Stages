@@ -11,11 +11,27 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('possede_stage', function (Blueprint $table) {
+        Schema::create('postule_stage', function (Blueprint $table) {
             $table->id();
             $table->string('cv');
             $table->string('lettre_de_motivation');
             $table->timestamps();
+
+             $table->unsignedBigInteger('etudiant_id'); // Ensure it's unsigned
+
+            // Foreign key constraint referencing the existing "entreprise" table
+            $table->foreign('etudiant_id')
+                ->references('etudiant_id')  // Use the correct column name in "entreprise" table
+                ->on('etudiants')
+                ->onDelete('CASCADE');
+
+             $table->unsignedBigInteger('offer_id'); // Ensure it's unsigned
+
+            // Foreign key constraint referencing the existing "entreprise" table
+            $table->foreign('offer_id')
+                ->references('id')  // Use the correct column name in "entreprise" table
+                ->on('offers')
+                ->onDelete('CASCADE');
         });
     }
 

@@ -12,7 +12,7 @@ use App\Http\Controllers\OffreDeStageController;
 use App\Http\Controllers\PossedeStageController;
 use App\Http\Controllers\PromotionController;
 use App\Http\Controllers\EntrepriseController;
-
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -72,3 +72,13 @@ Route::get('/offers/{offer}', [OffreDeStageController::class, 'show'])->name('of
 Route::get('/offers/{offer}/edit', [OffreDeStageController::class, 'edit'])->name('offers.edit');
 Route::put('/offers/{offer}', [OffreDeStageController::class, 'update'])->name('offers.update');
 Route::delete('/offers/{offer}', [OffreDeStageController::class, 'destroy'])->name('offers.destroy');
+
+
+
+Route::prefix('api')->group(function () {
+    Route::get('/admins', [AdminController::class, 'index']);
+    Route::get('/admins/{admin}', [AdminController::class, 'show']);
+    Route::post('/admins', [AdminController::class, 'store']);
+    Route::put('/admins/{admin}', [AdminController::class, 'update']);
+    Route::delete('/admins/{admin}', [AdminController::class, 'destroy']);
+});

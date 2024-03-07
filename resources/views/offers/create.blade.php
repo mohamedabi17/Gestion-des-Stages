@@ -1,10 +1,9 @@
 @extends('layouts.app')
-
 @section('content')
     <div class="offers container">
         @vite(['resources/css/offers.css', ])
         <h1>Create Offer de Stage</h1>
-        <form action="{{ route('offers.create') }}" method="POST" class="create-form">
+        <form action="{{ route('offers.store') }}" method="POST" class="create-form">
             @csrf
             <!-- Add hidden input for entreprise_id -->
             <input type="hidden" id="entreprise_id" name="entreprise_id" value="{{ Auth::user()->id }}">

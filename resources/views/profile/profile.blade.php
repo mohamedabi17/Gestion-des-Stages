@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+    <div class="profile">
         @vite(['resources/css/profile.css', 'resources/css/entreprise.css'])
         <header>
             <h1>User Profile</h1>
@@ -17,3 +17,6 @@
         <button class="btn-primary">Logout</button>
     </div>
 @endsection
+
+
+

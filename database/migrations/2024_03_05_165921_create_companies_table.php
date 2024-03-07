@@ -17,6 +17,14 @@ return new class extends Migration
             $table->string('name')->unique(); // Add a column for the company name
             $table->string('secteur')->nullable(); // Add a column for the industry the company belongs to
             $table->timestamps();
+
+            $table->unsignedBigInteger('user_id'); // Ensure it's unsigned
+
+            // Foreign key constraint referencing the existing "entreprise" table
+            $table->foreign('user_id')
+                ->references('id')  // Use the correct column name in "entreprise" table
+                ->on('users')
+                ->onDelete('CASCADE');
         });
      
     }

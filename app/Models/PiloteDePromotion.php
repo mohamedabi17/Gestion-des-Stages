@@ -13,6 +13,14 @@ class PiloteDePromotion extends Model
         // Add other fillable attributes as needed
     ];
 
+    protected $table = 'pilote_de_promotions';
+
+    // Define relationship
+    public function evaluations()
+    {
+        return $this->hasMany(EvaluerParPilote::class, 'pilote_id');
+    }
+
     // Getters and setters
     public function getNameAttribute($value)
     {

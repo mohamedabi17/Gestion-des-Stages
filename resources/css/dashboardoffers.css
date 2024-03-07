@@ -1,73 +1,60 @@
-.title {
-    color: #ff6600;
-    /* Dark orange color for title */
-    text-align: center;
-    /* Center-align the title */
-}
+/* Add this CSS to your dashboardoffers.css file */
 
-.form-group {
-    margin-bottom: 20px;
-    /* Add some bottom margin for form groups */
-}
-
-label {
-    color: #000;
-    /* Black color for labels */
-    font-weight: bold;
-    /* Make labels bold */
-}
-
-input[type="text"],
-input[type="date"],
-textarea {
-    width: 100%;
-    /* Make text fields and textareas full-width */
-    padding: 10px;
-    /* Add padding to text fields and textareas */
-    border: 1px solid #ccc;
-    /* Add a light border */
+.container {
+    max-width: 95%;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #ff6600;
     border-radius: 5px;
-    /* Add border radius */
-    box-sizing: border-box;
-    /* Include padding and border in the width */
-    margin-bottom: 10px;
-    /* Add some bottom margin */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    overflow-x: auto;
+}
+
+.title {
+    color: #111;
+}
+
+.offers-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.offers-table th,
+.offers-table td {
+    border: 1px solid #111;
+    padding: 8px;
+    text-align: left;
+}
+
+.offers-table th {
+    background-color: #ff6600;
+    color: #111;
+}
+
+.offers-table tr:nth-child(even) {
+    background-color: #111;
+    color: #ff6600;
+}
+
+.offers-table tr:nth-child(odd) {
+    background-color: #222;
+    color: #ff6600;
 }
 
 .btn-primary {
-    background-color: #ff6600;
-    /* Dark orange background for primary button */
-    color: #fff;
-    /* White text color */
+    background-color: #111;
+    color: #ff6600;
     border: none;
-    /* Remove button border */
     border-radius: 5px;
-    /* Add border radius */
-    padding: 10px 20px;
-    /* Add padding to button */
+    padding: 8px 16px;
+    font-size: 16px;
     cursor: pointer;
-    /* Change cursor to pointer on hover */
+    transition: background-color 0.3s ease;
+    margin-right: 10px;
 }
 
 .btn-primary:hover {
-    background-color: #cc5500;
-    /* Darker orange color on hover */
-}
-
-.container {
-    max-width: 600px;
-    /* Set max-width for container */
-    margin: 0 auto;
-    /* Center-align the container */
-}
-
-.create-form {
-    background-color: #f9f9f9;
-    /* Light gray background for form */
-    padding: 20px;
-    /* Add some padding to the form */
-    border-radius: 10px;
-    /* Add border radius */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    /* Add box shadow */
+    background-color: #ff6600;
+    color: #111;
 }

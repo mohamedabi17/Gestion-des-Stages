@@ -143,11 +143,23 @@
 
     h2{
         color: #000;
+        text-align: center;
+        font-weight:900;
     }
 
-
+          .row{
+            display: flex;
+            justify-content: space-between;
+            
+          }
           .card {
-              margin-bottom: 20px;
+              text-align: center;
+              margin-left: auto;
+              margin-right: auto;
+              margin-bottom: auto;
+              margin-top: auto;
+              padding-left: 10%;
+              padding-right: 10%;
               background-color: #ff6600;
               border: 1px solid #ff6600;
               border-radius: 5px;
@@ -196,6 +208,7 @@
       }
 
           .card:hover p {
+
               background-color: #111;
               border-color: #ff6600;
               color: #ff6600;

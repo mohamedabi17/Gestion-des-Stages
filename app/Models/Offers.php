@@ -6,22 +6,18 @@ use Illuminate\Database\Eloquent\Model;
 
 class Offers extends Model
 {
-    protected $primaryKey = 'id'; // Assuming 'id' is the primary key
+    protected $table = 'offers';
 
     protected $fillable = [
-        'type', 'duree', 'entreprise_id'
+        'name',
+        'type',
+        'duree',
+        'entreprise_id',
     ];
 
-    // Getters and setters
-    public function getTypeAttribute($value)
+    // Define relationship with Entreprise model assuming 'entreprise_id' is the foreign key
+    public function entreprise()
     {
-        return ucfirst($value); // Example: capitalize the type
+        return $this->belongsTo(Entreprise::class, 'entreprise_id');
     }
-
-    public function setTypeAttribute($value)
-    {
-        $this->attributes['type'] = strtolower($value); // Example: convert the type to lowercase
-    }
-
-    // Similarly, implement getters and setters for other attributes as needed
 }

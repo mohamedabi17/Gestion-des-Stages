@@ -16,6 +16,22 @@ return new class extends Migration
             $table->string('note');
             $table->string('commentaire');
             $table->timestamps();
+
+            $table->unsignedBigInteger('entreprise_id'); // Ensure it's unsigned
+
+            // Foreign key constraint referencing the existing "entreprise" table
+            $table->foreign('entreprise_id')
+                ->references('entreprise_id')  // Use the correct column name in "entreprise" table
+                ->on('entreprises')
+                ->onDelete('CASCADE');
+
+                  $table->unsignedBigInteger('pilote_id'); // Ensure it's unsigned
+
+            // Foreign key constraint referencing the existing "entreprise" table
+            $table->foreign('pilote_id')
+                ->references('pilote_id')  // Use the correct column name in "entreprise" table
+                ->on('pilote_de_promotions')
+                ->onDelete('CASCADE');
         });
     }
 
