@@ -6,7 +6,7 @@
         <form action="{{ route('offers.store') }}" method="POST" class="create-form">
             @csrf
             <!-- Add hidden input for entreprise_id -->
-            <input type="hidden" id="entreprise_id" name="entreprise_id" value="{{ Auth::user()->id }}">
+            <input type="hidden" id="entreprise_id" name="entreprise_id">
             
             <div class="form-group">
                 <label for="name">Title:</label>
@@ -23,4 +23,23 @@
             <button type="submit" class="btn btn-orange">Create Offer de Stage</button>
         </form>
     </div>
+
+    <!-- JavaScript to fetch entreprise data -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            fetchEntrepriseData();
+        });
+
+        function fetchEntrepriseData() {
+            fetch('/get-entreprise-data') // Route to fetch entreprise data
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data.entreprise_id)
+                   
+                    // Update the value of entreprise_id input field
+                    document.getElementById('entreprise_id').value = data.entreprise_id;
+                })
+                .catch(error => console.error('Error fetching entreprise data:', error));
+        }
+    </script>
 @endsection

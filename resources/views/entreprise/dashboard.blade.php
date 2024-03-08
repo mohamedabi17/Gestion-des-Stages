@@ -16,7 +16,7 @@
         <ul>
             <li><a href="/">Accueil</a></li>
             <li><a href="#">Profil</a></li>
-            <li><a href="{{ route('offers.index') }}">Les Offres de stage</a></li>
+            <li><a href="{{ route('offers.dashboard') }}">Les Offres de stage</a></li>
             <li><a href="{{ route('offers.create') }}">Creé un offre de Stage</a></li>
             <li><a href="{{ route('login') }}">Connexion</a></li>
             <li><a href="{{ route('register') }}">Register</a></li>

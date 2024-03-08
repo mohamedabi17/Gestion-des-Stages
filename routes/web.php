@@ -25,8 +25,12 @@ Route::get('/offers', [OffreDeStageController::class, 'index'])->name('offers.da
 Route::post('/offers/create', [OffreDeStageController::class, 'create'])->name('offers.create');
 Route::get('/offers/create', [OffreDeStageController::class, 'create'])->name('offers.create');
 Route::post('/offers', [OffreDeStageController::class, 'store'])->name('offers.store');
-Route::get('/offers/{offer}/edit', [OffreDeStageController::class, 'edit'])->name('offers.edit');
-// Route::get('/offers/offeroffers', [OffreDeStageController::class, 'search'])->name('offers.offer');
+Route::get('/offers/{id}/edit', [OffreDeStageController::class, 'edit'])->name('offers.edit');
+Route::put('/offers/{id}', [OffreDeStageController::class, 'update'])->name('offers.update');
+Route::delete('/offers/{id}', [OffreDeStageController::class, 'destroy'])->name('offers.destroy');
+
+
+
 
 // Routes for Profile
 // Route::get('/profile', [RegisterController::class, 'show'])->name('profile.show');
@@ -66,3 +70,28 @@ Route::get('/admins/{admin}', [AdminController::class, 'show'])->name('admins.sh
 Route::get('/admins/{admin}/edit', [AdminController::class, 'edit'])->name('admins.edit');
 Route::put('/admins/{admin}', [AdminController::class, 'update'])->name('admins.update');
 Route::delete('/admins/{admin}', [AdminController::class, 'destroy'])->name('admins.destroy');
+
+
+use App\Models\Entreprise;
+use App\Models\Offers;
+
+Route::get('/get-entreprise-data', function () {
+    $entreprise = Entreprise::where('user_id', auth()->id())->first();
+    return response()->json(['entreprise_id' => $entreprise->entreprise_id]);
+});
+
+
+
+Route::get('/get-offers', function () {
+    // Retrieve the enterprise associated with the authenticated user
+    $entreprise = Entreprise::where('user_id', auth()->id())->first();
+
+    // Retrieve offers associated with the enterprise
+    $offers = Offers::where('entreprise_id', $entreprise->entreprise_id)->get();
+
+    // Return JSON response with offers and enterprise object
+    return response()->json([
+        'offers' => $offers,
+        'entreprise' => $entreprise,
+    ]);
+});

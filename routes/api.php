@@ -68,10 +68,10 @@ Route::post('/entreprises', [EntrepriseController::class, 'store'])->name('entre
 Route::get('/offers', [OffreDeStageController::class, 'index'])->name('offers.index');
 Route::get('/offers/create', [OffreDeStageController::class, 'create'])->name('offers.create');
 Route::post('/offers', [OffreDeStageController::class, 'store'])->name('offers.store');
-Route::get('/offers/{offer}', [OffreDeStageController::class, 'show'])->name('offers.show');
-Route::get('/offers/{offer}/edit', [OffreDeStageController::class, 'edit'])->name('offers.edit');
-Route::put('/offers/{offer}', [OffreDeStageController::class, 'update'])->name('offers.update');
-Route::delete('/offers/{offer}', [OffreDeStageController::class, 'destroy'])->name('offers.destroy');
+Route::get('/offers/{id}', [OffreDeStageController::class, 'show'])->name('offers.show');
+Route::get('/offers/{id}/edit', [OffreDeStageController::class, 'edit'])->name('offers.edit');
+Route::put('/offers/{id}', [OffreDeStageController::class, 'update'])->name('offers.update');
+Route::delete('/offers/{id}', [OffreDeStageController::class, 'destroy'])->name('offers.destroy');
 
 
 

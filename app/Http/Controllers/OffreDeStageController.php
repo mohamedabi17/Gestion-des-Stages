@@ -29,7 +29,7 @@ class OffreDeStageController extends Controller
             'name' => 'required|max:255',
             'type' => 'required|max:255',
             'duree' => 'required|max:255',
-            'entreprise_id' => 'required|exists:entreprise,id', // Assuming "entreprise" is the table name for Entreprise model
+            'entreprise_id' => 'required|exists:entreprises,entreprise_id', // Assuming "entreprise" is the table name for Entreprise model
         ]);
 
         Offers::create($request->all());
@@ -48,26 +48,32 @@ class OffreDeStageController extends Controller
         return view('offers.edit', compact('offre'));
     }
 
-    public function update(Request $request, Offers $offre)
+    public function update(Request $request, $id)
     {
         $request->validate([
-             'name' => 'required|max:255',
+            'name' => 'required|max:255',
             'type' => 'required|max:255',
             'duree' => 'required|max:255',
-            'entreprise_id' => 'required|exists:entreprise,id', // Assuming "entreprise" is the table name for Entreprise model
+            'entreprise_id' => 'required|exists:entreprises,entreprise_id', // Assuming "entreprises" is the table name for Entreprise model
         ]);
+
+        $offre = Offers::findOrFail($id); // Assuming your model is named "Offers"
 
         $offre->update($request->all());
 
         return redirect()->route('offers.index')
-                         ->with('success', 'Offre de stage updated successfully.');
+                        ->with('success', 'Offre de stage updated successfully.');
     }
 
-    public function destroy(Offers $offre)
-    {
-        $offre->delete();
 
-        return redirect()->route('offers.index')
-                         ->with('success', 'Offre de stage deleted successfully.');
-    }
+public function destroy(Request $request, $id)
+{
+    $offre = Offers::findOrFail($id); // Retrieve the offer by its ID
+
+    $offre->delete(); // Delete the offer
+
+    return redirect()->route('offers.index')
+                     ->with('success', 'Offre de stage deleted successfully.');
+}
+
 }
