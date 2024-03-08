@@ -20,6 +20,7 @@ Route::post('/User/register', [RegisterController::class, 'store'])->name('regis
 
 
 
+
 Route::get('/entreprise/create', [EntrepriseController::class, 'create'])->name('entreprise.create');
 Route::post('/entreprise', [EntrepriseController::class, 'store'])->name('entreprise.store');
 Route::get('/entreprise/{entreprise}/edit', [EntrepriseController::class, 'edit'])->name('entreprise.edit');
@@ -56,7 +57,7 @@ Route::get('/etudiant', function () {
 })->name('etudiant.etudiant');
 
 Route::get('/pilotedestage', function () {
-    return view('pilotePromotion.dashboard');
+    return view('pilotePromotion.pilote');
 })->name('pilotePromotion.pilote');
 
 Route::get('/entreprise', function () {

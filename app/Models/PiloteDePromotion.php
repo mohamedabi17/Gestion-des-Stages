@@ -2,17 +2,23 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class PiloteDePromotion extends Model
 {
-    protected $primaryKey = 'pilote_id'; // Assuming 'pilote_id' is the primary key
+    use HasFactory;
 
     protected $fillable = [
-        'name'
-        // Add other fillable attributes as needed
+        'name',
+        'user_id',
     ];
 
+    // Define the relationship with the User model
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
     protected $table = 'pilote_de_promotions';
 
     // Define relationship

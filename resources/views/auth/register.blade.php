@@ -36,15 +36,15 @@
                             <label for="password-confirm" class="form-label">{{ __('Confirm Password') }}</label>
                             <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                         </div>
-                        <div class="mb-3">
-                            <label for="user-type" class="form-label">{{ __('User Type') }}</label>
-                            <select id="user-type" class="form-select" onchange="toggleInputFields(this.value)">
-                                <option value="etudiant">Etudiant</option>
-                                <option value="entreprise">Entreprise</option>
-                                <option value="pilotedestage">Pilote de Stage</option>
-                                <option value="admin">Admin</option>
-                            </select>
-                        </div>
+                  <div class="mb-3">
+                    <label for="usertype" class="form-label">{{ __('User Type') }}</label>
+                    <select id="usertype" class="form-select" name="usertype" onchange="toggleInputFields(this.value)">
+                        <option value="etudiant">Etudiant</option>
+                        <option value="entreprise">Entreprise</option>
+                        <option value="pilotedestage">Pilote de Stage</option>
+                        <option value="admin">Admin</option>
+                    </select>
+                </div>
                         <div class="mb-3 promotion-field" style="display: none;">
                             <label for="promotion" class="form-label">{{ __('Promotion') }}</label>
                             <input id="promotion" type="text" class="form-control" name="promotion">
@@ -54,7 +54,7 @@
                             <input id="secteur" type="text" class="form-control" name="secteur">
                         </div>
                         <div class="mb-3">
-                            <button type="submit" class="btn btn-primary w-100">{{ __('Register') }}</button>
+                            <button type="submit" class="btn btn-orange w-100">{{ __('Register') }}</button>
                         </div>
                     </form>
                 </div>

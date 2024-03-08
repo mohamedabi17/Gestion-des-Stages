@@ -2,15 +2,20 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Admins extends Model
 {
-    protected $primaryKey = 'id'; // Assuming 'entreprise_id' is the primary key
+    use HasFactory;
 
-    protected $fillable = [
-        'name'
-    ];
+    protected $fillable = ['name', 'user_id'];
+
+    // Define the relationship with the User model
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 
     // Getters and setters
     public function getNameAttribute($value)

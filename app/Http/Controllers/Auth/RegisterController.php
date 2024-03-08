@@ -42,84 +42,77 @@ class RegisterController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'usertype' => ['required', 'string', 'in:etudiant,pilotedestage,entreprise,admin'],
-            'secteur' => ['sometimes', 'string',  'max:255'], // Changed 'notrequired' to 'sometimes'
-           'promotion'=> ['sometimes', 'string',  'max:255'], // Changed 'notrequired' to 'sometimes'
         ]);
     }
 
-   protected function create(array $data)
-{
-    $user = User::create([
-        'name' => $data['name'],
-        'email' => $data['email'],
-        'password' => Hash::make($data['password']),
-        'usertype' => $data['usertype'],
-    ]);
+//    protected function create(array $data)
+// {
+//     $user = User::create([
+//         'name' => $data['name'],
+//         'email' => $data['email'],
+//         'password' => Hash::make($data['password']),
+//         'usertype' => $data['usertype'],
+//     ]);
 
-    if ($data['usertype'] === 'etudiant') {
-        $etudiantData = ['etudiant_id' => $user['id'], 'name' => $data['name']];
+//     if ($data['usertype'] === 'etudiant') {
+//         $etudiantData = ['etudiant_id' => $user['id'], 'name' => $data['name']];
         
-        // Check if promotion data is provided
-        if ( $data['promotion'] !== null) {
-            $promotion = Promotion::where('nom_promotion', $data['promotion'])->first();
+//         // Check if promotion data is provided
+//         if ( $data['promotion'] !== null) {
+//             $promotion = Promotion::where('nom_promotion', $data['promotion'])->first();
             
-            // If promotion exists, associate it with the student
-            if ($promotion !== null) {
-                $etudiantData['id'] = $promotion->id;
-            }
-        }
+//             // If promotion exists, associate it with the student
+//             if ($promotion !== null) {
+//                 $etudiantData['id'] = $promotion->id;
+//             }
+//         }
 
-        Etudiant::create($etudiantData);
-    } elseif ($data['usertype'] === 'pilotedestage') {
-        PiloteDePromotion::create([
-            'pilote_id'=>$user['id'],
-            'name' => $data['name'],
-        ]);
-    } elseif ($data['usertype'] === 'entreprise') {
-        $entrepriseData = [
-            'entreprise_id' => $user['id'],
-            'name' => $data['name']
-        ];
+//         Etudiant::create($etudiantData);
+//     } elseif ($data['usertype'] === 'pilotedestage') {
+//         PiloteDePromotion::create([
+//             'pilote_id'=>$user['id'],
+//             'name' => $data['name'],
+//         ]);
+//     } elseif ($data['usertype'] === 'entreprise') {
+//         $entrepriseData = [
+//             'entreprise_id' => $user['id'],
+//             'name' => $data['name']
+//         ];
 
-        // Check if secteur is provided
-        if ( $data['secteur'] !== null) {
-            $entrepriseData['secteur'] = $data['secteur'];
-        }
+//         // Check if secteur is provided
+//         if ( $data['secteur'] !== null) {
+//             $entrepriseData['secteur'] = $data['secteur'];
+//         }
 
-        Entreprise::create($entrepriseData);
+//         Entreprise::create($entrepriseData);
     
-    } elseif ($data['usertype'] === 'admin') {
-        Admins::create([
-            'id'=>$user['id'],
-            'name' => $data['name'],
-        ]);
+//     } elseif ($data['usertype'] === 'admin') {
+//         Admins::create([
+//             'id'=>$user['id'],
+//             'name' => $data['name'],
+//         ]);
+//     }
+
+//     return $user;
+// }
+
+ public function create()
+    {
+        return view('register');
     }
 
-    return $user;
-}
-
-   public function getAdditionalFields($userType)
-    {
-        if ($userType === 'etudiant') {
-            return response()->json(['success' => true, 'field' => 'promotion']);
-        } elseif ($userType === 'entreprise') {
-            return response()->json(['success' => true, 'field' => 'secteur']);
-        } else {
-            return response()->json(['success' => true, 'message' => 'Invalid user type']);
-        }
-    }
-    protected function registered(Request $request, $user)
-    {
-        if ($user->usertype === 'etudiant') {
-            return redirect()->route('etudiant.etudiant');
-        } elseif ($user->usertype === 'pilotedestage') {
-            return redirect()->route('pilotePromotion.pilote');
-        } elseif ($user->usertype === 'entreprise') {
-            return redirect()->route('entreprise.dashboard');
-        }elseif ($user->usertype === 'admin') {
-            return redirect()->route('admins.index')->with('success', 'Registration successful!');
-        }
-    }
+    // protected function registered(Request $request, $user)
+    // {
+    //     if ($user->usertype === 'etudiant') {
+    //         return redirect()->route('etudiant.etudiant');
+    //     } elseif ($user->usertype === 'pilotedestage') {
+    //         return redirect()->route('pilotePromotion.pilote');
+    //     } elseif ($user->usertype === 'entreprise') {
+    //         return redirect()->route('entreprise.dashboard');
+    //     }elseif ($user->usertype === 'admin') {
+    //         return redirect()->route('admins.index')->with('success', 'Registration successful!');
+    //     }
+    // }
 
     public function update(Request $request, $id)
 {
@@ -170,8 +163,6 @@ public function store(Request $request)
         'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
         'password' => ['required', 'string', 'min:8', 'confirmed'],
         'usertype' => ['required', 'string', 'in:etudiant,pilotedestage,entreprise,admin'],
-        'secteur' => ['sometimes', 'string',  'max:255'], // Changed 'notrequired' to 'sometimes'
-        'promotion'=> ['sometimes', 'string',  'max:255'], // Changed 'notrequired' to 'sometimes'
     ]);
 
     // Create a new user record
@@ -185,7 +176,7 @@ public function store(Request $request)
     // Create corresponding records based on user type
     if ($user->usertype === 'etudiant') {
         $etudiantData = [
-            'etudiant_id' => $user->id,
+            'user_id' => $user->id,
             'name' => $user->name,
         ];
 
@@ -196,46 +187,25 @@ public function store(Request $request)
             if ($promotion !== null) {
                 $etudiantData['promotion_id'] = $promotion->id;
             }
-            // // If promotion exists, associate it with the student
-            // if ($promotion !== null && $promotion->pilote_id !==null) {
-
-            //       $pilote = PiloteDePromotion::create([
-            //         'name' => $user->name,
-            //         'pilote_id' => $user->id,
-            //     ]);
-
-            //     if ($pilote !== null) {
-            //          $promotion = Promotion::where('pilote_id', $pilote->pilote_id);
-            //           $etudiantData = [
-            //             'promotion_id' => $promotion->id,
-            //              ];
-            //     }
-                
-                
-            // }
-            // else{
-            //         $pilote = PiloteDePromotion::create([
-            //         'name' => $user->name,
-            //         'pilote_id' => $user->id,
-            //     ]);
-
-            //     if ($pilote !== null) {
-            //          $promotion = Promotion::where('pilote_id', $pilote->pilote_id);
-            //     }
-            // }
+            else{
+                  $newPromotion = Promotion::create([
+                        'nom_promotion' => $request->promotion,
+                        'pilote_id' => null,
+                    ]);
+                $etudiantData['promotion_id'] = $newPromotion->id;
         }
 
         Etudiant::create($etudiantData);
         return redirect()->route('etudiant.etudiant')->with('success', 'Registration successful!');
     } elseif ($user->usertype === 'pilotedestage') {
         PiloteDePromotion::create([
-            'pilote_id' => $user->id,
+            'user_id' => $user->id,
             'name' => $user->name,
         ]);
         return redirect()->route('pilotePromotion.pilote')->with('success', 'Registration successful!');
     } elseif ($user->usertype === 'entreprise') {
         $entrepriseData = [
-            'entreprise_id' => $user->id,
+            'user_id' => $user->id,
             'name' => $user->name,
         ];
 
@@ -247,8 +217,14 @@ public function store(Request $request)
         Entreprise::create($entrepriseData);
         return redirect()->route('entreprise.dashboard')->with('success', 'Registration successful!');
     } elseif ($user->usertype === 'admin') {
+
+
+          $AdmintData = [
+            'user_id' => $user->id,
+            'name' => $user->name,
+        ];
         Admins::create([
-            'id' => $user->id,
+            'user_id' => $user->id,
             'name' => $user->name,
         ]);
         return redirect()->route('admins.index')->with('success', 'Registration successful!');
@@ -261,3 +237,4 @@ public function store(Request $request)
 
 }
 
+}
