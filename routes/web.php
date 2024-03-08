@@ -8,37 +8,29 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
 
-
-
 // Define route for displaying the registration form
 Route::get('/register', [RegisterController::class, 'create'])->name('register');
 
 // Define route for handling the registration form submission
 Route::post('/User/register', [RegisterController::class, 'store'])->name('register.store');
 
-
-
-
-
-
+// Routes for Entreprise
 Route::get('/entreprise/create', [EntrepriseController::class, 'create'])->name('entreprise.create');
 Route::post('/entreprise', [EntrepriseController::class, 'store'])->name('entreprise.store');
 Route::get('/entreprise/{entreprise}/edit', [EntrepriseController::class, 'edit'])->name('entreprise.edit');
 Route::get('/search/entreprise', [EntrepriseController::class, 'search'])->name('search.entreprise');
 
-
+// Routes for OffreDeStageController
 Route::get('/offers', [OffreDeStageController::class, 'index'])->name('offers.dashboard');
 Route::post('/offers/create', [OffreDeStageController::class, 'create'])->name('offers.create');
-
 Route::get('/offers/create', [OffreDeStageController::class, 'create'])->name('offers.create');
 Route::post('/offers', [OffreDeStageController::class, 'store'])->name('offers.store');
 Route::get('/offers/{offer}/edit', [OffreDeStageController::class, 'edit'])->name('offers.edit');
-Route::get('/offers/offeroffers', [OffreDeStageController::class, 'search'])->name('offers.offer');
+// Route::get('/offers/offeroffers', [OffreDeStageController::class, 'search'])->name('offers.offer');
 
-
-Route::get('/profile', [RegisterController::class, 'show'])->name('profile.show');
+// Routes for Profile
+// Route::get('/profile', [RegisterController::class, 'show'])->name('profile.show');
 Route::get('/profile', [UserController::class, 'profile'])->name('profile.profile');
-
 
 // Define routes for the homepage
 Route::get('/', function () {
@@ -57,21 +49,16 @@ Route::get('/etudiant', function () {
 })->name('etudiant.etudiant');
 
 Route::get('/pilotedestage', function () {
-    return view('pilotePromotion.pilote');
+    return view('pilotePromotion.dashboard');
 })->name('pilotePromotion.pilote');
 
 Route::get('/entreprise', function () {
     return view('entreprise.dashboard');
 })->name('entreprise.dashboard');
 
-
-
 Route::get('/get-additional-fields/{userType}', [App\Http\Controllers\Auth\RegisterController::class, 'getAdditionalFields']);
 
-
-
-
-Route::get('/admins', [AdminController::class, 'index'])->name('admins.dashboard');
+// Routes for Admin
 Route::get('/admins', [AdminController::class, 'index'])->name('admins.index');
 Route::get('/admins/create', [AdminController::class, 'create'])->name('admins.create');
 Route::post('/admins', [AdminController::class, 'store'])->name('admins.store');

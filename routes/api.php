@@ -39,21 +39,21 @@ Route::resource('pilote_de_promotions', PiloteDePromotionController::class);
 Route::resource('possede_stages', PossedeStageController::class);
 Route::resource('promotions', PromotionController::class);
 
-Route::get('/etudiants', [EtudiantController::class, 'index'])->name('etudiants.index');
-Route::get('/etudiants/create', [EtudiantController::class, 'create'])->name('etudiants.create');
-Route::post('/etudiants', [EtudiantController::class, 'store'])->name('etudiants.store');
-Route::get('/etudiants/{etudiant}', [EtudiantController::class, 'show'])->name('etudiants.show');
-Route::get('/etudiants/{etudiant}/edit', [EtudiantController::class, 'edit'])->name('etudiants.edit');
-Route::put('/etudiants/{etudiant}', [EtudiantController::class, 'update'])->name('etudiants.update');
-Route::delete('/etudiants/{etudiant}', [EtudiantController::class, 'destroy'])->name('etudiants.destroy');
+// Route::get('/etudiants', [EtudiantController::class, 'index'])->name('etudiants.index');
+// Route::get('/etudiants/create', [EtudiantController::class, 'create'])->name('etudiants.create');
+// Route::post('/etudiants', [EtudiantController::class, 'store'])->name('etudiants.store');
+// Route::get('/etudiants/{etudiant}', [EtudiantController::class, 'show'])->name('etudiants.show');
+// Route::get('/etudiants/{etudiant}/edit', [EtudiantController::class, 'edit'])->name('etudiants.edit');
+// Route::put('/etudiants/{etudiant}', [EtudiantController::class, 'update'])->name('etudiants.update');
+// Route::delete('/etudiants/{etudiant}', [EtudiantController::class, 'destroy'])->name('etudiants.destroy');
 
-Route::get('/pilotes', [PiloteDePromotionController::class, 'index'])->name('pilotes.index');
-Route::get('/pilotes/create', [PiloteDePromotionController::class, 'create'])->name('pilotes.create');
-Route::post('/pilotes', [PiloteDePromotionController::class, 'store'])->name('pilotes.store');
-Route::get('/pilotes/{pilote}', [PiloteDePromotionController::class, 'show'])->name('pilotes.show');
-Route::get('/pilotes/{pilote}/edit', [PiloteDePromotionController::class, 'edit'])->name('pilotes.edit');
-Route::put('/pilotes/{pilote}', [PiloteDePromotionController::class, 'update'])->name('pilotes.update');
-Route::delete('/pilotes/{pilote}', [PiloteDePromotionController::class, 'destroy'])->name('pilotes.destroy');
+// Route::get('/pilotes', [PiloteDePromotionController::class, 'index'])->name('pilotes.index');
+// Route::get('/pilotes/create', [PiloteDePromotionController::class, 'create'])->name('pilotes.create');
+// Route::post('/pilotes', [PiloteDePromotionController::class, 'store'])->name('pilotes.store');
+// Route::get('/pilotes/{pilote}', [PiloteDePromotionController::class, 'show'])->name('pilotes.show');
+// Route::get('/pilotes/{pilote}/edit', [PiloteDePromotionController::class, 'edit'])->name('pilotes.edit');
+// Route::put('/pilotes/{pilote}', [PiloteDePromotionController::class, 'update'])->name('pilotes.update');
+// Route::delete('/pilotes/{pilote}', [PiloteDePromotionController::class, 'destroy'])->name('pilotes.destroy');
 
 Route::get('/users', [RegisterController::class, 'index'])->name('users.index');
 Route::get('/users/create', [RegisterController::class, 'create'])->name('users.create');

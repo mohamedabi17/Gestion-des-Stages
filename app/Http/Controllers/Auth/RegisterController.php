@@ -101,18 +101,18 @@ class RegisterController extends Controller
         return view('register');
     }
 
-    // protected function registered(Request $request, $user)
-    // {
-    //     if ($user->usertype === 'etudiant') {
-    //         return redirect()->route('etudiant.etudiant');
-    //     } elseif ($user->usertype === 'pilotedestage') {
-    //         return redirect()->route('pilotePromotion.pilote');
-    //     } elseif ($user->usertype === 'entreprise') {
-    //         return redirect()->route('entreprise.dashboard');
-    //     }elseif ($user->usertype === 'admin') {
-    //         return redirect()->route('admins.index')->with('success', 'Registration successful!');
-    //     }
-    // }
+    protected function registered(Request $request, $user)
+    {
+        if ($user->usertype === 'etudiant') {
+            return redirect()->route('etudiant.etudiant');
+        } elseif ($user->usertype === 'pilotedestage') {
+            return redirect()->route('pilotePromotion.pilote');
+        } elseif ($user->usertype === 'entreprise') {
+            return redirect()->route('entreprise.dashboard');
+        }elseif ($user->usertype === 'admin') {
+            return redirect()->route('admins.index')->with('success', 'Registration successful!');
+        }
+    }
 
     public function update(Request $request, $id)
 {
@@ -193,10 +193,12 @@ public function store(Request $request)
                         'pilote_id' => null,
                     ]);
                 $etudiantData['promotion_id'] = $newPromotion->id;
+        }}else{
+               $etudiantData['promotion_id'] = null;
         }
 
-        Etudiant::create($etudiantData);
-        return redirect()->route('etudiant.etudiant')->with('success', 'Registration successful!');
+        $etud =Etudiant::create($etudiantData);
+        return redirect()->route('etudiant.etudiant')->with('success', 'Registration successful!',);
     } elseif ($user->usertype === 'pilotedestage') {
         PiloteDePromotion::create([
             'user_id' => $user->id,
@@ -230,11 +232,11 @@ public function store(Request $request)
         return redirect()->route('admins.index')->with('success', 'Registration successful!');
     }
 
-    // Default redirection if user type is not recognized
-    return redirect('/')->with('success', 'Registration successful!');
 }
 
 
 }
 
-}
+
+
+
