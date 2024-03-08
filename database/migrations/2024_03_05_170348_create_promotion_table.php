@@ -11,13 +11,13 @@ return new class extends Migration
                 Schema::create('promotions', function (Blueprint $table) {
                 $table->id();
                 $table->string('nom_promotion');
-                $table->unsignedBigInteger('pilote_id'); // Ensure it's unsigned
+                $table->unsignedBigInteger('pilote_id')->nullable(); // Ensure it's unsigned
 
                 // Foreign key constraint referencing the existing "pilote_de_promotions" table
                 $table->foreign('pilote_id')
                     ->references('pilote_id') // Reference the primary key of "pilote_de_promotions" table
                     ->on('pilote_de_promotions')
-                    ->onDelete('CASCADE');
+                    ->onDelete('SET NULL');
 
                 $table->timestamps();
             });

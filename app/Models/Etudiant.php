@@ -23,8 +23,4 @@ class Etudiant extends Model
     }
 
     // Define relationship with Promotion model assuming 'promotion_id' is the foreign key
-    public function promotion()
-    {
-        return $this->belongsTo(Promotion::class, 'promotion_id');
-    }
 }

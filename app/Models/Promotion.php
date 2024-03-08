@@ -20,3 +20,4 @@ class Promotion extends Model
         return $this->belongsTo(PiloteDePromotion::class, 'pilote_id');
     }
 }
+

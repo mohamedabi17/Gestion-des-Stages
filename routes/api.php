@@ -7,12 +7,12 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\CompetenceController;
 use App\Http\Controllers\EtudiantController;
 use App\Http\Controllers\EvaluerEntrepriseController;
-use App\Http\Controllers\LocationController;
 use App\Http\Controllers\OffreDeStageController;
 use App\Http\Controllers\PossedeStageController;
 use App\Http\Controllers\PromotionController;
 use App\Http\Controllers\EntrepriseController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\LocationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,7 +33,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::resource('competences', CompetenceController::class);
 Route::resource('evaluer_entreprise', EvaluerEntrepriseController::class);
-Route::resource('locations', LocationController::class);
+// Route::resource('locations', LocationController::class);
 Route::resource('offre_de_stages', OffreDeStageController::class);
 Route::resource('pilote_de_promotions', PiloteDePromotionController::class);
 Route::resource('possede_stages', PossedeStageController::class);

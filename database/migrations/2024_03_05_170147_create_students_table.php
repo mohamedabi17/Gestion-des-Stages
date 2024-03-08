@@ -23,6 +23,10 @@ return new class extends Migration
                 ->onDelete('CASCADE');
 
             $table->unsignedBigInteger('promotion_id')->nullable();
+            // $table->foreign('promotion_id')
+            //         ->references('id') // Reference the primary key of "pilote_de_promotions" table
+            //         ->on('promotions')
+            //         ->onDelete('SET NULL');
 
             
         });

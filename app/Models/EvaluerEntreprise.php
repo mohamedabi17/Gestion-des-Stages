@@ -26,3 +26,4 @@ class EvaluerEntreprise extends Model
         return $this->belongsTo(Etudiant::class, 'etudiant_id');
     }
 }
+ 

@@ -26,3 +26,4 @@ class PostuleStage extends Model
         return $this->belongsTo(Offers::class, 'offer_id');
     }
 }
+

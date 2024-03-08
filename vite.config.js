@@ -15,6 +15,7 @@ export default defineConfig({
                 'resources/css/offers.css',
                 'resources/css/dashboardoffers.css',
                 'resources/css/profile.css',
+                'resources/js/components/RegisterForm.js',
             ],
             refresh: true,
         }),
