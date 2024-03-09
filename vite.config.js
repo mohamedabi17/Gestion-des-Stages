@@ -8,7 +8,7 @@ export default defineConfig({
             input: [
                 'resources/sass/app.scss',
                 'resources/js/app.js',
-                'resources/css/app.css',
+                'resources/css/welcome.css',
                 'resources/css/pilote.css',
                 'resources/css/entreprise.css',
                 'resources/css/etudiant.css',

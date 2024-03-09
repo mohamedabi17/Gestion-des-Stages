@@ -6,7 +6,8 @@
 
         <h1 class="title">Postuler pour un Stage</h1>
 
-        <form action="{{ route('postuler.postulerindex') }}" method="POST" class="postule-form">
+       <form action="{{ route('postuler.storepostuler', ['id' => $offerId]) }}" method="POST" class="postule-form">
+
             @csrf
 
             <div class="form-group">
@@ -18,11 +19,11 @@
                 <textarea id="lettre_de_motivation" name="lettre_de_motivation" class="form-control" required></textarea>
             </div>
             <div class="form-group">
-                <label for="etudiant_id">Étudiant ID:</label>
-                <input type="text" id="etudiant_id" name="etudiant_id" class="form-control" required>
+                <label for="etudiant_id">Étudiant Name:</label>
+                <input type="text" id="name" name="name" class="form-control" required>
             </div>
             <div class="form-group">
-                <label for="offer_id">Offre ID:</label>
+                <label for="offer_id">Competence:</label>
                 <input type="text" id="offer_id" name="offer_id" class="form-control" required>
             </div>
             <button type="submit" class="btn btn-primary">Soumettre</button>

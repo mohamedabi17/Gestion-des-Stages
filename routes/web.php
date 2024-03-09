@@ -42,7 +42,7 @@ Route::post('/candidates/store', [PostuleStageController::class, 'store'])->name
 Route::delete('/candidates/{postuleStage}', [PostuleStageController::class, 'destroy'])->name('candidates.destroy');
 
 
-Route::get('/postuler/{id}', [PostuleStageController::class, 'indexpostuler'])->name('postuler.indexpostuler');
+Route::get('/postuler/{id}/candidates', [PostuleStageController::class, 'indexpostuler'])->name('postuler.indexpostuler');
 Route::post('/postuler/{id}', [PostuleStageController::class, 'storepostuler'])->name('postuler.storepostuler');
 
 

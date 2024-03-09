@@ -40,7 +40,7 @@
                             <td>${offer.duree}</td>
 
                             <td>
-                              <a class="btn btn-primary postuler-btn" href="/postuler/${offer.id}" >Postuler</a>
+                              <a class="btn btn-primary postuler-btn" href="/postuler/${offer.id}/candidates" >Postuler</a>
                             </td>
                         </tr>
                     `;

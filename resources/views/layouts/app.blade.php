@@ -14,10 +14,10 @@
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
     <!-- Scripts -->
-    @vite(['resources/sass/app.scss','resources/css/layouts.css','resources/js/app.js']);
+    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
-<body>
-    <div id="app">
+<body> 
+    <div id="app" style="background-color: black;">
         <nav class="navbar navbar-expand-md navbar-light bg-black shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">

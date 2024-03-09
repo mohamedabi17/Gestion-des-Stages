@@ -1,27 +1,4 @@
-/* Navbar */
-.navbar {
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
 
-.navbar-toggler {
-    border: none;
-}
-
-.navbar-toggler-icon {
-    background-color: #fff;
-}
-
-/* Navbar links */
-.navbar-nav .nav-link {
-    color: #fff;
-    transition: color 0.3s ease;
-}
-
-.navbar-nav .nav-link:hover {
-    color: #ff6600;
-}
-
-/* Dropdown menu */
 .dropdown-menu {
     background-color: #343a40;
     border: none;
@@ -39,15 +16,41 @@
     color: #fff;
 }
 
-/* Logo */
-.logo {
-    margin-right: 10px;
+footer,
+.generalfooter {
+    background-color: #000;
+    color: #ff6600;
+    /* Yellow text */
+    text-align: center;
+    padding: 10px 0;
 }
 
-        footer {
-            background-color: #000;
-            color: #ff6600;
-            /* Yellow text */
-            text-align: center;
-            padding: 10px 0;
-        }
+.generalfooter {
+    background-color: #000;
+    color: #ff6600;
+    /* Yellow text */
+    text-align: center;
+    padding: 20px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.generalfooter p {
+    margin: 0;
+}
+
+.btn-orange{
+    background-color:#ff6600;
+        color: #000;
+}
+.btn-primary {
+    background-color: #000;
+    color: #ff6600;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 16px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}

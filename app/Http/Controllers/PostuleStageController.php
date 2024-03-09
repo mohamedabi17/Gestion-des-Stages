@@ -48,11 +48,18 @@ class PostuleStageController extends Controller
     }
 
 
-      public function indexpostuler($id)
-    {
-         $candidates = PostuleStage::all();
-        return view('postuler.postuler', compact('$candidates'));
-    }
+public function indexpostuler($id)
+{
+    // Retrieve the offer ID from the route parameter
+    $offerId = $id;
+
+    // Fetch candidates for the specific offer ID
+    $candidates = PostuleStage::where('offer_id', $offerId)->get();
+
+    return view('postuler.postuler', compact('candidates', 'offerId'));
+}
+
+
 
     public function storepostluer(Request $request, $id)
     {
