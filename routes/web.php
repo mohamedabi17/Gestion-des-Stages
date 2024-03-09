@@ -9,6 +9,10 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
 
+use App\Models\Entreprise;
+use App\Models\Offers;
+use App\Models\Etudiant;
+
 // Define route for displaying the registration form
 Route::get('/register', [RegisterController::class, 'create'])->name('register');
 
@@ -16,7 +20,20 @@ Route::get('/register', [RegisterController::class, 'create'])->name('register')
 Route::post('/User/register', [RegisterController::class, 'store'])->name('register.store');
 
 // Routes for Entreprise
+Route::put('/entreprises/{id}', [EntrepriseController::class, 'update'])->name('entreprise.update');
 Route::get('/entreprise/create', [EntrepriseController::class, 'create'])->name('entreprise.create');
+Route::get('/entreprises/{user_id}/fiche', function ($user_id) {
+    // Fetch the entreprise_id based on the user_id
+    $entreprise_id = Entreprise::where('user_id', $user_id)->value('entreprise_id');
+
+    // If entreprise_id is found, redirect to the fiche route with the entreprise_id
+    if ($entreprise_id) {
+        return redirect()->route('entreprise.fiche', ['id' => $entreprise_id]);
+    } else {
+        // Handle the case where entreprise_id is not found
+        return response()->json(['error' => 'Entreprise not found'], 404);
+    }
+});
 Route::post('/entreprise', [EntrepriseController::class, 'store'])->name('entreprise.store');
 Route::get('/entreprise/{entreprise}/edit', [EntrepriseController::class, 'edit'])->name('entreprise.edit');
 Route::get('/search/entreprise', [EntrepriseController::class, 'search'])->name('search.entreprise');
@@ -87,8 +104,6 @@ Route::put('/admins/{admin}', [AdminController::class, 'update'])->name('admins.
 Route::delete('/admins/{admin}', [AdminController::class, 'destroy'])->name('admins.destroy');
 
 
-use App\Models\Entreprise;
-use App\Models\Offers;
 
 Route::get('/get-entreprise-data', function () {
     $entreprise = Entreprise::where('user_id', auth()->id())->first();
@@ -110,3 +125,54 @@ Route::get('/get-offers', function () {
         'entreprise' => $entreprise,
     ]);
 });
+Route::get('/get-all-offers', function () {
+    // Retrieve all entreprises and offers
+    $entreprises = Entreprise::all();
+    $offers = Offers::all();
+
+    // Return JSON response with entreprises and offers
+    return response()->json([
+        'entreprises' => $entreprises,
+        'offers' => $offers,
+    ]);
+});
+
+
+
+
+// Route::get('/get-evaluation_details', function ($entreprise_id) {
+
+//     $entreprise = Entreprise::where('entreprise_id', $entreprise_id);
+//     $etudiant = Etudiant::where('user_id',auth()->id());
+
+//     return response()->json([
+//         'entreprise' => $entreprise,
+//         'etudiant' => $etudiant,
+//     ]);
+// });
+
+Route::get('/get-evaluation_details/{entreprise_id}', function ($entreprise_id) {
+    // Retrieve the enterprise details based on the provided entreprise_id
+    $entreprise = Entreprise::where('entreprise_id', $entreprise_id)->first();
+
+    // Retrieve the student details associated with the authenticated user
+    $etudiant = Etudiant::where('user_id', auth()->id())->first();
+
+    // Return JSON response with enterprise and student details
+    return response()->json([
+        'entreprise' => $entreprise,
+        'etudiant' => $etudiant,
+    ]);
+});
+
+
+
+use App\Http\Controllers\EvaluerEntrepriseController;
+
+Route::get('/evaluations', [EvaluerEntrepriseController::class, 'index'])->name('evaluations.index');
+Route::get('/evaluations/{id}/create', [EvaluerEntrepriseController::class, 'create'])->name('evaluations.create');
+Route::post('/evaluations', [EvaluerEntrepriseController::class, 'store'])->name('evaluations.store');
+Route::get('/evaluations/{id}', [EvaluerEntrepriseController::class, 'show'])->name('evaluations.show');
+Route::get('/evaluations/{id}/edit', [EvaluerEntrepriseController::class, 'edit'])->name('evaluations.edit');
+Route::put('/evaluations/{id}', [EvaluerEntrepriseController::class, 'update'])->name('evaluations.update');
+Route::delete('/evaluations/{id}', [EvaluerEntrepriseController::class, 'destroy'])->name('evaluations.destroy');

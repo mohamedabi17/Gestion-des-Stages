@@ -31,33 +31,24 @@
         </nav>
 
             <h2>Liste des offres de stage disponibles pour les étudiants gérées par les pôles de management :</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Entreprise</th>
-                        <th>Poste</th>
-                        <th>Description</th>
-                        <th>Date de début</th>
-                        <th>Durée</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Example row, replace with dynamic data -->
-                    <tr>
-                        <td>Entreprise A</td>
-                        <td>Développeur Web</td>
-                        <td>Stage pour travailler sur le développement d'une application web.</td>
-                        <td>01/05/2024</td>
-                        <td>3 mois</td>
-                        <td>
-                            <button class=" btn-primary">Détails</button>
-                            <button class=" btn-primary"> Postuler</button>
-                        </td>
-                    </tr>
-                    <!-- More rows here -->
-                </tbody>
-            </table>
+            <table class="offers-table">
+            <thead>
+                <tr>
+                    <th>Entreprise</th>
+                    <th>Titre</th>
+                    <th>Type</th>
+                    <th>Durée</th>
+                    <!-- <th>Lieu</th> -->
+                    <!-- <th>Durée</th>
+                    <th>Date de Début</th>
+                    <th>Date de Fin</th> -->
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="offers-body">
+                <!-- Offers will be dynamically added here -->
+            </tbody>
+        </table>
 
             <div class="row">
                 <!-- Student Card -->
@@ -97,7 +88,38 @@
 </div>
 
 <script>
-    // JavaScript code to redirect
+
+        document.addEventListener('DOMContentLoaded', function() {
+            fetchOffers();
+             
+        });
+
+            function fetchOffers() {
+                fetch('/get-all-offers')
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            const offersBody = document.getElementById('offers-body');
+            data.offers.forEach((offer, index) => {
+                const entreprise = data.entreprises.find(ent => ent.entreprise_id === offer.entreprise_id);
+                const row = `
+                    <tr>
+                        <td>${entreprise.name}</td>
+                        <td>${offer.name}</td>
+                        <td>${offer.type}</td>
+                        <td>${offer.duree}</td>
+                        <td>
+                            <a href="/offers/${offer.id}/edit" class="btn btn-primary">Modifier</a>
+                            <a href="/offers/${offer.id}/showCandidates" class="btn btn-primary">Voir Candidats</a>
+                        </td>
+                    </tr>
+                `;
+                offersBody.innerHTML += row;
+            });
+        })
+        .catch(error => console.error('Error fetching offers:', error));
+    }
+  // JavaScript code to redirect
     // window.onload = function() {
     //     // Perform the redirection based on conditions
     //     // Example: Redirect to the appropriate page based on user type

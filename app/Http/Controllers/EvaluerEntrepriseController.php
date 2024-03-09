@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\EvaluerEntreprise;
+use App\Models\Entreprise;
 use Illuminate\Http\Request;
+
 class EvaluerEntrepriseController extends Controller
 {
     public function index()
@@ -12,16 +14,29 @@ class EvaluerEntrepriseController extends Controller
         return view('evaluations.index', compact('evaluations'));
     }
 
+
+    // public function create($id)
+    // {
+    //     // Find the etudiant by ID
+    //     $candidataes = EvaluerEntreprise::findOrFail($id);
+
+    //     // Pass the etudiant_id to the view
+    //     return view('evaluations.create', compact('candidataes'));
+    // }
     public function create()
     {
         return view('evaluations.create');
     }
+
+
 
     public function store(Request $request)
     {
         $request->validate([
             'nom' => 'required|unique:evaluer_entreprise|max:255',
             'commentaire' => 'required',
+            'entreprise_id' => 'required', // Add validation for entreprise_id
+            'etudiant_id' => 'required', // Add validation for etudiant_id
             // Add validation rules for other attributes as needed
         ]);
 
@@ -31,21 +46,34 @@ class EvaluerEntrepriseController extends Controller
                          ->with('success', 'Evaluation created successfully.');
     }
 
-    public function show(EvaluerEntreprise $evaluation)
-    {
-        return view('evaluations.show', compact('evaluation'));
-    }
+   public function show($id)
+{
+    // Find the entreprise by its ID
+    $entreprise = Entreprise::findOrFail($id);
 
-    public function edit(EvaluerEntreprise $evaluation)
+    // Find all evaluations associated with the entreprise
+    $evaluations = EvaluerEntreprise::where('entreprise_id', $id)->get();
+
+    // Pass the evaluations and entreprise to the view
+    return view('evaluations.show', compact('evaluations', 'entreprise'));
+}
+
+
+    public function edit($id)
     {
+        $evaluation = EvaluerEntreprise::findOrFail($id);
         return view('evaluations.edit', compact('evaluation'));
     }
 
-    public function update(Request $request, EvaluerEntreprise $evaluation)
+    public function update(Request $request, $id)
     {
+        $evaluation = EvaluerEntreprise::findOrFail($id);
+
         $request->validate([
             'nom' => 'required|unique:evaluer_entreprise,nom,' . $evaluation->id . '|max:255',
             'commentaire' => 'required',
+            'entreprise_id' => 'required', // Add validation for entreprise_id
+            'etudiant_id' => 'required', // Add validation for etudiant_id
             // Add validation rules for other attributes as needed
         ]);
 
@@ -55,8 +83,9 @@ class EvaluerEntrepriseController extends Controller
                          ->with('success', 'Evaluation updated successfully.');
     }
 
-    public function destroy(EvaluerEntreprise $evaluation)
+    public function destroy($id)
     {
+        $evaluation = EvaluerEntreprise::findOrFail($id);
         $evaluation->delete();
 
         return redirect()->route('evaluations.index')

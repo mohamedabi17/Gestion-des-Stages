@@ -1,13 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Entreprise Dashboard</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ mix('resources/css/entreprise.css') }}">
-       @vite(['resources/css/app.css', 'resources/css/entreprise.css'])
-</head>
+@extends('layouts.app')
+@vite(['resources/css/entreprise.css','resources/css/app.css', 'resources/js/app.js','resources/css/layouts.css'])
+  @vite(['resources/css/welcome.css'])
+@section('content')
 <body>
     <header>
         <h1>Entreprise Dashboard</h1>
@@ -37,6 +31,7 @@
                 <button id="statisticsBtn">View entreprise Statistics</button>
                 <button id="createBtn">Create New Offre De Stage</button>
                 <button id="ViewBtn">View Offers</button>
+                <button id="Fiche">Fiche Entreprise</button>
             </div>
         </div>
     </main>
@@ -58,8 +53,15 @@
         document.getElementById("ViewBtn").addEventListener("click", function() {
             window.location.href = "{{ route('offers.index') }}";
         });
+       document.getElementById("Fiche").addEventListener("click", function() {
+            // Fetch the user_id of the authenticated user
+            var userId = '{{ Auth::user()->id }}';
+
+            // Redirect to the fiche route with the user_id
+            window.location.href = `/entreprises/${userId}/fiche`;
+        });
+
     </script>
 </body>
-</html>
 
-
+@endsection

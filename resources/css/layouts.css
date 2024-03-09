@@ -1,4 +1,6 @@
-
+#app{
+    min-height: 90vh;
+}
 .dropdown-menu {
     background-color: #343a40;
     border: none;

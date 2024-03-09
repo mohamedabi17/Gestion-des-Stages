@@ -16,7 +16,9 @@
                 <!-- <th>Lieu</th>
                 <th>Date de Début</th>
                 <th>Date de Fin</th> -->
-                <th>Actions</th>
+                <th>Postuler</th>
+                <th>Evaluer Entreprise</th>
+                <th> consulter les Evaluations</th>
             </tr>
         </thead>
         <tbody>
@@ -41,6 +43,15 @@
 
                             <td>
                               <a class="btn btn-primary postuler-btn" href="/postuler/${offer.id}/candidates" >Postuler</a>
+                              
+                            </td>
+                            <td>
+                        
+                              <a class="btn btn-primary postuler-btn" href="/evaluations/${offer.entreprise_id}/create" >Evaluer Entreprise</a>
+                            </td>
+                            <td>
+                        
+                              <a class="btn btn-primary postuler-btn" href="/evaluations/${offer.entreprise_id}/" >Evaluations</a>
                             </td>
                         </tr>
                     `;

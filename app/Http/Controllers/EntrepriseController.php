@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Entreprise;
-
+  use Illuminate\Support\Facades\Schema;
+use App\Models\Location;
 class EntrepriseController extends Controller
 {
     // Display a listing of the entreprises.
@@ -40,20 +41,58 @@ public function index()
     {
         return view('entreprise.edit', compact('entreprise'));
     }
+public function fiche($id)
+{
+    $entreprise = Entreprise::findOrFail($id);
+    return view('entreprise.fiche', compact('entreprise'));
+}
+
+
 
     // Update the specified entreprise in the database.
-    public function update(Request $request, Entreprise $entreprise)
-    {
-        $request->validate([
-            'name' => 'required|unique:entreprises,name,'.$entreprise->id,
-            'secteur' => 'required',
-        ]);
 
-        $entreprise->update($request->all());
+public function update(Request $request, Entreprise $entreprise)
+{
+    $request->validate([
+        'name' => 'required|unique:entreprises,name,'.$entreprise->id,
+        'secteur' => 'required',
+        'code_postal' => 'required',
+        'numero_de_batiment' => 'required',
+        'ville' => 'required',
+        'pays' => 'required',
+    ]);
 
-        return redirect()->route('entreprise.index')
-                         ->with('success', 'Entreprise updated successfully');
+    // Update entreprise details
+    $entreprise->update($request->only(['name', 'secteur']));
+
+    // Check if the location table exists
+    if (Schema::hasTable('locations')) {
+        // Update or create location details
+        $location = Location::where('entreprise_id', $entreprise->id)->first();
+        if ($location) {
+            $location->update($request->only(['code_postal', 'numero_de_batiment', 'ville', 'pays']));
+        } else {
+            Location::create(array_merge($request->only(['code_postal', 'numero_de_batiment', 'ville', 'pays']), ['entreprise_id' => $entreprise->id]));
+        }
+    } else {
+        // Create location table and insert location details
+        Schema::create('locations', function ($table) {
+            $table->id();
+            $table->string('code_postal');
+            $table->string('numero_de_batiment');
+            $table->string('ville');
+            $table->string('pays');
+            $table->foreignId('entreprise_id')->constrained('entreprises')->onDelete('cascade');
+            $table->timestamps();
+        });
+
+        Location::create(array_merge($request->only(['code_postal', 'numero_de_batiment', 'ville', 'pays']), ['entreprise_id' => $entreprise->id]));
     }
+
+    return redirect()->route('entreprise.index')
+                     ->with('success', 'Entreprise and Location updated successfully');
+}
+
 
     // Remove the specified entreprise from the database.
     public function destroy(Entreprise $entreprise)

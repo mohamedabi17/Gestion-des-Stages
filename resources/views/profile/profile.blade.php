@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@vite(['resources/css/profile.css', 'resources/js/app.js','resources/css/layouts.css'])
 @section('content')
     <div class="profile">
         @vite(['resources/css/profile.css', 'resources/css/entreprise.css'])
