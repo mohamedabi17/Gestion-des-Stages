@@ -1,0 +1,52 @@
+.edit {
+    background-color: black;
+    /* Black background */
+    color: #fff;
+    /* White text */
+    padding: 40px;
+
+}
+
+.title {
+    color: #f90;
+    text-align: center;
+    /* Orange text */
+}
+
+.form-group label {
+    color: #fff;
+    /* White label text */
+}
+
+.form-control {
+    background-color: #333;
+    /* Dark gray background */
+    color: #fff;
+    /* White text */
+    border: 1px solid #f90;
+    /* Orange border */
+    border-radius: 5px;
+}
+
+.form-control:focus {
+    border-color: #f90;
+    /* Orange border color on focus */
+    box-shadow: 0 0 0 0.2rem rgba(255, 153, 0, 0.5);
+    /* Orange shadow on focus */
+}
+
+.btn-primary {
+    background-color: #f90;
+    /* Orange button background */
+    border-color: #f90;
+    /* Orange button border */
+    color: #fff;
+    /* White button text */
+}
+
+.btn-primary:hover {
+    background-color: #f60;
+    /* Darker orange on hover */
+    border-color: #f60;
+    /* Darker orange border on hover */
+}

@@ -1,10 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
-        @vite(['resources/css/edit-offer.css'])
+    <div class="edit">
+        @vite(['resources/css/editoffer.css',]);
         <h1 class="title">Modifier l'Offre de Stage</h1>
-        <form action="{{ route('offers.update', ['offer' => $offer->id]) }}" method="POST" class="edit-form">
+        <form action="{{ route('offers.update', ['id' => $offer->id]) }}" method="POST" class="edit-form">
+
             @csrf
             @method('PUT')
             <div class="form-group">

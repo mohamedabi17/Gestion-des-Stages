@@ -1,4 +1,5 @@
 <?php
+use App\Http\Controllers\PostuleStageController;
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EntrepriseController;
@@ -22,13 +23,27 @@ Route::get('/search/entreprise', [EntrepriseController::class, 'search'])->name(
 
 // Routes for OffreDeStageController
 Route::get('/offers', [OffreDeStageController::class, 'index'])->name('offers.dashboard');
-Route::post('/offers/create', [OffreDeStageController::class, 'create'])->name('offers.create');
+Route::get('/offers/{id}/showCandidates', [OffreDeStageController::class, 'showCandidates'])->name('offers.showCandidates');
 Route::get('/offers/create', [OffreDeStageController::class, 'create'])->name('offers.create');
 Route::post('/offers', [OffreDeStageController::class, 'store'])->name('offers.store');
 Route::get('/offers/{id}/edit', [OffreDeStageController::class, 'edit'])->name('offers.edit');
 Route::put('/offers/{id}', [OffreDeStageController::class, 'update'])->name('offers.update');
 Route::delete('/offers/{id}', [OffreDeStageController::class, 'destroy'])->name('offers.destroy');
 
+
+Route::get('/stageoffers', [OffreDeStageController::class, 'index'])->name('offers.stages');
+
+
+Route::get('/stages', [OffreDeStageController::class, 'fetchStageOffers'])->name('stages');
+
+Route::get('/candidates', [PostuleStageController::class, 'index'])->name('candidates.index');
+Route::get('/candidates/create', [PostuleStageController::class, 'create'])->name('candidates.create');
+Route::post('/candidates/store', [PostuleStageController::class, 'store'])->name('candidates.store');
+Route::delete('/candidates/{postuleStage}', [PostuleStageController::class, 'destroy'])->name('candidates.destroy');
+
+
+Route::get('/postuler/{id}', [PostuleStageController::class, 'indexpostuler'])->name('postuler.indexpostuler');
+Route::post('/postuler/{id}', [PostuleStageController::class, 'storepostuler'])->name('postuler.storepostuler');
 
 
 

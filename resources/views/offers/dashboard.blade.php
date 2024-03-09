@@ -28,30 +28,29 @@
             fetchOffers();
         });
 
-        function fetchOffers() {
-            fetch('/get-offers') // Route to fetch offers
-                .then(response => response.json())
-                .then(data => {
-                    console.log(data.offers)
-                    const offersBody = document.getElementById('offers-body');
-                    data.offers.forEach(offer => {
-                        const row = `
-                            <tr>
-                                <td>${offer.name}</td>
-                                <td>${offer.type}</td>
-                                <td>${offer.duree}</td>
-                                // <td>${offer.location}</td>
-                               <td>
-                                    <a href="{{ route('offers.edit', ['offer' => $offer]) }}" class="btn btn-primary">Modifier</a>
-                                    <a href="{{ route('offers.showCandidates', ['offer' => $offer]) }}" class="btn btn-primary">Voir Candidats</a>
-                                </td>
+            function fetchOffers() {
+                fetch('/get-offers') // Route to fetch offers
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log(data.offers);
+                        const offersBody = document.getElementById('offers-body');
+                        data.offers.forEach(offer => {
+                            const row = `
+                                <tr>
+                                    <td>${offer.name}</td>
+                                    <td>${offer.type}</td>
+                                    <td>${offer.duree}</td>
+                                    <td>
+                                        <a href="/offers/${offer.id}/edit" class="btn btn-primary">Modifier</a>
+                                        <a href="/offers/${offer.id}/showCandidates" class="btn btn-primary">Voir Candidats</a>
+                                    </td>
+                                </tr>
+                            `;
+                            offersBody.innerHTML += row;
+                        });
+                    })
+                    .catch(error => console.error('Error fetching offers:', error));
+            }
 
-                            </tr>
-                        `;
-                        offersBody.innerHTML += row;
-                    });
-                })
-                .catch(error => console.error('Error fetching offers:', error));
-        }
     </script>
 @endsection

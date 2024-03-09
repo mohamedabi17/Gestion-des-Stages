@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
@@ -8,6 +9,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="antialiased">
+    
     <header>
         <h1>Bienvenu dans L'Application de Gestion des offres de stage </h1>
     </header>
@@ -16,7 +18,7 @@
 <ul>
     <li><a href="/">Accueil</a></li>
     <li><a href="{{ route('profile.profile') }}">profile</a></li>
-    <li><a href="/">Offres de stage</a></li>
+    <li><a href="/stageoffers">Offres de stage</a></li>
     <li><a href="{{ route('login') }}">Connexion</a></li>
     <li><a href="{{ route('entreprise.create') }}">Créer une entreprise</a></li>
     <li><a href="{{ route('etudiant.etudiant') }}">Dashboard Étudiant</a></li>
@@ -35,7 +37,7 @@
 
 </nav>
 
-
+     
     <div class="container">
         <h2>Liste des offres de stage disponibles pour les étudiants gérées par les pôles de management :</h2>
         <table>

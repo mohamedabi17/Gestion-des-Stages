@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Offers;
+use App\Models\Entreprise;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 class OffreDeStageController extends Controller
@@ -10,7 +11,15 @@ class OffreDeStageController extends Controller
     public function index()
     {  
         $offers = Offers::all();
-        return view('offers.dashboard', compact('offers'));
+        return view('offers.stages', compact('offers'));
+    }
+
+      public function fetchStageOffers()
+    {
+        // Fetch all offers with their associated entreprise
+        $offers = Offers::with('entreprise')->get();
+
+        return response()->json(['offers' => $offers]);
     }
 
     public function create()
@@ -38,15 +47,20 @@ class OffreDeStageController extends Controller
                          ->with('success', 'Offre de stage created successfully.');
     }
 
-    public function show(Offers $offre)
+    public function show($id)
     {
+        $offre = Offers::findOrFail($id);
         return view('offers.show', compact('offre'));
     }
 
-    public function edit(Offers $offre)
-    {
-        return view('offers.edit', compact('offre'));
-    }
+
+  public function edit($id)
+{
+    $offer = Offers::findOrFail($id); // Retrieve the offer by its ID
+    return view('offers.edit', compact('offer'));
+}
+
+
 
     public function update(Request $request, $id)
     {
