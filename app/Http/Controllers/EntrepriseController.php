@@ -41,7 +41,7 @@ public function index()
     {
         return view('entreprise.edit', compact('entreprise'));
     }
-public function fiche($id)
+public function preview($id)
 {
     // Cast $id to an integer to prevent SQL injection
     $id = (int)$id;

@@ -22,17 +22,31 @@ Route::post('/User/register', [RegisterController::class, 'store'])->name('regis
 // Routes for Entreprise
 Route::put('/entreprises/{id}', [EntrepriseController::class, 'update'])->name('entreprise.update');
 Route::get('/entreprise/create', [EntrepriseController::class, 'create'])->name('entreprise.create');
-Route::get('/entreprises/{id}/fiche', [EntrepriseController::class, 'fiche'])->name('entreprise.fiche');
+// Route::get('/entreprises/{id}/fiche', [EntrepriseController::class, 'preview'])->name('entreprise.fiche');
+
+// Route::get('/entreprises/{user_id}/fiche', function ($user_id) {
+//     // Fetch the entreprise_id based on the user_id
+//     $entreprise_id = Entreprise::where('user_id', $user_id)->value('entreprise_id');
+
+//     // If entreprise_id is found, redirect to the fiche route with the entreprise_id
+//     if ($entreprise_id) {
+//         return redirect()->route('entreprise.fiche', ['id' => $entreprise_id]);
+//     } else {
+//         // Handle the case where entreprise_id is not found
+//         return response()->json(['error' => 'Entreprise not found'], 404);
+//     }
+// });
+Route::get('/entreprises/{id}/getfiche', [EntrepriseController::class, 'preview'])->name('entreprise.fiche');
 
 Route::get('/entreprises/{user_id}/fiche', function ($user_id) {
     // Fetch the entreprise_id based on the user_id
-    $entreprise_id = Entreprise::where('user_id', $user_id)->value('entreprise_id');
+    $entreprise = Entreprise::where('user_id', $user_id)->first();
 
-    // If entreprise_id is found, redirect to the fiche route with the entreprise_id
-    if ($entreprise_id) {
-        return redirect()->route('entreprise.fiche', ['id' => $entreprise_id]);
+    // If entreprise is found, redirect to the fiche route with the entreprise_id
+    if ($entreprise) {
+        return redirect()->route('entreprise.fiche', ['id' => $entreprise->entreprise_id]);
     } else {
-        // Handle the case where entreprise_id is not found
+        // Handle the case where entreprise is not found
         return response()->json(['error' => 'Entreprise not found'], 404);
     }
 });
