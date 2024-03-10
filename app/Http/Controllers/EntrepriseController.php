@@ -43,10 +43,13 @@ public function index()
     }
 public function fiche($id)
 {
-    $entreprise = Entreprise::findOrFail($id);
-    return view('entreprise.fiche', compact('entreprise'));
-}
+    // Cast $id to an integer to prevent SQL injection
+    $id = (int)$id;
 
+    $entreprise = Entreprise::findOrFail($id);
+
+    return view('entreprise.preview', compact('entreprise'));
+}
 
 
     // Update the specified entreprise in the database.

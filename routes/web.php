@@ -22,6 +22,8 @@ Route::post('/User/register', [RegisterController::class, 'store'])->name('regis
 // Routes for Entreprise
 Route::put('/entreprises/{id}', [EntrepriseController::class, 'update'])->name('entreprise.update');
 Route::get('/entreprise/create', [EntrepriseController::class, 'create'])->name('entreprise.create');
+Route::get('/entreprises/{id}/fiche', [EntrepriseController::class, 'fiche'])->name('entreprise.fiche');
+
 Route::get('/entreprises/{user_id}/fiche', function ($user_id) {
     // Fetch the entreprise_id based on the user_id
     $entreprise_id = Entreprise::where('user_id', $user_id)->value('entreprise_id');
