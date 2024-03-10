@@ -1,5 +1,4 @@
 @extends('layouts.app')
-
 @section('content')
     <div class="container">
         <h2>Edit Entreprise Information</h2>
@@ -28,7 +27,7 @@
 
             <div class="mb-3">
                 <label for="code_postal" class="form-label">Code Postal</label>
-                <input type="text" class="form-control" id="code_postal" name="code_postal" value="{{ $entreprise->location->code_postal ?? '' }}" required>
+                <input type="text" class="form-control" id="code-postal" name="code-postal" value="{{ $entreprise->location->code_postal ?? '' }}" required>
             </div>
             <div class="mb-3">
                 <label for="numero_de_batiment" class="form-label">Numero de Batiment</label>

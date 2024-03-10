@@ -8,6 +8,8 @@ use App\Http\Controllers\OffreDeStageController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\WishlistController;
+
 
 use App\Models\Entreprise;
 use App\Models\Offers;
@@ -127,6 +129,10 @@ Route::get('/get-entreprise-data', function () {
 });
 
 
+
+Route::get('/wishlist', [WishlistController::class, 'index'])->name('wishlist.index');
+Route::post('/wishlist/add/{offer_id}', [WishlistController::class, 'add'])->name('wishlist.add');
+Route::delete('/wishlist/remove/{offer_id}', [WishlistController::class, 'remove'])->name('wishlist.remove');
 
 Route::get('/get-offers', function () {
     // Retrieve the enterprise associated with the authenticated user

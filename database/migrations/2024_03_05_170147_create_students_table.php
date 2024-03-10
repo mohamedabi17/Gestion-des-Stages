@@ -11,6 +11,7 @@ return new class extends Migration
         Schema::create('etudiants', function (Blueprint $table) {
             $table->id('etudiant_id');
             $table->string('name');
+            $table->string('competances');
             // Add other columns as needed
             $table->timestamps();
 

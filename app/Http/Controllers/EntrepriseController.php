@@ -54,12 +54,15 @@ public function preview($id)
 
     // Update the specified entreprise in the database.
 
-public function update(Request $request, Entreprise $entreprise)
+public function update(Request $request, $entreprise_id)
 {
+    // Fetch the Entreprise object based on the entreprise_id
+    $entreprise = Entreprise::findOrFail($entreprise_id);
+
     $request->validate([
-        'name' => 'required|unique:entreprises,name,'.$entreprise->id,
+        'name' => 'required|unique:entreprises,name',
         'secteur' => 'required',
-        'code_postal' => 'required',
+        'code-postal' => 'required',
         'numero_de_batiment' => 'required',
         'ville' => 'required',
         'pays' => 'required',
@@ -73,15 +76,15 @@ public function update(Request $request, Entreprise $entreprise)
         // Update or create location details
         $location = Location::where('entreprise_id', $entreprise->id)->first();
         if ($location) {
-            $location->update($request->only(['code_postal', 'numero_de_batiment', 'ville', 'pays']));
+            $location->update($request->only(['code-postal', 'numero_de_batiment', 'ville', 'pays']));
         } else {
-            Location::create(array_merge($request->only(['code_postal', 'numero_de_batiment', 'ville', 'pays']), ['entreprise_id' => $entreprise->id]));
+            Location::create(array_merge($request->only(['code-postal', 'numero_de_batiment', 'ville', 'pays']), ['entreprise_id' => $entreprise->id]));
         }
     } else {
         // Create location table and insert location details
         Schema::create('locations', function ($table) {
             $table->id();
-            $table->string('code_postal');
+            $table->string('code-postal');
             $table->string('numero_de_batiment');
             $table->string('ville');
             $table->string('pays');
@@ -89,12 +92,13 @@ public function update(Request $request, Entreprise $entreprise)
             $table->timestamps();
         });
 
-        Location::create(array_merge($request->only(['code_postal', 'numero_de_batiment', 'ville', 'pays']), ['entreprise_id' => $entreprise->id]));
+        Location::create(array_merge($request->only(['code-postal', 'numero_de_batiment', 'ville', 'pays']), ['entreprise_id' => $entreprise->id]));
     }
 
-    return redirect()->route('entreprise.index')
+    return redirect()->route('entreprise.dashboard')
                      ->with('success', 'Entreprise and Location updated successfully');
 }
+
 
 
     // Remove the specified entreprise from the database.

@@ -19,6 +19,7 @@
                 <th>Postuler</th>
                 <th>Evaluer Entreprise</th>
                 <th> consulter les Evaluations</th>
+                <th> Ajouter  Wishlist</th>
             </tr>
         </thead>
         <tbody>
@@ -52,6 +53,10 @@
                             <td>
                         
                               <a class="btn btn-primary postuler-btn" href="/evaluations/${offer.entreprise_id}/" >Evaluations</a>
+                            </td>
+                            <td>
+                        
+                              <a class="btn btn-primary postuler-btn" href="/wishlist/add/${offer.id}/" >ajouter Wishlist</a>
                             </td>
                         </tr>
                     `;

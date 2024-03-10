@@ -21,6 +21,7 @@ class EtudiantController extends Controller
     {
         $request->validate([
             'name' => 'required|unique:etudiants|max:255',
+            'competances' => 'sometimes|max:255',
             // Add validation rules for other attributes as needed
         ]);
 
@@ -44,7 +45,7 @@ class EtudiantController extends Controller
     {
         $request->validate([
             'name' => 'required|unique:etudiants,name,' . $etudiant->id . '|max:255',
-            // Add validation rules for other attributes as needed
+             'competances' => 'sometimes|max:255',
         ]);
 
         $etudiant->update($request->all());
