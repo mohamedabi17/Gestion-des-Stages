@@ -18,7 +18,7 @@ class CreateWishlistsTable extends Migration
 
             // Foreign key constraint referencing the existing "etudiants" table
             $table->foreign('etudiant_id')
-                ->references('id')  // Assuming 'id' is the primary key of 'etudiants' table
+                ->references('etudiant_id')  // Assuming 'id' is the primary key of 'etudiants' table
                 ->on('etudiants')
                 ->onDelete('CASCADE');
 

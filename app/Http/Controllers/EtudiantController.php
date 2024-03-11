@@ -17,19 +17,20 @@ class EtudiantController extends Controller
         return view('etudiants.create');
     }
 
-    public function store(Request $request)
-    {
-        $request->validate([
-            'name' => 'required|unique:etudiants|max:255',
-            'competances' => 'sometimes|max:255',
-            // Add validation rules for other attributes as needed
-        ]);
+public function store(Request $request)
+{
+    $request->validate([
+        'name' => 'required|unique:etudiants|max:255',
+        'competences' => 'sometimes|nullable|max:255', // Make competences nullable
+        // Add validation rules for other attributes as needed
+    ]);
 
-        Etudiant::create($request->all());
+    Etudiant::create($request->all());
 
-        return redirect()->route('etudiants.index')
-                         ->with('success', 'Etudiant created successfully.');
-    }
+    return redirect()->route('etudiants.index')
+                     ->with('success', 'Etudiant created successfully.');
+}
+
 
     public function show(Etudiant $etudiant)
     {
@@ -41,18 +42,20 @@ class EtudiantController extends Controller
         return view('etudiants.edit', compact('etudiant'));
     }
 
-    public function update(Request $request, Etudiant $etudiant)
-    {
-        $request->validate([
-            'name' => 'required|unique:etudiants,name,' . $etudiant->id . '|max:255',
-             'competances' => 'sometimes|max:255',
-        ]);
 
-        $etudiant->update($request->all());
+public function update(Request $request, Etudiant $etudiant)
+{
+    $request->validate([
+        'name' => 'required|unique:etudiants,name,' . $etudiant->id . '|max:255',
+        'competences' => 'sometimes|nullable|max:255', // Make competences nullable
+    ]);
 
-        return redirect()->route('etudiants.index')
-                         ->with('success', 'Etudiant updated successfully.');
-    }
+    $etudiant->update($request->all());
+
+    return redirect()->route('etudiants.index')
+                     ->with('success', 'Etudiant updated successfully.');
+}
+
 
     public function destroy(Etudiant $etudiant)
     {

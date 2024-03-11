@@ -1,14 +1,8 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Gestion des offres de stage</title>
-    <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet">
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-</head>
-<body class="antialiased">
-    <header>
+@extends('layouts.app')
+@vite(['resources/css/entreprise.css','resources/css/welcome.css', 'resources/js/app.js','resources/css/layouts.css'])
+@section('content')
+<div class="welcome" style="background-color: black;">
+     <header>
         <h1>Gestion des offres de stage pour les étudiants</h1>
     </header>
 
@@ -38,31 +32,22 @@
 
     <div class="container">
         <h2>Liste des offres de stage disponibles pour les étudiants gérées par les pôles de management :</h2>
-        <table>
+        <table class="offers-table">
             <thead>
                 <tr>
                     <th>Entreprise</th>
-                    <th>Poste</th>
-                    <th>Description</th>
-                    <th>Date de début</th>
+                    <th>Titre</th>
+                    <th>Type</th>
                     <th>Durée</th>
+                    <!-- <th>Lieu</th> -->
+                    <!-- <th>Durée</th>
+                    <th>Date de Début</th>
+                    <th>Date de Fin</th> -->
                     <th>Actions</th>
                 </tr>
             </thead>
-            <tbody>
-                <!-- Example row, replace with dynamic data -->
-                <tr>
-                    <td>Entreprise A</td>
-                    <td>Développeur Web</td>
-                    <td>Stage pour travailler sur le développement d'une application web.</td>
-                    <td>01/05/2024</td>
-                    <td>3 mois</td>
-                    <td>
-                        <button>Détails</button>
-                        <button>Postuler</button>
-                    </td>
-                </tr>
-                <!-- More rows here -->
+            <tbody id="offers-body">
+                <!-- Offers will be dynamically added here -->
             </tbody>
         </table>
         <h2>Admin Dashboard</h2>
@@ -104,12 +89,56 @@
 
     </div>
 
-    <footer>
-        <p>Projet de gestion des stages - Copyright © 2024</p>
-    </footer>
+<script>
+
+        document.addEventListener('DOMContentLoaded', function() {
+            fetchOffers();
+             
+        });
+
+            function fetchOffers() {
+                fetch('/get-all-offers')
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            const offersBody = document.getElementById('offers-body');
+            data.offers.forEach((offer, index) => {
+                const entreprise = data.entreprises.find(ent => ent.entreprise_id === offer.entreprise_id);
+                const row = `
+                    <tr>
+                        <td>${entreprise.name}</td>
+                        <td>${offer.name}</td>
+                        <td>${offer.type}</td>
+                        <td>${offer.duree}</td>
+                        <td>
+                            <a href="/offers/${offer.id}/edit" class="btn btn-primary">Modifier</a>
+                            <a href="/offers/${offer.id}/showCandidates" class="btn btn-primary">Voir Candidats</a>
+                        </td>
+                    </tr>
+                `;
+                offersBody.innerHTML += row;
+            });
+        })
+        .catch(error => console.error('Error fetching offers:', error));
+    }
+  // JavaScript code to redirect
+    // window.onload = function() {
+    //     // Perform the redirection based on conditions
+    //     // Example: Redirect to the appropriate page based on user type
+    //     let userType = '{{ Auth::user() ? Auth::user()->usertype : null }}'; // Get the user type from the authenticated user
+    //     if (userType !== null) {
+    //         if (userType === 'etudiant') {
+    //             window.location.href = "{{ route('etudiant.etudiant') }}"; // Redirect to etudiant index page
+    //         } else if (userType === 'pilotedestage') {
+    //             window.location.href = "{{ route('pilotePromotion.pilote') }}"; // Redirect to pilotedestage index page
+    //         } else if (userType === 'entreprise') {
+    //             window.location.href = "{{ route('entreprise.dashboard') }}"; // Redirect to entreprise index page
+    //         }
+    //         } else if (userType === 'admin') {
+    //             window.location.href = "{{ route('admins.index') }}"; // Redirect to entreprise index page
+    //         }
+    //     }
+</script>
 
 
-
-
-</body>
-</html>
+@endsection
