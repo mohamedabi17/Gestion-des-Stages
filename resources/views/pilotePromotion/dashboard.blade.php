@@ -5,11 +5,11 @@
         <h1>Pilote de Promotion Dashboard</h1>
     </header>
 
-        <nav>
+         <nav>
             <ul>
                 <li><a href="/">Accueil</a></li>
-                <li><a href="">les Offres de stage</a></li>
-                <li><a href="/profil">Profil</a></li>
+                <li><a href="/stageoffers">les Offres de stage</a></li>
+                <li><a href="{{ route('profile.profile') }}">profile</a></li>
                 <li><a href="{{ route('etudiant.etudiant') }}">Dashboard Étudiant</a></li>
                 <li><a href="{{ route('login') }}">Connexion</a></li>
                 <li><a href="{{ route('register') }}">Register</a></li>
@@ -23,11 +23,13 @@
             </ul>
         </nav>
 
-    <div class="container">
-        <h2>Dashboard Overview</h2>
-        <p>Welcome, John Doe! Here's what you can do:</p>
-        <button class="btn-primary">Search for Offers</button>
-        <button class="btn-primary">View Profile</button>
+    <div class="container" style="text-align: center;">
+        <h2 >Chercher Un Stage et Postuler Votre Candidature </h2>
+        <p style="color: wheat;">Vous devez Choisir Un stage Selon vous compétances n'oublier pas d'evaluer les entreprise</p>
+        <a class="btn-orange " href="/stageoffers"class="action-btn">Offres de stage</a>
+        <a class="btn-orange " href="{{ route('profile.profile') }}">profile</a>
+        <a class="btn-orange " href="{{ route('profile.profile') }}">Gestion des Pilotes</a>
+        <a class="btn-orange " href="{{ route('profile.profile') }}">Nouveau Pilote</a>
     </div>
 
 @endsection

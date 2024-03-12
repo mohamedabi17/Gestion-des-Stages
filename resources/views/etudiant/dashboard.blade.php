@@ -13,7 +13,7 @@
             <ul>
                 <li><a href="/">Accueil</a></li>
                 <li><a href="/stageoffers">les Offres de stage</a></li>
-                <li><a href="/profil">Profil</a></li>
+                <li><a href="{{ route('profile.profile') }}">profile</a></li>
                 <li><a href="{{ route('etudiant.etudiant') }}">Dashboard Étudiant</a></li>
                 <li><a href="{{ route('login') }}">Connexion</a></li>
                 <li><a href="{{ route('register') }}">Register</a></li>

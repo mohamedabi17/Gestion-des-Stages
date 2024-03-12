@@ -198,13 +198,13 @@ public function store(Request $request)
         }
 
         $etud =Etudiant::create($etudiantData);
-        return redirect()->route('etudiant.etudiant')->with('success', 'Registration successful!',);
+        return redirect()->route('login')->with('success', 'Registration successful!',);
     } elseif ($user->usertype === 'pilotedestage') {
         PiloteDePromotion::create([
             'user_id' => $user->id,
             'name' => $user->name,
         ]);
-        return redirect()->route('pilotePromotion.pilote')->with('success', 'Registration successful!');
+        return redirect()->route('login')->with('success', 'Registration successful!');
     } elseif ($user->usertype === 'entreprise') {
         $entrepriseData = [
             'user_id' => $user->id,
@@ -217,7 +217,7 @@ public function store(Request $request)
         }
 
         Entreprise::create($entrepriseData);
-        return redirect()->route('entreprise.dashboard')->with('success', 'Registration successful!');
+        return redirect()->route('login')->with('success', 'Registration successful!');
     } elseif ($user->usertype === 'admin') {
 
 
@@ -229,7 +229,7 @@ public function store(Request $request)
             'user_id' => $user->id,
             'name' => $user->name,
         ]);
-        return redirect()->route('admins.index')->with('success', 'Registration successful!');
+        return redirect()->route('login')->with('success', 'Registration successful!');
     }
 
 }
