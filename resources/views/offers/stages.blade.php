@@ -55,9 +55,12 @@
                               <a class="btn btn-primary postuler-btn" href="/evaluations/${offer.entreprise_id}/" >Evaluations</a>
                             </td>
                             <td>
-                        
-                              <a class="btn btn-primary postuler-btn" href="/wishlist/add/${offer.id}/" >ajouter Wishlist</a>
-                            </td>
+                            <form action="/wishlist/add/${offer.id}" }}" method="POST">
+                                @csrf
+                                <input type="hidden" name="offer_id" value="${offer.id}">
+                                <button type="submit" class="btn btn-primary postuler-btn">Ajouter a Wishlist</button>
+                            </form>
+                        </td>
                         </tr>
                     `;
                     offersBody.innerHTML += row;

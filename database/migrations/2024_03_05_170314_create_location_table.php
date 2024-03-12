@@ -10,7 +10,7 @@ return new class extends Migration
     {
         Schema::create('locations', function (Blueprint $table) {
             $table->id();
-            $table->string('code-postal');
+            $table->string('code-postal')->nullable();
             $table->string('numero_de_batiment');
             $table->string('ville');
             $table->string('pays');

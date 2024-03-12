@@ -18,14 +18,11 @@
                 <label for="lettre_de_motivation">Lettre de Motivation:</label>
                 <textarea id="lettre_de_motivation" name="lettre_de_motivation" class="form-control" required></textarea>
             </div>
-            <div class="form-group">
-                <label for="etudiant_id">Étudiant Name:</label>
-                <input type="text" id="name" name="name" class="form-control" required>
-            </div>
-            <div class="form-group">
-                <label for="offer_id">Competence:</label>
-                <input type="text" id="offer_id" name="offer_id" class="form-control" required>
-            </div>
+           
+          <div class="form-group">
+            <input type="text" id="offer_id" name="offer_id" value="{{ $offerId }}" hidden>
+        </div>
+
             <button type="submit" class="btn btn-primary">Soumettre</button>
         </form>
     </div>

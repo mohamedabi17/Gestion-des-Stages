@@ -59,14 +59,14 @@ public function update(Request $request, $entreprise_id)
     // Fetch the Entreprise object based on the entreprise_id
     $entreprise = Entreprise::findOrFail($entreprise_id);
 
-    $request->validate([
-        'name' => 'required|unique:entreprises,name',
-        'secteur' => 'required',
-        'code-postal' => 'required',
-        'numero_de_batiment' => 'required',
-        'ville' => 'required',
-        'pays' => 'required',
-    ]);
+ $request->validate([
+    'name' => 'required|unique:entreprises,name',
+    'secteur' => 'required',
+    'code-postal' => 'nullable', // Make it nullable
+    'numero_de_batiment' => 'required',
+    'ville' => 'required',
+    'pays' => 'required',
+]);
 
     // Update entreprise details
     $entreprise->update($request->only(['name', 'secteur']));

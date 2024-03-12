@@ -119,23 +119,23 @@
         })
         .catch(error => console.error('Error fetching offers:', error));
     }
-  // JavaScript code to redirect
-    // window.onload = function() {
-    //     // Perform the redirection based on conditions
-    //     // Example: Redirect to the appropriate page based on user type
-    //     let userType = '{{ Auth::user() ? Auth::user()->usertype : null }}'; // Get the user type from the authenticated user
-    //     if (userType !== null) {
-    //         if (userType === 'etudiant') {
-    //             window.location.href = "{{ route('etudiant.etudiant') }}"; // Redirect to etudiant index page
-    //         } else if (userType === 'pilotedestage') {
-    //             window.location.href = "{{ route('pilotePromotion.pilote') }}"; // Redirect to pilotedestage index page
-    //         } else if (userType === 'entreprise') {
-    //             window.location.href = "{{ route('entreprise.dashboard') }}"; // Redirect to entreprise index page
-    //         }
-    //         } else if (userType === 'admin') {
-    //             window.location.href = "{{ route('admins.index') }}"; // Redirect to entreprise index page
-    //         }
-    //     }
+//   JavaScript code to redirect
+    window.onload = function() {
+        // Perform the redirection based on conditions
+        // Example: Redirect to the appropriate page based on user type
+        let userType = '{{ Auth::user() ? Auth::user()->usertype : null }}'; // Get the user type from the authenticated user
+        if (userType !== null) {
+            if (userType === 'etudiant') {
+                window.location.href = "{{ route('etudiant.etudiant') }}"; // Redirect to etudiant index page
+            } else if (userType === 'pilotedestage') {
+                window.location.href = "{{ route('pilotePromotion.pilote') }}"; // Redirect to pilotedestage index page
+            } else if (userType === 'entreprise') {
+                window.location.href = "{{ route('entreprise.dashboard') }}"; // Redirect to entreprise index page
+            }
+            } else if (userType === 'admin') {
+                window.location.href = "{{ route('admins.index') }}"; // Redirect to entreprise index page
+            }
+        }
 </script>
 
 

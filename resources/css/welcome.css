@@ -41,7 +41,7 @@ header {
 
 
 table {
-    border: #ff6600;
+    border: wheat solid 1px;
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;

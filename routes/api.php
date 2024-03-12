@@ -36,7 +36,7 @@ Route::resource('evaluer_entreprise', EvaluerEntrepriseController::class);
 // Route::resource('locations', LocationController::class);
 Route::resource('offre_de_stages', OffreDeStageController::class);
 Route::resource('pilote_de_promotions', PiloteDePromotionController::class);
-Route::resource('possede_stages', PossedeStageController::class);
+// Route::resource('possede_stages', PossedeStageController::class);
 Route::resource('promotions', PromotionController::class);
 
 // Route::get('/etudiants', [EtudiantController::class, 'index'])->name('etudiants.index');

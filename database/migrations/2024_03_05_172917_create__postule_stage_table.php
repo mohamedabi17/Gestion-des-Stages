@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('postule_stage', function (Blueprint $table) {
             $table->id();
-            $table->string('cv');
+            $table->binary('cv')->nullable();
             $table->string('lettre_de_motivation');
             $table->timestamps();
 

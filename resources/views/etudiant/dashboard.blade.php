@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@vite(['resources/css/etudiant.css','resources/css/app.css', 'resources/js/app.js','resources/css/layouts.css'])
+@vite(['resources/css/etudiant.css', 'resources/js/app.js','resources/css/layouts.css'])
 @section('content')
 <body style="background-color: black;"id="etudiant">
 
@@ -29,9 +29,9 @@
 
     <div class="container">
         <h2 >Chercher Un Stage et Postuler Votre Candidature </h2>
-        <p >Vous devez Choisir Un stage Selon vous compétances n'oublier pas d'evaluer les entreprise</p>
-        <a href="/stageoffers"class="action-btn">Offres de stage</a>
-        <a href="{{ route('profile.profile') }}" class="action-btn">profile</a>
+        <p style="color: wheat;">Vous devez Choisir Un stage Selon vous compétances n'oublier pas d'evaluer les entreprise</p>
+        <a class="btn-orange " href="/stageoffers"class="action-btn">Offres de stage</a>
+        <a class="btn-orange " href="{{ route('profile.profile') }}">profile</a>
         <!-- <button  href="/stageoffers" class="action-btn">Search for Offers</button> -->
         <!-- <button class="action-btn">View Profile</button> -->
     </div>

@@ -1,6 +1,18 @@
 #app{
     min-height: 90vh;
 }
+h1,h2,h3,h4,h5{
+    color: #ff6600;
+}
+label{
+    color: #ff6600;
+}
+
+.operations button{
+    color: black;
+    padding: 1%;
+    background-color: #47250f;
+}
 .dropdown-menu {
     background-color: #343a40;
     border: none;
@@ -45,6 +57,19 @@ footer,
 .btn-orange{
     background-color:#ff6600;
         color: #000;
+        border: wheat;
+        padding: 1px;
+        border-radius: 10%;
+        text-decoration: none;
+        margin-left: 10px;
+}
+.btn-orange:hover{
+    background-color:black;
+        color: #ff6600;
+        border: 1px solid wheat;
+        padding: 1%;
+        border-radius: 10%;
+        text-decoration: none;
 }
 .btn-primary {
     background-color: #000;

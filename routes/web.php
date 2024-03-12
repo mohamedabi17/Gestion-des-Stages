@@ -22,6 +22,7 @@ Route::get('/register', [RegisterController::class, 'create'])->name('register')
 Route::post('/User/register', [RegisterController::class, 'store'])->name('register.store');
 
 // Routes for Entreprise
+
 Route::put('/entreprises/{id}', [EntrepriseController::class, 'update'])->name('entreprise.update');
 Route::get('/entreprise/create', [EntrepriseController::class, 'create'])->name('entreprise.create');
 // Route::get('/entreprises/{id}/fiche', [EntrepriseController::class, 'preview'])->name('entreprise.fiche');
@@ -57,7 +58,7 @@ Route::get('/entreprise/{entreprise}/edit', [EntrepriseController::class, 'edit'
 Route::get('/search/entreprise', [EntrepriseController::class, 'search'])->name('search.entreprise');
 
 // Routes for OffreDeStageController
-Route::get('/offers', [OffreDeStageController::class, 'index'])->name('offers.dashboard');
+// Route::get('/offersentreprise{id}', [OffreDeStageController::class, 'fetchStageOffersByEntreprise'])->name('offers.index.dashboard');
 Route::get('/offers/{id}/showCandidates', [OffreDeStageController::class, 'showCandidates'])->name('offers.showCandidates');
 Route::get('/offers/create', [OffreDeStageController::class, 'create'])->name('offers.create');
 Route::post('/offers', [OffreDeStageController::class, 'store'])->name('offers.store');
@@ -70,6 +71,19 @@ Route::get('/stageoffers', [OffreDeStageController::class, 'index'])->name('offe
 
 
 Route::get('/stages', [OffreDeStageController::class, 'fetchStageOffers'])->name('stages');
+Route::get('/entreprises/{id}/stages', [OffreDeStageController::class, 'fetchStageOffersByEntreprise'])->name('stages.by.entreprise');
+
+Route::get('/get-offers-by-entreprise', function () {
+    // Retrieve the enterprise associated with the authenticated user
+    $entreprise = Entreprise::where('user_id', auth()->id())->first();
+
+    // Retrieve offers associated with the enterprise
+    $offers = Offers::where('entreprise_id', $entreprise->id)->get(); // Assuming 'id' is the primary key of the Enterprise model
+
+    // Return to the view with offers and enterprise object
+    return view('offers.entrepriseOffers', compact('offers', 'entreprise'));
+});
+
 
 Route::get('/candidates', [PostuleStageController::class, 'index'])->name('candidates.index');
 Route::get('/candidates/create', [PostuleStageController::class, 'create'])->name('candidates.create');
@@ -128,11 +142,10 @@ Route::get('/get-entreprise-data', function () {
     return response()->json(['entreprise_id' => $entreprise->entreprise_id]);
 });
 
-
-
 Route::get('/wishlist', [WishlistController::class, 'index'])->name('wishlist.index');
 Route::post('/wishlist/add/{offer_id}', [WishlistController::class, 'add'])->name('wishlist.add');
 Route::delete('/wishlist/remove/{offer_id}', [WishlistController::class, 'remove'])->name('wishlist.remove');
+
 
 Route::get('/get-offers', function () {
     // Retrieve the enterprise associated with the authenticated user
@@ -147,10 +160,16 @@ Route::get('/get-offers', function () {
         'entreprise' => $entreprise,
     ]);
 });
-Route::get('/get-all-offers', function () {
-    // Retrieve all entreprises and offers
-    $entreprises = Entreprise::all();
-    $offers = Offers::all();
+
+
+use App\Models\Wishlist;
+
+Route::get('/wishlistsitems', function () {
+ 
+    $wishlistitems = Wishlist::where('etudiant_id',  auth()->id())->get();
+    $offers = Offers::where('id', $wishlistitems->offer_id)->get();
+    
+
 
     // Return JSON response with entreprises and offers
     return response()->json([
@@ -175,6 +194,18 @@ Route::get('/get-all-offers', function () {
 
 Route::get('/get-evaluation_details/{entreprise_id}', function ($entreprise_id) {
     // Retrieve the enterprise details based on the provided entreprise_id
+    $entreprise = Entreprise::where('entreprise_id', $entreprise_id)->first();
+
+    // Retrieve the student details associated with the authenticated user
+    $etudiant = Etudiant::where('user_id', auth()->id())->first();
+
+    // Return JSON response with enterprise and student details
+    return response()->json([
+        'entreprise' => $entreprise,
+        'etudiant' => $etudiant,
+    ]);
+});
+Route::get('/wishlist/', function () {
     $entreprise = Entreprise::where('entreprise_id', $entreprise_id)->first();
 
     // Retrieve the student details associated with the authenticated user

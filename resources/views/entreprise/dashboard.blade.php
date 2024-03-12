@@ -9,8 +9,7 @@
     <nav>
         <ul>
             <li><a href="/">Accueil</a></li>
-            <li><a href="#">Profil</a></li>
-            <li><a href="{{ route('offers.dashboard') }}">Les Offres de stage</a></li>
+                   <li><a href="{{ route('profile.profile') }}">profile</a></li>
             <li><a href="{{ route('offers.create') }}">Créer une offre de stage</a></li>
             <li><a href="{{ route('login') }}">Connexion</a></li>
             <li><a href="{{ route('register') }}">Register</a></li>
@@ -27,11 +26,10 @@
         <div class="container">
             <h2>Opérations</h2>
             <div class="operations">
-                <button id="editBtn" class="btn btn-primary" onclick="editEntreprise()">Modifier l'entreprise</button>
-                <button id="statisticsBtn" class="btn btn-primary" onclick="viewStatistics()">Voir les statistiques de l'entreprise</button>
-                <button id="createBtn" class="btn btn-primary" onclick="createOffre()">Créer une nouvelle offre de stage</button>
-                <button id="ViewBtn" class="btn btn-primary" onclick="viewOffres()">Voir les offres</button>
-                <button id="Fiche" class="btn btn-primary" onclick="viewFiche()">Fiche Entreprise</button>
+                <button id="statisticsBtn" class="btn-primary" onclick="viewStatistics()">statistiques</button>
+                <button id="createBtn" class="btn-primary" onclick="createOffre()">nouveau offre</button>
+                <button id="ViewBtn" class="btn-primary" onclick="viewOffres()">les offres</button>
+                <button id="Fiche" class="btn-primary" onclick="viewFiche()">Fiche Entreprise</button>
             </div>
         </div>
     </main>
@@ -52,11 +50,12 @@
         }
 
         function viewOffres() {
-            window.location.href = "{{ route('offers.index') }}";
+          window.location.href = `/get-offers-by-entreprise`;
         }
+     
 
         function viewFiche() {
-            var userId = '{{ Auth::user()->id }}';
+            var userId = '{{ Auth::id() }}';
             window.location.href = `/entreprises/${userId}/fiche`;
         }
     </script>

@@ -25,19 +25,19 @@ class PostuleStageController extends Controller
         return view('candidates.create');
     }
     // Method to store a new postule stage
-    public function store(Request $request)
-    {
-        $request->validate([
-            'cv' => 'required|string',
-            'lettre_de_motivation' => 'required|string',
-            'etudiant_id' => 'required|exists:etudiants,id',
-            'offer_id' => 'required|exists:offers,id',
-        ]);
+    // public function store(Request $request)
+    // {
+    //     $request->validate([
+    //         'cv' => 'required|string',
+    //         'lettre_de_motivation' => 'required|string',
+    //         'etudiant_id' => 'required|exists:etudiants,id',
+    //         'offer_id' => 'required|exists:offers,id',
+    //     ]);
 
-        PostuleStage::create($request->all());
+    //     PostuleStage::create($request->all());
 
-        return redirect()->back()->with('success', 'Postule stage created successfully.');
-    }
+    //     return redirect()->back()->with('success', 'Postule stage created successfully.');
+    // }
 
     // Method to delete a postule stage
     public function destroy(PostuleStage $postuleStage)
@@ -61,25 +61,28 @@ public function indexpostuler($id)
 
 
 
-    public function storepostluer(Request $request, $id)
-    {
-        $request->validate([
-            'cv' => 'required|string',
-            'lettre_de_motivation' => 'required|string',
-            'etudiant_id' => 'required|exists:etudiants,id',
-            'offer_id' => 'required|exists:offers,id',
-        ]);
+public function storepostuler(Request $request, $id)
+{
+    $request->validate([
+        'cv' => 'required|file', // Ensure file is required
+        'lettre_de_motivation' => 'required|string',
+        'offer_id' => 'required|exists:offers,id',
+    ]);
 
-        // Create a new postule stage
-        PostuleStage::create([
-            'cv' => $request->cv,
-            'lettre_de_motivation' => $request->lettre_de_motivation,
-            'etudiant_id' => $request->etudiant_id,
-            'offer_id' => $id, // Use the offer id from the route parameter
-        ]);
+    // Retrieve file content
+    $fileContent = file_get_contents($request->file('cv'));
 
-        return redirect()->back()->with('success', 'Postule stage created successfully.');
-    }
+    // Create a new postule stage
+    PostuleStage::create([
+        'cv' => $fileContent,
+        'lettre_de_motivation' => $request->lettre_de_motivation,
+        'etudiant_id' => auth()->user()->id, // Assuming etudiant_id is the authenticated user's ID
+        'offer_id' => $request->offer_id,
+    ]);
+
+    return redirect()->back()->with('success', 'Postule stage created successfully.');
+}
+
 
     // Method to delete a postule stage
     // public function destroy(PostuleStage $postuleStage)

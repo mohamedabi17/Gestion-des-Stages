@@ -21,6 +21,13 @@ class OffreDeStageController extends Controller
 
         return response()->json(['offers' => $offers]);
     }
+    public function fetchStageOffersByEntreprise($id)
+    {
+        // Fetch all offers with their associated entreprise filtered by entreprise ID
+        $offers = Offers::where('entreprise_id', $id)->with('entreprise')->get();
+
+        return response()->json(['offers' => $offers]);
+    }
 
     public function create()
     {   

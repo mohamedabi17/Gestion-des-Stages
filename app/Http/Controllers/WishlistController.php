@@ -7,11 +7,21 @@ use Illuminate\Http\Request;
 
 class WishlistController extends Controller
 {
-    public function index()
-    {
-        $wishlistItems = Wishlist::where('etudiant_id', auth()->id())->with('offer')->get();
-        return view('wishlist.index', compact('wishlistItems'));
-    }
+
+public function index()
+{
+    // Retrieve wishlist items for the authenticated user
+    $wishlistItems = Wishlist::where('etudiant_id', auth()->id())->with('offer')->get();
+    
+    // Extract offer information from wishlist items
+    $offers = $wishlistItems->map(function ($wishlistItem) {
+        return $wishlistItem->offer;
+    });
+
+    // Pass the offers to the view
+    return view('wishlist.index', compact('offers'));
+}
+
 
     public function add(Request $request, $offer_id)
     {
