@@ -164,19 +164,6 @@ Route::get('/get-offers', function () {
 
 use App\Models\Wishlist;
 
-Route::get('/wishlistsitems', function () {
- 
-    $wishlistitems = Wishlist::where('etudiant_id',  auth()->id())->get();
-    $offers = Offers::where('id', $wishlistitems->offer_id)->get();
-    
-
-
-    // Return JSON response with entreprises and offers
-    return response()->json([
-        'entreprises' => $entreprises,
-        'offers' => $offers,
-    ]);
-});
 
 
 
@@ -205,19 +192,20 @@ Route::get('/get-evaluation_details/{entreprise_id}', function ($entreprise_id) 
         'etudiant' => $etudiant,
     ]);
 });
-Route::get('/wishlist/', function () {
-    $entreprise = Entreprise::where('entreprise_id', $entreprise_id)->first();
+Route::get('/wishlistsitems', function () {
+    // Retrieve wishlist items for the authenticated user
+    $wishlistItems = Wishlist::where('etudiant_id', auth()->id())->get();
 
-    // Retrieve the student details associated with the authenticated user
-    $etudiant = Etudiant::where('user_id', auth()->id())->first();
+    // Retrieve offers for the wishlist items along with their associated enterprises
+    $offers = $wishlistItems->map(function ($wishlistItem) {
+        return Offers::with('entreprise')->find($wishlistItem->offer_id);
+    });
 
-    // Return JSON response with enterprise and student details
+    // Return JSON response with offers and their associated enterprises
     return response()->json([
-        'entreprise' => $entreprise,
-        'etudiant' => $etudiant,
+        'offers' => $offers,
     ]);
 });
-
 
 
 use App\Http\Controllers\EvaluerEntrepriseController;

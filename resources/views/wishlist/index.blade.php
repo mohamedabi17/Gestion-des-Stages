@@ -4,16 +4,16 @@
 <div class="container">
     @vite(['resources/css/stages.css'])
 
-    <h1 class="title">Offres de Stage dans la Wishlist</h1>
+    <h1 class="title" style="text-align:center">Offres de Stage dans la Wishlist</h1>
 
-    <table class="table" id="offers-table">
+    <table class="table"  style="text-align:center" id="offers-table">
         <thead>
             <tr>
                 <th>Entreprise</th>
                 <th>Titre</th>
                 <th>Type</th>
                 <th>Durée</th>
-                <th>Actions</th>
+                <th>Retirer</th>
             </tr>
         </thead>
         <tbody>
@@ -24,12 +24,13 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        fetch('/wishlist')
+        fetch('/wishlistsitems')
             .then(response => response.json())
             .then(data => {
-                console.log(data);
+                console.log(data.offers);
+   
                 const offersBody = document.querySelector('#offers-table tbody');
-                data.wishlist.forEach(offer => {
+                data.offers.forEach(offer => {
                     const row = `
                         <tr>
                             <td>${offer.entreprise.name}</td>
@@ -37,10 +38,12 @@
                             <td>${offer.type}</td>
                             <td>${offer.duree}</td>
                             <td>
-                                <form action="/wishlist/remove/${offer.id}" method="POST">
-                                    @csrf
-                                    <button type="submit" class="btn btn-danger">Remove from Wishlist</button>
-                                </form>
+                                 <form action="/wishlist/remove/${offer.id}" method="POST">
+                                        @csrf
+                                        @method('DELETE') <!-- Add this line to set the form method to DELETE -->
+                                        <input type="hidden" name="offer_id" value="${offer.id}">
+                                        <button type="submit" class="btn btn-primary postuler-btn">Retirer</button>
+                                    </form>
                             </td>
                         </tr>
                     `;

@@ -23,14 +23,27 @@ public function index()
 }
 
 
-    public function add(Request $request, $offer_id)
-    {
+  public function add(Request $request, $offer_id)
+{
+    $etudiant_id = auth()->id();
+
+    // Check if a wishlist item with the same etudiant_id and offer_id already exists
+    $existingWishlistItem = Wishlist::where('etudiant_id', $etudiant_id)
+                                    ->where('offer_id', $offer_id)
+                                    ->exists();
+
+    if (!$existingWishlistItem) {
+        // If no such record exists, create a new wishlist item
         Wishlist::create([
-            'etudiant_id' => auth()->id(),
+            'etudiant_id' => $etudiant_id,
             'offer_id' => $offer_id
         ]);
         return redirect()->route('wishlist.index')->with('success', 'Offer added to wishlist successfully');
+    } else {
+        // If a record already exists, you may choose to redirect back with an error message
+        return redirect()->route('wishlist.index')->with('error', 'Offer is already in your wishlist');
     }
+}
 
     public function remove(Request $request, $offer_id)
     {
