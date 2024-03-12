@@ -20,6 +20,14 @@ class PromotionController extends Controller
         // Return the view with the retrieved data
         return view('promotions.index', ['promotions' => $promotions]);
     }
+    public function getPromotions()
+    {
+        // Retrieve all Promotion records from the database
+        $promotions = Promotion::all();
+        
+        // Return the view with the retrieved data
+        return( ['promotions' => $promotions]);
+    }
 
     /**
      * Show the form for creating a new resource.

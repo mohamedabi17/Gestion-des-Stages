@@ -9,11 +9,14 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WishlistController;
+use App\Http\Controllers\PromotionController;
 
 
 use App\Models\Entreprise;
 use App\Models\Offers;
 use App\Models\Etudiant;
+use App\Models\PiloteDePromotion;
+use App\Models\Promotion;
 
 // Define route for displaying the registration form
 Route::get('/register', [RegisterController::class, 'create'])->name('register');
@@ -119,6 +122,10 @@ Route::get('/etudiant', function () {
 Route::get('/pilotedestage', function () {
     return view('pilotePromotion.dashboard');
 })->name('pilotePromotion.pilote');
+Route::get('/pilotefiche', function () {
+    return view('pilotePromotion.preview');
+})->name('pilotePromotion.preview');
+
 
 Route::get('/entreprise', function () {
     return view('entreprise.dashboard');
@@ -135,6 +142,15 @@ Route::get('/admins/{admin}/edit', [AdminController::class, 'edit'])->name('admi
 Route::put('/admins/{admin}', [AdminController::class, 'update'])->name('admins.update');
 Route::delete('/admins/{admin}', [AdminController::class, 'destroy'])->name('admins.destroy');
 
+
+Route::put('/editpilote', [PiloteDePromotion::class, 'update'])->name('pilote.update');
+
+
+Route::get('/pilote', [PiloteDePromotion::class, 'fetchPilote'])->name('pilote.fetch');
+
+
+// Route to fetch promotions
+Route::get('/getpromotions', [PromotionController::class, 'getPromotions'])->name('promotions.preview');
 
 
 Route::get('/get-entreprise-data', function () {

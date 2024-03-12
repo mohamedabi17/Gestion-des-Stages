@@ -37,9 +37,6 @@
         <p>Projet de gestion des stages - Copyright © 2024</p>
     </footer>
     <script>
-        function editEntreprise() {
-            window.location.href = "{{ route('entreprise.edit', ['entreprise' => 1]) }}";
-        }
 
         function viewStatistics() {
             window.location.href = "{{ route('search.entreprise') }}";

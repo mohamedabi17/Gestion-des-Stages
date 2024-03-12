@@ -30,6 +30,7 @@
         <a class="btn-orange " href="{{ route('profile.profile') }}">profile</a>
         <a class="btn-orange " href="{{ route('profile.profile') }}">Gestion des Pilotes</a>
         <a class="btn-orange " href="{{ route('profile.profile') }}">Nouveau Pilote</a>
+        <a class="btn-orange " href="{{ route('pilotePromotion.preview') }}">editer</a>
     </div>
 
 @endsection
