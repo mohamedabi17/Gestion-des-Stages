@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        <h2>All Pilotes</h2>
+        <h2>All Users</h2>
 
         @if (session('success'))
             <div class="alert alert-success">{{ session('success') }}</div>
@@ -13,17 +13,19 @@
                 <tr>
                     <th>Name</th>
                     <th>Email</th>
+                    <th>User Type</th>
                     <th>Action</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($pilotes as $pilote)
+                @foreach ($users as $user)
                     <tr>
-                        <td>{{ $pilote->name }}</td>
-                        <td>{{ $pilote->email }}</td>
+                        <td>{{ $user->name }}</td>
+                        <td>{{ $user->email }}</td>
+                        <td>{{ $user->usertype }}</td>
                         <td>
-                            <a href="{{ route('pilotes.edit', $pilote->pilote_id) }}" class="btn btn-primary">Edit</a>
-                            <form action="{{ route('pilotes.destroy', $pilote->pilote_id) }}" method="POST" style="display: inline-block;">
+                            <a href="{{ route('users.edit', $user) }}" class="btn btn-primary">Edit</a>
+                            <form action="{{ route('users.destroy', $user) }}" method="POST" style="display: inline-block;">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger">Delete</button>

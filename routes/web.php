@@ -22,7 +22,19 @@ use App\Models\Promotion;
 
 
 
+Route::get('/etudiants/{etudiant}', [EtudiantController::class, 'show'])->name('etudiants.show');
+Route::get('/etudiants/{etudiant}/edit', [EtudiantController::class, 'edit'])->name('etudiants.edit');
+Route::put('/etudiants/{etudiant}', [EtudiantController::class, 'update'])->name('etudiants.update');
+Route::delete('/etudiants/{etudiant}', [EtudiantController::class, 'destroy'])->name('etudiants.destroy');
 
+
+
+Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
+Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
+
+
+Route::get('/pilotes/{pilote}/edit', [PiloteDePromotion::class, 'edit'])->name('pilotes.edit');
+Route::delete('/pilotes/{pilote}', [PiloteDePromotion::class, 'destroy'])->name('pilotes.destroy');
 
 
 
@@ -30,7 +42,7 @@ use App\Models\Promotion;
 Route::get('/admin/etudiants', [AdminController::class, 'etudiants'])->name('admins.etudiants');
 Route::get('/admin/pilotes', [AdminController::class, 'pilotes'])->name('admins.pilotes');
 Route::get('/admin/entreprises', [AdminController::class, 'entreprises'])->name('admins.entreprises');
-Route::get('/admin/admins', [AdminController::class, 'admins'])->name('admins.admins');
+Route::get('/admin/admins', [AdminController::class, 'all'])->name('admins.admins');
 Route::get('/admin/users', [AdminController::class, 'users'])->name('admins.users');
 
 

@@ -24,9 +24,9 @@
                 <td>{{ $etudiant->name }}</td>
                 <td>{{ $etudiant->competences }}</td>
                 <td>
-                    <a href="{{ route('etudiants.show', $etudiant->id) }}" class="btn btn-info">View</a>
-                    <a href="{{ route('etudiants.edit', $etudiant->id) }}" class="btn btn-primary">Edit</a>
-                    <form action="{{ route('etudiants.destroy', $etudiant->id) }}" method="POST" style="display: inline;">
+                    <a href="{{ route('etudiants.show', $etudiant) }}" class="btn btn-info">View</a>
+                    <a href="{{ route('etudiants.edit', $etudiant) }}" class="btn btn-primary">Edit</a>
+                    <form action="{{ route('etudiants.destroy', $etudiant) }}" method="POST" style="display: inline;">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this etudiant?')">Delete</button>

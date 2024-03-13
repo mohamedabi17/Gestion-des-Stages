@@ -21,6 +21,11 @@ class AdminController extends Controller
         $admins = Admins::all();
         return view('admins.index', compact('admins'));
     }
+    public function all()
+    {
+        $admins = Admins::all();
+        return view('Admins.admins', compact('admins'));
+    }
 
     /**
      * Show the form for creating a new admin.
@@ -108,30 +113,30 @@ class AdminController extends Controller
     public function etudiants()
     {
         $etudiants = Etudiant::all();
-        return view('admin.etudiants.index', compact('etudiants'));
+        return view('Admins.etudiants', compact('etudiants'));
     }
 
     public function pilotes()
     {
         $pilotes = PiloteDePromotion::all();
-        return view('admin.pilotes.index', compact('pilotes'));
+        return view('Admins.pilotes', compact('pilotes'));
     }
 
     public function entreprises()
     {
         $entreprises = Entreprise::all();
-        return view('admin.entreprises.index', compact('entreprises'));
+        return view('Admins.entreprises', compact('entreprises'));
     }
 
     public function admins()
     {
         $admins = Admins::all();
-        return view('admin.admins.index', compact('admins'));
+        return view('Admins.admins', compact('admins'));
     }
 
     public function users()
     {
         $users = User::all();
-        return view('admin.users.index', compact('users'));
+        return view('Admins.users', compact('users'));
     }
 }
