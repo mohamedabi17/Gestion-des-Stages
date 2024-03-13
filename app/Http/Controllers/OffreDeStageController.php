@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Offers;
 use App\Models\Entreprise;
+use App\Models\Etudiant;
+use App\Models\Location;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 class OffreDeStageController extends Controller
@@ -59,6 +61,35 @@ class OffreDeStageController extends Controller
         $offre = Offers::findOrFail($id);
         return view('offers.show', compact('offre'));
     }
+public function search(Request $request)
+{
+    $query = $request->input('query');
+
+    // Retrieve entreprise IDs matching the query
+    $entrepriseIds = Entreprise::where('name', 'like', "%$query%")->pluck('entreprise_id');
+
+    // Retrieve location IDs matching the query
+    $locationIds = Location::where('ville', 'like', "%$query%")
+        ->orWhere('pays', 'like', "%$query%")
+        ->pluck('entreprise_id');
+
+    // Retrieve offers meeting the criteria
+    $offers = Offers::where(function ($queryBuilder) use ($entrepriseIds, $locationIds) {
+            $queryBuilder->whereIn('entreprise_id', $entrepriseIds)
+                ->orWhereIn('entreprise_id', $locationIds);
+        })
+        ->where(function ($offerQuery) use ($query) {
+            $offerQuery->where('name', 'like', "%$query%")
+                ->orWhere('type', 'like', "%$query%");
+        })
+        ->get();
+
+    // Return the results to the view
+    return view('etudiant.search', compact('offers'));
+}
+
+
+
 
 
   public function edit($id)

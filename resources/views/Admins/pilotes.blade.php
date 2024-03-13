@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+    @vite(['resources/css/offers.css'])
 @section('content')
     <div class="container">
         <h2>All Pilotes</h2>

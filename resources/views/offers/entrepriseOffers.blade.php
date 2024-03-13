@@ -56,7 +56,7 @@
                                 <a class="btn btn-primary postuler-btn" href="/evaluations/${offer.entreprise_id}">Consulter les Evaluations </a>
                             </td>
                             <td>
-                                <form action="{{ route('wishlist.add', ['offer_id' => $offer->id]) }}" method="POST">
+                                <form action="/wishlist/add/${offer.id}" method="POST">
                                     @csrf
                                     <button type="submit" class="btn btn-primary postuler-btn">Ajouter a Wishlist</button>
                                 </form>
