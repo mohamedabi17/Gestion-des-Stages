@@ -14,7 +14,7 @@
             <li><a href="/stageoffers">Offres de stage</a></li>
             <li><a href="{{ route('etudiant.etudiant') }}">Dashboard Étudiant</a></li>
             <li><a href="{{ route('entreprise.dashboard') }}">Dashboard Entreprise</a></li>
-            <li><a href="{{ route('pilotePromotion.pilote') }}">Dashboard Pilote de Promotion</a></li>
+            <li><a href="{{ route('pilotePromotion.dashboard') }}">Dashboard Pilote de Promotion</a></li>
             <li><a href="{{ route('admins.index') }}">Admin</a></li>
             <li><a class=" btn-primary" href="{{ route('register') }}">Register</a></li>
             <li><a class="= btn-primary" href="{{ route('login') }}">Connexion</a></li>
@@ -68,7 +68,7 @@
                         <div class="card-body">
                             <h5 class="card-title">Pilote de Promotion</h5>
                             <p class="card-text">Accédez au tableau de bord du pilote de promotion.</p>
-                            <a href="{{ route('pilotePromotion.pilote') }}" class=" btn-primary">Dashboard Pilote</a>
+                            <a href="{{ route('pilotePromotion.dashboard') }}" class=" btn-primary">Dashboard Pilote</a>
                         </div>
                     </div>
                 </div>
@@ -128,7 +128,7 @@
             if (userType === 'etudiant') {
                 window.location.href = "{{ route('etudiant.etudiant') }}"; // Redirect to etudiant index page
             } else if (userType === 'pilotedestage') {
-                window.location.href = "{{ route('pilotePromotion.pilote') }}"; // Redirect to pilotedestage index page
+                window.location.href = "{{ route('pilotePromotion.dashboard') }}"; // Redirect to pilotedestage index page
             } else if (userType === 'entreprise') {
                 window.location.href = "{{ route('entreprise.dashboard') }}"; // Redirect to entreprise index page
             }

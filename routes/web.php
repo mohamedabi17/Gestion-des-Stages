@@ -119,9 +119,15 @@ Route::get('/etudiant', function () {
     return view('etudiant.dashboard');
 })->name('etudiant.etudiant');
 
+// Route::get('/pilotedestage', function () {
+//     return view('pilotePromotion.dashboard');
+// })->name('pilotePromotion.pilote');
+
 Route::get('/pilotedestage', function () {
     return view('pilotePromotion.dashboard');
-})->name('pilotePromotion.pilote');
+})->name('pilotePromotion.dashboard');
+
+
 Route::get('/pilotefiche', function () {
     return view('pilotePromotion.preview');
 })->name('pilotePromotion.preview');
@@ -143,7 +149,8 @@ Route::put('/admins/{admin}', [AdminController::class, 'update'])->name('admins.
 Route::delete('/admins/{admin}', [AdminController::class, 'destroy'])->name('admins.destroy');
 
 
-Route::put('/editpilote', [PiloteDePromotion::class, 'update'])->name('pilote.update');
+Route::put('/updatepilote', [PiloteDePromotion::class, 'update'])->name('pilote.update');
+
 
 
 Route::get('/pilote', [PiloteDePromotion::class, 'fetchPilote'])->name('pilote.fetch');

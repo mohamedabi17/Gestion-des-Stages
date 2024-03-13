@@ -52,16 +52,16 @@ class PiloteDePromotionController extends Controller
     {
         return view('pilotes.edit', compact('pilote'));
     }
-
-public function update(Request $request)
+    
+   public function update(Request $request)
 {
     $request->validate([
         'name' => 'required|max:255',
-        'promotion_id' => 'required|exists:promotions,id', // Ensure promotion_id exists in promotions table
+        'promotion_id' => 'required', // Ensure promotion_id exists in promotions table
     ]);
 
-    // Find the pilote by its ID
-    $pilote = PiloteDePromotion::where('user_id',auth()->id());
+    // Find the pilote by its user ID
+    $pilote = PiloteDePromotion::where('user_id', auth()->id())->firstOrFail();
 
     // Update the pilote's name
     $pilote->update([
@@ -73,13 +73,12 @@ public function update(Request $request)
 
     // Update the pilote_id in the promotion
     $promotion->update([
-        'pilote_id' => $pilote->pilote_id,
+        'pilote_id' => $pilote->pilote_id, // Use the pilote's ID directly
     ]);
 
     return redirect()->route('pilotePromotion.dashboard')
                     ->with('success', 'Pilote de promotion updated successfully.');
 }
-
 
     public function destroy(PiloteDePromotion $pilote)
     {

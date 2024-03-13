@@ -49,6 +49,7 @@
             // Update hidden input with selected promotion_id
             document.getElementById('promotion').addEventListener('change', function () {
                 document.getElementById('selectedPromotionId').value = this.value;
+
             });
         });
     </script>

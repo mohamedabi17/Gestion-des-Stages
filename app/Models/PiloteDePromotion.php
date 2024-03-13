@@ -12,6 +12,7 @@ class PiloteDePromotion extends Model
     protected $fillable = [
         'name',
         'user_id',
+        'pilote_id',
     ];
 
     // Define the relationship with the User model

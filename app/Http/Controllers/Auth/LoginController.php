@@ -24,7 +24,7 @@ class LoginController extends Controller
           if ($user->usertype === 'etudiant') {
             return redirect()->route('etudiant.etudiant');
         } elseif ($user->usertype === 'pilotedestage') {
-            return redirect()->route('pilotePromotion.pilote');
+            return redirect()->route('pilotePromotion.dashboard');
         } elseif ($user->usertype === 'entreprise') {
             return redirect()->route('entreprise.dashboard');
         }

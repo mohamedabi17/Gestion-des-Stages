@@ -10,7 +10,7 @@ return new class extends Migration
     {
         Schema::create('pilote_de_promotions', function (Blueprint $table) {
             $table->id('pilote_id');
-            $table->string('name');
+            $table->string('name')->nullable();
             $table->timestamps();
 
              $table->unsignedBigInteger('user_id'); // Ensure it's unsigned
