@@ -14,14 +14,25 @@ public function index()
     $entreprises = Entreprise::all();
     return view('entreprises.index', compact('entreprises'));
 }
-
+    
 
     // Show the form for creating a new entreprise.
     public function create()
     {
         return view('entreprise.create');
     }
+    
 
+     public function search(Request $request)
+    {
+        $query = $request->input('query');
+
+        // Perform the search based on the query
+        $entreprises = Entreprise::where('name', 'like', "%$query%")->get();
+
+        // Return the results to the view
+        return view('entreprise.search', compact('entreprises'));
+    }
     // Store a newly created entreprise in the database.
     public function store(Request $request)
     {

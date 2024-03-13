@@ -18,9 +18,16 @@
     <li><a href="{{ route('pilotePromotion.dashboard') }}">Dashboard Pilote</a></li>
     <li><a href="{{ route('register') }}">Register</a></li>
     <li>
-        <form action="{{ route('search.entreprise') }}" method="GET">
-            <input type="text" name="query" placeholder="Rechercher entreprise...">
-            <button type="submit">Rechercher</button>
+       <form action="{{ route('search.offres-stage') }}" method="GET" class="search-form">
+                        <div class="search-input">
+                            <input type="text" name="query" placeholder="Rechercher offre de stage..." class="search-input-field">
+                            <button type="submit" class="search-submit-button"><img src="{{ asset('images/search.png') }}" alt="Logo" style="width: 60%;"></button>
+                        </div>
+                        <div class="additional-fields">
+                            <input type="text" name="entreprise_name" placeholder="Nom de l'entreprise..." class="additional-field">
+                            <input type="text" name="location" placeholder="Lieu..." class="additional-field">
+                            <input type="text" name="competence" placeholder="Compétences..." class="additional-field">
+                        </div>
         </form>
     </li>
 </ul>

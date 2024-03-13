@@ -14,9 +14,9 @@
                 <li><a href="{{ route('register') }}">Register</a></li>
                 <li><a href="{{ route('logout') }}">logout</a></li>
                 <li>
-                    <form action="{{ route('search.entreprise') }}" method="GET">
-                        <input type="text" name="query" placeholder="Rechercher entreprise...">
-                        <button type="submit">Rechercher</button>
+                    <form action="{{ route('search.pilotes') }}" method="GET">
+                        <input type="text" name="query" placeholder="Rechercher pilotes...">
+                        <button type="submit">Rechercher pilotes</button>
                     </form>
                 </li>
             </ul>

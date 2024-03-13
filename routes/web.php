@@ -29,6 +29,11 @@ Route::delete('/etudiants/{etudiant}', [EtudiantController::class, 'destroy'])->
 
 
 
+Route::get('/search/pilotes', [PiloteDePromotionController::class, 'search'])->name('search.pilotes');
+
+
+
+
 Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
 Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
 
@@ -89,6 +94,7 @@ Route::get('/entreprise/{entreprise}/edit', [EntrepriseController::class, 'edit'
 // Route::get('/search/entreprise', [EntrepriseController::class, 'search'])->name('search.entreprise');
 Route::get('/search/offres-stage', [OffreDeStageController::class, 'search'])->name('search.offres-stage');
 
+Route::get('/search/entreprise', [EntrepriseController::class, 'search'])->name('search.entreprise');
 
 
 

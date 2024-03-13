@@ -47,7 +47,19 @@ class PiloteDePromotionController extends Controller
     {
         return view('pilotes.show', compact('pilote'));
     }
+   
 
+
+     public function search(Request $request)
+    {
+        $query = $request->input('query');
+
+        // Perform the search based on the query
+        $pilotes = PiloteDePromotion::where('name', 'like', "%$query%")->get();
+
+        // Return the results to the view
+        return view('pilotePromotion.search', compact('pilotes'));
+    }
     public function edit(PiloteDePromotion $pilote)
     {
         return view('pilotes.edit', compact('pilote'));
