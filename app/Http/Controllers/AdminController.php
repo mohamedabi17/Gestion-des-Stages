@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Admins;
+use App\Models\Entreprise;
+use App\Models\PiloteDePromotion;
+use App\Models\User;
+use App\Models\Etudiant;
 
 class AdminController extends Controller
 {
@@ -99,5 +103,35 @@ class AdminController extends Controller
 
         return redirect()->route('admins.index')
                          ->with('success', 'Admin deleted successfully.');
+    }
+
+    public function etudiants()
+    {
+        $etudiants = Etudiant::all();
+        return view('admin.etudiants.index', compact('etudiants'));
+    }
+
+    public function pilotes()
+    {
+        $pilotes = PiloteDePromotion::all();
+        return view('admin.pilotes.index', compact('pilotes'));
+    }
+
+    public function entreprises()
+    {
+        $entreprises = Entreprise::all();
+        return view('admin.entreprises.index', compact('entreprises'));
+    }
+
+    public function admins()
+    {
+        $admins = Admins::all();
+        return view('admin.admins.index', compact('admins'));
+    }
+
+    public function users()
+    {
+        $users = User::all();
+        return view('admin.users.index', compact('users'));
     }
 }

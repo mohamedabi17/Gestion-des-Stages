@@ -10,6 +10,8 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\PromotionController;
+use App\Http\Controllers\EtudiantController;
+use App\Http\Controllers\PiloteDePromotionController;
 
 
 use App\Models\Entreprise;
@@ -17,6 +19,20 @@ use App\Models\Offers;
 use App\Models\Etudiant;
 use App\Models\PiloteDePromotion;
 use App\Models\Promotion;
+
+
+
+
+
+
+
+// Routes for Admin
+Route::get('/admin/etudiants', [AdminController::class, 'etudiants'])->name('admins.etudiants');
+Route::get('/admin/pilotes', [AdminController::class, 'pilotes'])->name('admins.pilotes');
+Route::get('/admin/entreprises', [AdminController::class, 'entreprises'])->name('admins.entreprises');
+Route::get('/admin/admins', [AdminController::class, 'admins'])->name('admins.admins');
+Route::get('/admin/users', [AdminController::class, 'users'])->name('admins.users');
+
 
 // Define route for displaying the registration form
 Route::get('/register', [RegisterController::class, 'create'])->name('register');
@@ -139,7 +155,9 @@ Route::get('/entreprise', function () {
 
 Route::get('/get-additional-fields/{userType}', [App\Http\Controllers\Auth\RegisterController::class, 'getAdditionalFields']);
 
-// Routes for Admin
+
+
+
 Route::get('/admins', [AdminController::class, 'index'])->name('admins.index');
 Route::get('/admins/create', [AdminController::class, 'create'])->name('admins.create');
 Route::post('/admins', [AdminController::class, 'store'])->name('admins.store');

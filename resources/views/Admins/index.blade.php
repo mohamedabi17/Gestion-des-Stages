@@ -15,7 +15,7 @@
     <li><a href="{{ route('entreprise.create') }}">Créer une entreprise</a></li>
     <li><a href="{{ route('etudiant.etudiant') }}">Dashboard Étudiant</a></li>
     <li><a href="{{ route('entreprise.dashboard') }}">Dashboard Entreprise</a></li>
-    <li><a href="{{ route('pilotePromotion.pilote') }}">Dashboard Pilote</a></li>
+    <li><a href="{{ route('pilotePromotion.dashboard') }}">Dashboard Pilote</a></li>
     <li><a href="{{ route('register') }}">Register</a></li>
     <li>
         <form action="{{ route('search.entreprise') }}" method="GET">
@@ -28,6 +28,66 @@
 
 
 </nav>
+     <h1>Gestion des Comptes</h1>
+      <div class="row">
+            <!-- Etudiants Card -->
+            <div class="col-md-4">
+                <div class="newcard">
+                    <div class="newcard-body">
+                        <h5 class="newcard-title">Etudiants</h5>
+                        <p class="newcard-text">View, update, and delete etudiants records.</p>
+                        <a href="{{ route('admins.etudiants') }}" class="btn-primary">Go to Etudiants</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pilotes Card -->
+            <div class="col-md-4">
+                <div class="newcard">
+                    <div class="newcard-body">
+                        <h5 class="newcard-title">Pilotes</h5>
+                        <p class="newcard-text">View, update, and delete pilotes records.</p>
+                        <a href="{{ route('admins.pilotes') }}" class=" btn-primary">Go to Pilotes</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Entreprises Card -->
+            <div class="col-md-4">
+                <div class="newcard">
+                    <div class="newcard-body">
+                        <h5 class="newcard-title">Entreprises</h5>
+                        <p class="newcard-text">View, update, and delete entreprises records.</p>
+                        <a href="{{ route('admins.entreprises') }}" class="btn-primary">Go to Entreprises</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Admins Card -->
+            <div class="col-md-4">
+                <div class="newcard">
+                    <div class="newcard-body">
+                        <h5 class="newcard-title">Admins</h5>
+                        <p class="newcard-text">View, update, and delete admins records.</p>
+                        <a href="{{ route('admins.admins') }}" class="btn-primary">Go to Admins</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Users Card -->
+            <div class="col-md-4">
+                <div class="newcard">
+                    <div class="newcard-body">
+                        <h5 class="newcard-title">Users</h5>
+                        <p class="newcard-text">View, update, and delete users records.</p>
+                        <a href="{{ route('admins.users') }}" class=" btn-primary">Go to Users</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <h2>Admin Dashboard</h2>
 
 
     <div class="container">
@@ -55,39 +115,41 @@
                
         <!-- Student Card -->
         <div class="col-md-4">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Étudiant</h5>
-                    <p class="card-text">Accédez au tableau de bord de l'étudiant.</p>
-                    <a href="{{ route('etudiant.etudiant') }}" class="btn btn-primary">Dashboard Étudiant</a>
+            <div class="newcard">
+                <div class="newcard-body">
+                    <h5 class="newcard-title">Étudiant</h5>
+                    <p class="newcard-text">Accédez au tableau de bord de l'étudiant.</p>
+                    <a href="{{ route('etudiant.etudiant') }}" class=" btn-primary">Dashboard Étudiant</a>
                 </div>
             </div>
         </div>
 
         <!-- Pilote de Promotion Card -->
         <div class="col-md-4">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Pilote de Promotion</h5>
-                    <p class="card-text">Accédez au tableau de bord du pilote de promotion.</p>
-                    <a href="{{ route('pilotePromotion.pilote') }}" class="btn btn-primary">Dashboard Pilote</a>
+            <div class="newcard">
+                <div class="newcard-body">
+                    <h5 class="newcard-title">Pilote de Promotion</h5>
+                    <p class="newcard-text">Accédez au tableau de bord du pilote de promotion.</p>
+                    <a href="{{ route('pilotePromotion.dashboard') }}" class=" btn-primary">Dashboard Pilote</a>
                 </div>
             </div>
         </div>
 
         <!-- Entreprise Card -->
         <div class="col-md-4">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Entreprise</h5>
-                    <p class="card-text">Accédez au tableau de bord de l'entreprise.</p>
-                    <a href="{{ route('entreprise.dashboard') }}" class="btn btn-primary">Dashboard Entreprise</a>
+            <div class="newcard">
+                <div class="newcard-body">
+                    <h5 class="newcard-title">Entreprise</h5>
+                    <p class="newcard-text">Accédez au tableau de bord de l'entreprise.</p>
+                    <a href="{{ route('entreprise.dashboard') }}" class=" btn-primary">Dashboard Entreprise</a>
                 </div>
             </div>
         </div>
     </div>
 
     </div>
+    </div>
+     
 
 <script>
 
@@ -130,7 +192,7 @@
     //         if (userType === 'etudiant') {
     //             window.location.href = "{{ route('etudiant.etudiant') }}"; // Redirect to etudiant index page
     //         } else if (userType === 'pilotedestage') {
-    //             window.location.href = "{{ route('pilotePromotion.pilote') }}"; // Redirect to pilotedestage index page
+    //             window.location.href = "{{ route('pilotePromotion.dashboard') }}"; // Redirect to pilotedestage index page
     //         } else if (userType === 'entreprise') {
     //             window.location.href = "{{ route('entreprise.dashboard') }}"; // Redirect to entreprise index page
     //         }
