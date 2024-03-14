@@ -18,6 +18,8 @@ export default defineConfig({
                 'resources/js/components/RegisterForm.js',
                 'resources/css/editoffer.css',
                 'resources/css/layouts.css',
+                'resources/css/candidates.css',
+                
             ],
             refresh: true,
         }),

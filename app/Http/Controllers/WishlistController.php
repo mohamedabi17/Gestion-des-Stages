@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Wishlist;
+use App\Models\Etudiant;
 use Illuminate\Http\Request;
 
 class WishlistController extends Controller
@@ -10,8 +11,12 @@ class WishlistController extends Controller
 
 public function index()
 {
-    // Retrieve wishlist items for the authenticated user
-    $wishlistItems = Wishlist::where('etudiant_id', auth()->id())->with('offer')->get();
+    $user_id = auth()->id();
+
+    // Retrieve the corresponding etudiant_id using the user_id
+    $etudiant_id = Etudiant::where('user_id', $user_id)->value('etudiant_id');
+
+    $wishlistItems = Wishlist::where('etudiant_id', $etudiant_id)->with('offer')->get();
     
     // Extract offer information from wishlist items
     $offers = $wishlistItems->map(function ($wishlistItem) {
@@ -25,7 +30,11 @@ public function index()
 
   public function add(Request $request, $offer_id)
 {
-    $etudiant_id = auth()->id();
+    // Get the user_id from the authenticated user
+    $user_id = auth()->id();
+
+    // Retrieve the corresponding etudiant_id using the user_id
+    $etudiant_id = Etudiant::where('user_id', $user_id)->value('etudiant_id');
 
     // Check if a wishlist item with the same etudiant_id and offer_id already exists
     $existingWishlistItem = Wishlist::where('etudiant_id', $etudiant_id)
@@ -47,7 +56,13 @@ public function index()
 
     public function remove(Request $request, $offer_id)
     {
-        Wishlist::where('etudiant_id', auth()->id())->where('offer_id', $offer_id)->delete();
+
+
+           $user_id = auth()->id();
+
+        // Retrieve the corresponding etudiant_id using the user_id
+        $etudiant_id = Etudiant::where('user_id', $user_id)->value('etudiant_id');
+        Wishlist::where('etudiant_id', $etudiant_id)->where('offer_id', $offer_id)->delete();
         return redirect()->route('wishlist.index')->with('success', 'Offer removed from wishlist successfully');
     }
 }

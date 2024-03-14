@@ -33,19 +33,23 @@
 
     <script>
         // Fetch evaluation details using AJAX
-        document.addEventListener("DOMContentLoaded", function() {
-            // Get the entreprise_id from the offer's URL
-            const offerUrl = window.location.href;
-            const entrepriseId = offerUrl.substring(offerUrl.lastIndexOf('/') + 1);
+      document.addEventListener("DOMContentLoaded", function() {
+    // Get the entreprise_id from the offer's URL
+    const offerUrl = window.location.href;
+    const lastSlashIndex = offerUrl.lastIndexOf('/');
+    const secondLastSlashIndex = offerUrl.lastIndexOf('/', lastSlashIndex - 1);
+    const entrepriseId = offerUrl.substring(secondLastSlashIndex + 1, lastSlashIndex);
+    console.log(entrepriseId);
+    fetch(`/get-evaluation_details/${entrepriseId}`)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            // Populate hidden fields with fetched data
+            document.getElementById('entreprise_id').value = data.entreprise.entreprise_id;
+            document.getElementById('etudiant_id').value = data.etudiant.etudiant_id;
+        })
+        .catch(error => console.error('Error fetching evaluation details:', error));
+});
 
-            fetch(`/get-evaluation_details/${entrepriseId}`)
-                .then(response => response.json())
-                .then(data => {
-                    // Populate hidden fields with fetched data
-                    document.getElementById('entreprise_id').value = data.entreprise.entreprise_id;
-                    document.getElementById('etudiant_id').value = data.etudiant.id;
-                })
-                .catch(error => console.error('Error fetching evaluation details:', error));
-        });
     </script>
 @endsection

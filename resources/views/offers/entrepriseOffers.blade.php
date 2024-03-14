@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    @vite(['resources/css/stages.css','resources/css/layouts.css'])
+    @vite(['resources/css/stages.css', 'resources/css/layouts.css'])
 
     <h1 class="title">Offres de Stage proposé par {{ $entreprise->name }}</h1>
 
@@ -20,18 +20,18 @@
         </thead>
         <tbody>
             @foreach($offers as $offer)
-            <tr>
+            <tr data-offer-id="{{ $offer->id }}">
                 <td>{{ $entreprise->name }}</td>
                 <td>{{ $offer->name }}</td>
                 <td>{{ $offer->type }}</td>
                 <td>{{ $offer->duree }}</td>
+                <td>{{ $offer->lieu }}</td> <!-- Assuming lieu is the location -->
                 <td>
-                    <a class="btn btn-primary postuler-btn" href="/evaluations/{{ $offer->entreprise_id }}/create">Evaluer Entreprise</a>
+                    <a href="{{ route('offers.showCandidates', ['id' => $offer->id]) }}" class="btn btn-primary postuler-btn">Consulter les candidatures</a>
                 </td>
                 <td>
-                    <a class="btn btn-primary postuler-btn" ${offer.entreprise_id}>Evaluations</a>
+                    <a href="/evaluations/{{ $offer->entreprise_id }}" class="btn btn-primary postuler-btn">Consulter les Evaluations</a>
                 </td>
-               
             </tr>
             @endforeach
         </tbody>
@@ -46,22 +46,18 @@
                 const offersBody = document.querySelector('#offers-table tbody');
                 data.offers.forEach(offer => {
                     const row = `
-                        <tr>
+                        <tr data-offer-id="${offer.id}">
                             <td>${offer.entreprise.name}</td>
                             <td>${offer.name}</td>
                             <td>${offer.type}</td>
                             <td>${offer.duree}</td>
-                            <td>${offer.lieu}</td>
+                            <td>${offer.lieu}</td> <!-- Assuming lieu is the location -->
                             <td>
-                                    <button type="submit" class="btn btn-primary postuler-btn "  href="/offers/${offer.entreprise_id}/showCandidates">Consulter les candidatures</button>
+                                  <a href="/offers/${offer.id}/candidates" class="btn btn-primary postuler-btn">Consulter les candidatures</a>
                             </td>
                             <td>
-                                <form action="/wishlist/add/${offer.id}" method="POST">
-                                    @csrf
-                                         <a class="btn btn-primary postuler-btn" href="/evaluations/${offer.entreprise_id}">Consulter les Evaluations </a>
-                                </form>
+                                <a href="/evaluations/${offer.entreprise_id}" class="btn btn-primary postuler-btn">Consulter les Evaluations</a>
                             </td>
-
                         </tr>
                     `;
                     offersBody.innerHTML += row;

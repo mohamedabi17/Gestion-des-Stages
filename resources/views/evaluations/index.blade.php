@@ -5,7 +5,6 @@
         <h2>Evaluations</h2>
 
         <!-- Button to create a new evaluation -->
-        <a href="{{ route('evaluations.create') }}" class="btn btn-primary mb-2">Create New Evaluation</a>
 
         <!-- Display success message if it exists -->
         @if(session('success'))

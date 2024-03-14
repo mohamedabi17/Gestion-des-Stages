@@ -126,7 +126,7 @@ Route::get('/get-offers-by-entreprise', function () {
 });
 
 
-Route::get('/candidates', [PostuleStageController::class, 'index'])->name('candidates.index');
+Route::get('/offers/{id}/candidates', [PostuleStageController::class, 'show'])->name('offers.showCandidates');
 Route::get('/candidates/create', [PostuleStageController::class, 'create'])->name('candidates.create');
 Route::post('/candidates/store', [PostuleStageController::class, 'store'])->name('candidates.store');
 Route::delete('/candidates/{postuleStage}', [PostuleStageController::class, 'destroy'])->name('candidates.destroy');
@@ -257,7 +257,8 @@ Route::get('/get-evaluation_details/{entreprise_id}', function ($entreprise_id) 
 });
 Route::get('/wishlistsitems', function () {
     // Retrieve wishlist items for the authenticated user
-    $wishlistItems = Wishlist::where('etudiant_id', auth()->id())->get();
+    $etudiant_id = Etudiant::where('user_id', auth()->id())->value('etudiant_id');
+    $wishlistItems = Wishlist::where('etudiant_id', $etudiant_id)->get();
 
     // Retrieve offers for the wishlist items along with their associated enterprises
     $offers = $wishlistItems->map(function ($wishlistItem) {

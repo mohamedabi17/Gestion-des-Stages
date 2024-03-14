@@ -2,32 +2,35 @@
 
 @section('content')
     <div class="container">
-        @vite(['resources/css/show-candidates.css'])
-        <h1 class="title">Candidats pour l'Offre de Stage</h1>
-        <table class="candidates-table">
-            <thead>
-                <tr>
-                    <th>Nom de l'Étudiant</th>
-                    <th>Curriculum Vitae</th>
-                    <th>Lettre de Motivation</th>
-                    <th>Date de Candidature</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($applications as $application)
+        @vite(['resources/css/candidates.css'])
+        <h1 class="title">Candidature pour l'Offre de Stage</h1>
+        <div class="candidates-table-container">
+            <table class="candidates-table">
+                <thead>
                     <tr>
-                        <td>{{ $application->etudiant->name }}</td>
-                        <td>{{ $application->resume }}</td>
-                        <td>{{ $application->lettreofmotivation }}</td>
-                        <td>{{ $application->created_at->format('d/m/Y H:i:s') }}</td>
+                        <th>Nom de l'Étudiant</th>
+                        <th>Curriculum Vitae</th>
+                        <th>Lettre de Motivation</th>
+                        <th>Date de Candidature</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{ $postule->etudiant->name }}</td>
                         <td>
-                            <a href="#" class="btn btn-primary">Accepter</a>
-                            <a href="#" class="btn btn-danger">Rejeter</a>
+                            <!-- Assuming $postule->cv contains the file path for CV -->
+                            <a href="{{ asset($postule->cv) }}" target="_blank" class="btn btn-view">Voir CV</a>
+                        </td>
+                        <td>{{ $postule->lettre_de_motivation }}</td>
+                        <td>{{ $postule->created_at->format('d/m/Y H:i:s') }}</td>
+                        <td>
+                            <a href="#" class="btn btn-accept">Accepter</a>
+                            <a href="#" class="btn btn-reject">Rejeter</a>
                         </td>
                     </tr>
-                @endforeach
-            </tbody>
-        </table>
+                </tbody>
+            </table>
+        </div>
     </div>
 @endsection

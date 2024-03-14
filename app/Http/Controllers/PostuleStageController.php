@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Etudiant;
 use App\Models\PostuleStage;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class PostuleStageController extends Controller
@@ -12,7 +14,7 @@ class PostuleStageController extends Controller
      public function index()
     {
         $candidates = PostuleStage::all();
-        return view('candidates.index', compact('admins'));
+        return view('entreprise.candidates', compact('candidates'));
     }
 
     /**
@@ -59,6 +61,15 @@ public function indexpostuler($id)
     return view('postuler.postuler', compact('candidates', 'offerId'));
 }
 
+public function show($id)
+{
+    // Retrieve the PostuleStage by its ID along with the associated offer, etudiant, and user
+    $postule = PostuleStage::with('offer', 'etudiant.user')->findOrFail($id);
+
+    return view('offers.showCandidates', compact('postule'));
+}
+
+
 
 
 public function storepostuler(Request $request, $id)
@@ -69,20 +80,19 @@ public function storepostuler(Request $request, $id)
         'offer_id' => 'required|exists:offers,id',
     ]);
 
-    // Retrieve file content
-    $fileContent = file_get_contents($request->file('cv'));
+    // Store the CV file
+    $cvPath = $request->file('cv')->store('cv_files');
 
     // Create a new postule stage
     PostuleStage::create([
-        'cv' => $fileContent,
+        'cv' => $cvPath, // Store the file path in the database
         'lettre_de_motivation' => $request->lettre_de_motivation,
         'etudiant_id' => auth()->user()->id, // Assuming etudiant_id is the authenticated user's ID
         'offer_id' => $request->offer_id,
     ]);
-
-    return redirect()->back()->with('success', 'Postule stage created successfully.');
+       return redirect()->route('offers.stages')
+                         ->with('success', 'Entreprise created successfully.');
 }
-
 
     // Method to delete a postule stage
     // public function destroy(PostuleStage $postuleStage)

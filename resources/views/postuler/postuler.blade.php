@@ -6,7 +6,7 @@
 
         <h1 class="title">Postuler pour un Stage</h1>
 
-       <form action="{{ route('postuler.storepostuler', ['id' => $offerId]) }}" method="POST" class="postule-form">
+       <form action="{{ route('postuler.storepostuler', ['id' => $offerId]) }}" method="POST" class="postule-form" enctype="multipart/form-data">
 
             @csrf
 
