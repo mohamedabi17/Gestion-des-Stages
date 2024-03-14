@@ -39,6 +39,7 @@ Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.
 
 
 Route::get('/pilotes/{pilote}/edit', [PiloteDePromotion::class, 'edit'])->name('pilotes.edit');
+Route::get('/pilotes/create', [PiloteDePromotion::class, 'create'])->name('pilotes.create');
 Route::delete('/pilotes/{pilote}', [PiloteDePromotion::class, 'destroy'])->name('pilotes.destroy');
 
 
@@ -91,7 +92,6 @@ Route::get('/entreprises/{user_id}/fiche', function ($user_id) {
 });
 Route::post('/entreprise', [EntrepriseController::class, 'store'])->name('entreprise.store');
 Route::get('/entreprise/{entreprise}/edit', [EntrepriseController::class, 'edit'])->name('entreprise.edit');
-// Route::get('/search/entreprise', [EntrepriseController::class, 'search'])->name('search.entreprise');
 Route::get('/search/offres-stage', [OffreDeStageController::class, 'search'])->name('search.offres-stage');
 
 Route::get('/search/entreprise', [EntrepriseController::class, 'search'])->name('search.entreprise');

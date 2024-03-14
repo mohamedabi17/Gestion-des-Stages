@@ -18,6 +18,12 @@
             </tr>
             @endforeach
         </tbody>
+        
     </table>
+     <div class="container" style="text-align: center;">
+        <h2 >Créer un compte Pilote pour ajouter de nouveaux pilote</h2>
+        <a class="btn-orange " href="{{ route('profile.profile') }}">Nouveau Pilote</a>
+    
+    </div>
 </div>
 @endsection

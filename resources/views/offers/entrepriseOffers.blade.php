@@ -29,7 +29,7 @@
                     <a class="btn btn-primary postuler-btn" href="/evaluations/{{ $offer->entreprise_id }}/create">Evaluer Entreprise</a>
                 </td>
                 <td>
-                    <a class="btn btn-primary postuler-btn" href="/evaluations/{{ $offer->entreprise_id }}">Evaluations</a>
+                    <a class="btn btn-primary postuler-btn" ${offer.entreprise_id}>Evaluations</a>
                 </td>
                
             </tr>
@@ -53,12 +53,12 @@
                             <td>${offer.duree}</td>
                             <td>${offer.lieu}</td>
                             <td>
-                                <a class="btn btn-primary postuler-btn" href="/evaluations/${offer.entreprise_id}">Consulter les Evaluations </a>
+                                    <button type="submit" class="btn btn-primary postuler-btn "  href="/offers/${offer.entreprise_id}/showCandidates">Consulter les candidatures</button>
                             </td>
                             <td>
                                 <form action="/wishlist/add/${offer.id}" method="POST">
                                     @csrf
-                                    <button type="submit" class="btn btn-primary postuler-btn">Ajouter a Wishlist</button>
+                                         <a class="btn btn-primary postuler-btn" href="/evaluations/${offer.entreprise_id}">Consulter les Evaluations </a>
                                 </form>
                             </td>
 

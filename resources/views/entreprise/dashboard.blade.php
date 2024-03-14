@@ -18,7 +18,7 @@
                    <form action="{{ route('search.entreprise') }}" method="GET" class="search-form">
                         <div class="search-input">
                              <input type="text" name="query" placeholder="Rechercher entreprise..." class="search-input-field">
-                             <button type="submit"class="search-submit-button"><img src="{{ asset('images/search.png') }}" alt="Logo" style="width: 60%;"></button>
+                             <button  style="background-color: #cc5500;"  type="submit"class="search-submit-button"><img src="{{ asset('images/search.png') }}" alt="Logo" style="width: 100%;"></button>
                     </form>
                
             </li>

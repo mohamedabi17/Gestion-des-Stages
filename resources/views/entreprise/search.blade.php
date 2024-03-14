@@ -18,7 +18,7 @@
                 <td>{{ $entreprise->secteur }}</td>
                 <td>
                     <!-- Add actions such as viewing details or applying -->
-                    <a href="{{ route('entreprise.details', $entreprise->entreprise_id) }}" class="btn btn-primary">Voir détails</a>
+                    <a href="{{ route('entreprise.fiche', $entreprise->entreprise_id) }}" class="btn btn-primary">Voir détails</a>
                 </td>
             </tr>
             @endforeach
