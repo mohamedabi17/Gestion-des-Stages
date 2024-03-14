@@ -1,7 +1,7 @@
 @extends('layouts.app')
-@vite(['resources/css/welcome.css', 'resources/js/app.js','resources/css/layouts.css'])
+@vite(['resources/css/layouts.css','resources/css/welcome.css', 'resources/js/app.js'])
 @section('content')
-<div class="welcome" style="background-color: black;">
+<div class="welcome" >
     <div class="container">
      <header>
                 <h1>Bienvenu dans L'Application de Gestion des offres de stage </h1>
@@ -30,8 +30,9 @@
 
         </nav>
 
-            <h2>Liste des offres de stage disponibles pour les étudiants gérées par les pôles de management :</h2>
+            
             <table class="offers-table">
+            <caption><h2 >Liste des offres de stage disponibles pour les étudiants gérées par les pôles de management :</h2></caption>
             <thead>
                 <tr>
                     <th>Entreprise</th>
@@ -53,7 +54,7 @@
             <div class="row">
                 <!-- Student Card -->
                 <div class="col-md-4">
-                    <div class="card" style="background-color:#ff6600;">
+                    <div class="card" style="background-color:transparent;">
                         <div class="card-body">
                             <h5 class="card-title">Étudiant</h5>
                             <p class="card-text">Accédez au tableau de bord de l'étudiant.</p>
@@ -64,7 +65,7 @@
 
                 <!-- Pilote de Promotion Card -->
                 <div class="col-md-4">
-                    <div class="card"  style="background-color:#ff6600;">
+                    <div class="card"  style="background-color:transparent;">
                         <div class="card-body">
                             <h5 class="card-title">Pilote de Promotion</h5>
                             <p class="card-text">Accédez au tableau de bord du pilote de promotion.</p>
@@ -75,7 +76,7 @@
 
                 <!-- Entreprise Card -->
                 <div class="col-md-4">
-                    <div class="card" style="background-color:#ff6600;" >
+                    <div class="card" style="background-color:transparent;" >
                         <div class="card-body">
                             <h5 class="card-title">Entreprise</h5>
                             <p class="card-text">Accédez au tableau de bord de l'entreprise.</p>
@@ -95,16 +96,13 @@
         });
 
             function fetchOffers() {
-                fetch('/get-all-offers')
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
+                fetch('/get-all-offers').then(response => response.json()).then(data => {
+            console.log();
             const offersBody = document.getElementById('offers-body');
             data.offers.forEach((offer, index) => {
-                const entreprise = data.entreprises.find(ent => ent.entreprise_id === offer.entreprise_id);
                 const row = `
                     <tr>
-                        <td>${entreprise.name}</td>
+                        <td>${offer.name}</td>
                         <td>${offer.name}</td>
                         <td>${offer.type}</td>
                         <td>${offer.duree}</td>

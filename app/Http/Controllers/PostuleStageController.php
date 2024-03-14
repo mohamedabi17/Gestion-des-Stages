@@ -78,16 +78,20 @@ public function storepostuler(Request $request, $id)
         'cv' => 'required|file', // Ensure file is required
         'lettre_de_motivation' => 'required|string',
         'offer_id' => 'required|exists:offers,id',
-    ]);
+    ]); 
 
     // Store the CV file
     $cvPath = $request->file('cv')->store('cv_files');
+    $user_id = auth()->id();
+
+    // Retrieve the corresponding etudiant_id using the user_id
+    $etudiant_id = Etudiant::where('user_id', $user_id)->value('etudiant_id');
 
     // Create a new postule stage
     PostuleStage::create([
         'cv' => $cvPath, // Store the file path in the database
         'lettre_de_motivation' => $request->lettre_de_motivation,
-        'etudiant_id' => auth()->user()->id, // Assuming etudiant_id is the authenticated user's ID
+        'etudiant_id' => $etudiant_id, // Assuming etudiant_id is the authenticated user's ID
         'offer_id' => $request->offer_id,
     ]);
        return redirect()->route('offers.stages')

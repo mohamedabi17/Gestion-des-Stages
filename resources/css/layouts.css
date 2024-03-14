@@ -1,9 +1,9 @@
 #app{
     min-height: 90vh;
 }
-h1,h2,h3,h4,h5{
+/* h1,h2,h3,h4,h5{
     color: #ff6600;
-}
+} */
 label{
     color: #ff6600;
 }
@@ -109,7 +109,7 @@ footer,
 .search-submit-button {
     width: 40px;
     height: 40px;
-    background-color: #ff6600;
+    background-color: #007bff;
     color: #fff;
     border: none;
     border-radius: 0 5px 5px 0;

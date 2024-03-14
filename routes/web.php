@@ -90,6 +90,19 @@ Route::get('/entreprises/{user_id}/fiche', function ($user_id) {
         return response()->json(['error' => 'Entreprise not found'], 404);
     }
 });
+
+Route::get('/entreprises/{user_id}/fiche', function ($user_id) {
+    // Fetch the entreprise_id based on the user_id
+    $entreprise = Entreprise::where('user_id', $user_id)->first();
+
+    // If entreprise is found, redirect to the fiche route with the entreprise_id
+    if ($entreprise) {
+        return redirect()->route('entreprise.fiche', ['id' => $entreprise->entreprise_id]);
+    } else {
+        // Handle the case where entreprise is not found
+        return response()->json(['error' => 'Entreprise not found'], 404);
+    }
+});
 Route::post('/entreprise', [EntrepriseController::class, 'store'])->name('entreprise.store');
 Route::get('/entreprise/{entreprise}/edit', [EntrepriseController::class, 'edit'])->name('entreprise.edit');
 Route::get('/search/offres-stage', [OffreDeStageController::class, 'search'])->name('search.offres-stage');
@@ -123,6 +136,14 @@ Route::get('/get-offers-by-entreprise', function () {
 
     // Return to the view with offers and enterprise object
     return view('offers.entrepriseOffers', compact('offers', 'entreprise'));
+});
+
+Route::get('/get-all-offers', function () {
+
+    $offers = Offers::all();
+
+    // Return to the view with offers and enterprise object
+    return (compact('offers'));
 });
 
 

@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@vite(['resources/css/entreprise.css','resources/css/welcome.css', 'resources/js/app.js','resources/css/layouts.css'])
+@vite(['resources/css/welcome.css', 'resources/js/app.js','resources/css/layouts.css'])
 @section('content')
 <div class="welcome" style="background-color: black;">
      <header>
