@@ -166,16 +166,13 @@
         });
 
             function fetchOffers() {
-                fetch('/get-all-offers')
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
+                fetch('/get-all-offers').then(response => response.json()).then(data => {
+            console.log();
             const offersBody = document.getElementById('offers-body');
             data.offers.forEach((offer, index) => {
-                const entreprise = data.entreprises.find(ent => ent.entreprise_id === offer.entreprise_id);
                 const row = `
                     <tr>
-                        <td>${entreprise.name}</td>
+                        <td>${offer.name}</td>
                         <td>${offer.name}</td>
                         <td>${offer.type}</td>
                         <td>${offer.duree}</td>

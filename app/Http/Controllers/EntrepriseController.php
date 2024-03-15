@@ -81,30 +81,14 @@ public function update(Request $request, $entreprise_id)
 
     // Update entreprise details
     $entreprise->update($request->only(['name', 'secteur']));
-
-    // Check if the location table exists
-    if (Schema::hasTable('locations')) {
         // Update or create location details
-        $location = Location::where('entreprise_id', $entreprise->id)->first();
+        $location = Location::where('entreprise_id', $entreprise->entreprise_id)->first();
         if ($location) {
             $location->update($request->only(['code-postal', 'numero_de_batiment', 'ville', 'pays']));
         } else {
-            Location::create(array_merge($request->only(['code-postal', 'numero_de_batiment', 'ville', 'pays']), ['entreprise_id' => $entreprise->id]));
+            Location::create(array_merge($request->only(['code-postal', 'numero_de_batiment', 'ville', 'pays']), ['entreprise_id' => $entreprise->entreprise_id]));
         }
-    } else {
-        // Create location table and insert location details
-        Schema::create('locations', function ($table) {
-            $table->id();
-            $table->string('code-postal');
-            $table->string('numero_de_batiment');
-            $table->string('ville');
-            $table->string('pays');
-            $table->foreignId('entreprise_id')->constrained('entreprises')->onDelete('cascade');
-            $table->timestamps();
-        });
-
-        Location::create(array_merge($request->only(['code-postal', 'numero_de_batiment', 'ville', 'pays']), ['entreprise_id' => $entreprise->id]));
-    }
+ 
 
     return redirect()->route('entreprise.dashboard')
                      ->with('success', 'Entreprise and Location updated successfully');

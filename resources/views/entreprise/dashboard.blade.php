@@ -1,10 +1,10 @@
 @extends('layouts.app')
-@vite(['resources/css/entreprise.css','resources/css/app.css', 'resources/js/app.js','resources/css/layouts.css'])
+@vite(['resources/css/entreprise.css','resources/css/welcome.css', 'resources/js/app.js','resources/css/layouts.css'])
   @vite(['resources/css/welcome.css'])
 @section('content')
 <body>
     <header>
-        <h1>Entreprise Dashboard</h1>
+        <h1 style="color: white;">Entreprise Dashboard</h1>
     </header>
     <nav>
         <ul>

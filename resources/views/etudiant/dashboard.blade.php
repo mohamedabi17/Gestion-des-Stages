@@ -24,7 +24,7 @@
                             <button type="submit" class="search-submit-button"><img src="{{ asset('images/search.png') }}" alt="Logo" style="width: 60%;"></button>
                         </div>
                         <div class="additional-fields">
-                            <input type="text" name="entreprise_name" placeholder="Nom de l'entreprise..." class="additional-field">
+                            <input type="text" name="name" placeholder="Nom de l'entreprise..." class="additional-field">
                             <input type="text" name="location" placeholder="Lieu..." class="additional-field">
                             <input type="text" name="competence" placeholder="Compétences..." class="additional-field">
                         </div>

@@ -145,6 +145,7 @@ h2 {
     padding-left: 10%;
     padding-right: 10%;
     border: 1px solid #ff6600;
+    background-color: transparent;
     color: #ff6600;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -152,7 +153,7 @@ h2 {
 }
 
 .newcard:hover {
-    background-color: transparent;
+    background-color: #cccccc52;
     border-color: #ff6600;
     color: #ff6600;
 }
@@ -236,8 +237,11 @@ nav ul li a {
 }
 
 nav ul li:hover a {
-    color: black;
+    color: #ff6600;
     /* Yellow text */
+    padding: 1rem;
+    background-color: #000000;
+    border-radius: 40%;
     text-decoration: none;
 }
 

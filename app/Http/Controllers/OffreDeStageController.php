@@ -61,26 +61,55 @@ class OffreDeStageController extends Controller
         $offre = Offers::findOrFail($id);
         return view('offers.show', compact('offre'));
     }
+// public function search(Request $request)
+// {
+//     $query = $request->input('query');
+
+//     // Retrieve entreprise IDs matching the query
+//     $entrepriseIds = Entreprise::where('name', 'like', "%$query%")->pluck('entreprise_id');
+
+//     // Retrieve location IDs matching the query
+//     $locationIds = Location::where('ville', 'like', "%$query%")
+//         ->orWhere('pays', 'like', "%$query%")
+//         ->pluck('entreprise_id');
+
+//     // Retrieve offers meeting the criteria
+//     $offers = Offers::where(function ($queryBuilder) use ($entrepriseIds, $locationIds) {
+//             $queryBuilder->whereIn('entreprise_id', $entrepriseIds)
+//                 ->orWhereIn('entreprise_id', $locationIds);
+//         })
+//         ->where(function ($offerQuery) use ($query) {
+//             $offerQuery->where('name', 'like', "%$query%")
+//                 ->orWhere('type', 'like', "%$query%");
+//         })
+//         ->get();
+
+//     // Return the results to the view
+//     return view('etudiant.search', compact('offers'));
+// }
+
 public function search(Request $request)
 {
+    // Retrieve search parameters from the request
     $query = $request->input('query');
+    $name = $request->input('name');
+    $location = $request->input('location');
+    $competence = $request->input('competence');
 
-    // Retrieve entreprise IDs matching the query
-    $entrepriseIds = Entreprise::where('name', 'like', "%$query%")->pluck('entreprise_id');
+    // Retrieve entreprise IDs matching the name query
+    $entrepriseIds = Entreprise::where('name', 'like', "%$name%")->pluck('entreprise_id');
 
-    // Retrieve location IDs matching the query
-    $locationIds = Location::where('ville', 'like', "%$query%")
-        ->orWhere('pays', 'like', "%$query%")
+    // Retrieve location IDs matching the location query
+    $locationIds = Location::where('ville', 'like', "%$location%")
+        ->orWhere('pays', 'like', "%$location%")
         ->pluck('entreprise_id');
 
     // Retrieve offers meeting the criteria
-    $offers = Offers::where(function ($queryBuilder) use ($entrepriseIds, $locationIds) {
+    $offers = Offers::where(function ($queryBuilder) use ($entrepriseIds, $locationIds, $query, $competence) {
             $queryBuilder->whereIn('entreprise_id', $entrepriseIds)
-                ->orWhereIn('entreprise_id', $locationIds);
-        })
-        ->where(function ($offerQuery) use ($query) {
-            $offerQuery->where('name', 'like', "%$query%")
-                ->orWhere('type', 'like', "%$query%");
+                ->orWhereIn('entreprise_id', $locationIds)
+                ->orWhere('name', 'like', "%$query%")
+                ->orWhere('type', 'like', "%$competence%");
         })
         ->get();
 
