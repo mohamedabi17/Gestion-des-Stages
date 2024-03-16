@@ -46,7 +46,13 @@
             console.log(data);
             // Populate hidden fields with fetched data
             document.getElementById('entreprise_id').value = data.entreprise.entreprise_id;
-            document.getElementById('etudiant_id').value = data.etudiant.etudiant_id;
+            if(data.etudiant.etudiant_id){
+               document.getElementById('etudiant_id').value = data.etudiant.etudiant_id;
+            }
+            else{
+                document.getElementById('etudiant_id').value = data.etudiant.pilote_id;
+            }
+            
         })
         .catch(error => console.error('Error fetching evaluation details:', error));
 });

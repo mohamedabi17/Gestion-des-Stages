@@ -20,6 +20,7 @@ use App\Models\Etudiant;
 use App\Models\PiloteDePromotion;
 use App\Models\Promotion;
 
+Route::get('/download-cv/{id}', [PostuleStageController::class, 'downloadCV'])->name('download.cv');
 
 
 Route::get('/etudiants/{etudiant}', [EtudiantController::class, 'show'])->name('etudiants.show');
@@ -113,7 +114,7 @@ Route::get('/search/entreprise', [EntrepriseController::class, 'search'])->name(
 
 // Routes for OffreDeStageController
 // Route::get('/offersentreprise{id}', [OffreDeStageController::class, 'fetchStageOffersByEntreprise'])->name('offers.index.dashboard');
-Route::get('/offers/{id}/showCandidates', [OffreDeStageController::class, 'showCandidates'])->name('offers.showCandidates');
+// Route::get('/offers/{id}/showCandidates', [OffreDeStageController::class, 'show'])->name('offers.showCandidates');
 Route::get('/offers/create', [OffreDeStageController::class, 'create'])->name('offers.create');
 Route::post('/offers', [OffreDeStageController::class, 'store'])->name('offers.store');
 Route::get('/offers/{id}/edit', [OffreDeStageController::class, 'edit'])->name('offers.edit');
@@ -147,7 +148,7 @@ Route::get('/get-all-offers', function () {
 });
 
 
-Route::get('/offers/{id}/candidates', [PostuleStageController::class, 'show'])->name('offers.showCandidates');
+Route::get('/offers/{id}/showCandidates', [PostuleStageController::class, 'show'])->name('offers.candidates');
 Route::get('/candidates/create', [PostuleStageController::class, 'create'])->name('candidates.create');
 Route::post('/candidates/store', [PostuleStageController::class, 'store'])->name('candidates.store');
 Route::delete('/candidates/{postuleStage}', [PostuleStageController::class, 'destroy'])->name('candidates.destroy');
@@ -269,6 +270,9 @@ Route::get('/get-evaluation_details/{entreprise_id}', function ($entreprise_id) 
 
     // Retrieve the student details associated with the authenticated user
     $etudiant = Etudiant::where('user_id', auth()->id())->first();
+    if ($etudiant ===null){
+        $etudiant = PiloteDePromotion::where('user_id', auth()->id())->first();
+    }
 
     // Return JSON response with enterprise and student details
     return response()->json([

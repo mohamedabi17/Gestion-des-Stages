@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\EvaluerEntreprise;
+use App\Models\EvaluerParPilote;
 use App\Models\Entreprise;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class EvaluerEntrepriseController extends Controller
@@ -30,21 +32,32 @@ class EvaluerEntrepriseController extends Controller
 
 
 
-    public function store(Request $request)
-    {
-        $request->validate([
-            'nom' => 'required|unique:evaluer_entreprise|max:255',
-            'commentaire' => 'required',
-            'entreprise_id' => 'required', // Add validation for entreprise_id
-            'etudiant_id' => 'required', // Add validation for etudiant_id
-            // Add validation rules for other attributes as needed
-        ]);
+public function store(Request $request)
+{
+                 $request->validate([
+        'nom' => 'required|unique:evaluer_entreprise|max:255',
+        'commentaire' => 'required',
+        'entreprise_id' => 'required',
+        'etudiant_id' => 'required',
+        // Add validation rules for other attributes as needed
+    ]);
+     $user = User::findOrFail(auth()->id());
+    if ($user->usertype === 'pilotedestage') {
+          $evaluerparpilote = EvaluerParPilote::create([
+        'note' => $request->nom,
+        'commentaire' => $request->commentaire,
+        'entreprise_id' =>$request->entreprise_id,
+        'pilote_id' => $request->etudiant_id,
+    ]);
+    } else {
 
         EvaluerEntreprise::create($request->all());
-
-        return redirect()->route('evaluations.index')
-                         ->with('success', 'Evaluation created successfully.');
     }
+
+    return redirect()->route('evaluations.index')
+                     ->with('success', 'Evaluation created successfully.');
+}
+
 
    public function show($id)
 {

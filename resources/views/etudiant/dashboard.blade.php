@@ -11,26 +11,38 @@
 
         <nav>
             <ul>
-                <li><a href="/">Accueil</a></li>
-                <li><a href="/stageoffers">les Offres de stage</a></li>
-                <li><a href="{{ route('profile.profile') }}">profile</a></li>
-                <li><a href="{{ route('etudiant.etudiant') }}">Dashboard Étudiant</a></li>
-                <li><a href="{{ route('login') }}">Connexion</a></li>
-                <li><a href="{{ route('register') }}">Register</a></li>
-                <li><a href="{{ route('logout') }}">logout</a></li>
-                    <form action="{{ route('search.offres-stage') }}" method="GET" class="search-form">
-                        <div class="search-input">
-                            <input type="text" name="query" placeholder="Rechercher offre de stage..." class="search-input-field">
-                            <button type="submit" class="search-submit-button"><img src="{{ asset('images/search.png') }}" alt="Logo" style="width: 60%;"></button>
-                        </div>
-                        <div class="additional-fields">
-                            <input type="text" name="name" placeholder="Nom de l'entreprise..." class="additional-field">
-                            <input type="text" name="location" placeholder="Lieu..." class="additional-field">
-                            <input type="text" name="competence" placeholder="Compétences..." class="additional-field">
-                        </div>
-                    </form>
+                    <li><a href="/">Accueil</a></li>
+                    <li><a href="/stageoffers">les Offres de stage</a></li>
+                    @auth
+                        <li><a href="{{ route('profile.profile') }}">profile</a></li>
+                        <li><a href="{{ route('etudiant.etudiant') }}">Dashboard Étudiant</a></li>
+                        <li>
+                            <form action="{{ route('logout') }}" method="POST">
+                                @csrf
+                                <button type="submit">Logout</button>
+                            </form>
+                        </li>
+                    @else
+                        <li><a href="{{ route('login') }}">Connexion</a></li>
+                        <li><a href="{{ route('register') }}">Register</a></li>
+                    @endauth
+                    <li>
+                        <form action="{{ route('search.offres-stage') }}" method="GET" class="search-form">
+                            <div class="search-input">
+                                <input type="text" name="query" placeholder="Rechercher offre de stage..." class="search-input-field">
+                                <button type="submit" class="search-submit-button"><img src="{{ asset('images/search.png') }}" alt="Logo" style="width: 60%;"></button>
+                            </div>
+                            @auth
+                                <div class="additional-fields">
+                                    <input type="text" name="name" placeholder="Nom de l'entreprise..." class="additional-field">
+                                    <input type="text" name="location" placeholder="Lieu..." class="additional-field">
+                                    <input type="text" name="competence" placeholder="Compétences..." class="additional-field">
+                                </div>
+                            @endauth
+                        </form>
+                    </li>
+                </ul>
 
-            </ul>
         </nav>
 
     <div class="container">

@@ -1,30 +1,46 @@
 @extends('layouts.app')
 @vite(['resources/css/layouts.css','resources/css/welcome.css', 'resources/js/app.js'])
 @section('content')
+
 <div class="welcome" >
     <div class="container">
      <header>
-                <h1>Bienvenu dans L'Application de Gestion des offres de stage </h1>
+                <h1 style="background-color: black;width: 100%;">Bienvenu dans L'Application de Gestion des offres de stage </h1>
             </header>
 
         <nav>
         <ul>
-            <li><a href="/">Accueil</a></li>
-            <li><a href="{{ route('profile.profile') }}">profile</a></li>
-            <li><a href="/stageoffers">Offres de stage</a></li>
-            <li><a href="{{ route('etudiant.etudiant') }}">Dashboard Étudiant</a></li>
-            <li><a href="{{ route('entreprise.dashboard') }}">Dashboard Entreprise</a></li>
-            <li><a href="{{ route('pilotePromotion.dashboard') }}">Dashboard Pilote de Promotion</a></li>
-            <li><a href="{{ route('admins.index') }}">Admin</a></li>
-            <li><a class=" btn-primary" href="{{ route('register') }}">Register</a></li>
-            <li><a class="= btn-primary" href="{{ route('login') }}">Connexion</a></li>
-            <li>
-                <form action="{{ route('search.entreprise') }}" method="GET">
-                    <input type="text" name="query" placeholder="Rechercher entreprise...">
-                    <button type="submit" class=" btn-primary">Rechercher</button>
-                </form>
-            </li>
-        </ul>
+                <li><a href="/">Accueil</a></li>
+                @auth
+                    <li><a href="{{ route('profile.profile') }}">Profile</a></li>
+                    @if(Auth::user()->usertype === 'etudiant')
+                        <li><a href="{{ route('etudiant.etudiant') }}">Dashboard Étudiant</a></li>
+                    @elseif(Auth::user()->usertype === 'entreprise')
+                        <li><a href="{{ route('entreprise.dashboard') }}">Dashboard Entreprise</a></li>
+                    @elseif(Auth::user()->usertype === 'pilotedestage')
+                        <li><a href="{{ route('pilotePromotion.dashboard') }}">Dashboard Pilote de Promotion</a></li>
+                    @elseif(Auth::user()->usertype === 'admin')
+                        <li><a href="{{ route('admins.index') }}">Admin</a></li>
+                    @endif
+                    <li>
+                        <form action="{{ route('logout') }}" method="POST">
+                            @csrf
+                            <button type="submit" class="btn-primary">Déconnexion</button>
+                        </form>
+                    </li>
+                @else
+                    <li><a class="btn-primary" href="{{ route('register') }}">Register</a></li>
+                    <li><a class="btn-primary" href="{{ route('login') }}">Connexion</a></li>
+                @endauth
+                <li>
+                    <form action="{{ route('search.entreprise') }}" method="GET">
+                        <input type="text" name="query" placeholder="Rechercher entreprise...">
+                        <button type="submit" class="btn-primary">Rechercher</button>
+                    </form>
+                </li>
+            </ul>
+
+
 
 
 
@@ -32,7 +48,7 @@
 
             
             <table class="offers-table">
-            <caption><h2 >Liste des offres de stage disponibles pour les étudiants gérées par les pôles de management :</h2></caption>
+            <caption><h2 style="color: black;width: 100%;">Liste des offres de stage disponibles pour les étudiants gérées par les pôles de management :</h2></caption>
             <thead>
                 <tr>
                     <th>Entreprise</th>
@@ -86,6 +102,7 @@
                 </div>
             </div>
         </div>
+        
 </div>
 
 <script>

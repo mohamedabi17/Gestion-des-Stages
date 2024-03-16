@@ -1,5 +1,5 @@
 @extends('layouts.app')
-    @vite(['resources/css/offers.css'])
+@vite(['resources/css/offers.css'])
 @section('content')
     <div class="container">
         <h2>All Pilotes</h2>
@@ -20,15 +20,14 @@
                 @foreach ($pilotes as $pilote)
                     <tr>
                         <td>{{ $pilote->name }}</td>
-                        <td>{{ $pilote->email }}</td>
+                        <td>{{ $pilote->user->email }}</td>
                         <td>
-                            <a href="{{ route('pilotes.edit', $pilote->pilote_id) }}" class="btn btn-primary">Edit</a>
+                            <a href="{{ route('pilotePromotion.preview') }}" class="btn btn-primary">Edit</a>
                             <form action="{{ route('pilotes.destroy', $pilote->pilote_id) }}" method="POST" style="display: inline-block;">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger">Delete</button>
+                                <button type="submit" class="btn btn-danger" style="margin-left: 10px;">Delete</button>
                             </form>
-                            <a href="{{ route('profile.profile') }}" class="btn btn-info">Preview</a>
                         </td>
                     </tr>
                 @endforeach

@@ -64,38 +64,61 @@ public function indexpostuler($id)
 public function show($id)
 {
     // Retrieve the PostuleStage by its ID along with the associated offer, etudiant, and user
-    $postule = PostuleStage::with('offer', 'etudiant.user')->findOrFail($id);
+    $postule = PostuleStage::where('offer_id', $id)->with('offer', 'etudiant.user')->first();
+
+    if (!$postule) {
+        // Handle the case where the PostuleStage doesn't exist
+        $errorMessage = "The PostuleStage with ID $id was not found.";
+        return view('offers.showCandidates', compact('errorMessage'));
+    }
 
     return view('offers.showCandidates', compact('postule'));
 }
 
 
-
-
 public function storepostuler(Request $request, $id)
 {
     $request->validate([
-        'cv' => 'required|file', // Ensure file is required
+        'cv' => 'required|file',
         'lettre_de_motivation' => 'required|string',
         'offer_id' => 'required|exists:offers,id',
-    ]); 
-
-    // Store the CV file
-    $cvPath = $request->file('cv')->store('cv_files');
-    $user_id = auth()->id();
-
-    // Retrieve the corresponding etudiant_id using the user_id
-    $etudiant_id = Etudiant::where('user_id', $user_id)->value('etudiant_id');
-
-    // Create a new postule stage
-    PostuleStage::create([
-        'cv' => $cvPath, // Store the file path in the database
-        'lettre_de_motivation' => $request->lettre_de_motivation,
-        'etudiant_id' => $etudiant_id, // Assuming etudiant_id is the authenticated user's ID
-        'offer_id' => $request->offer_id,
     ]);
-       return redirect()->route('offers.stages')
-                         ->with('success', 'Entreprise created successfully.');
+
+    // Store the CV file in the public directory under cv_files folder
+    $cvPath = $request->file('cv')->store('cv_files', 'public');
+
+
+
+    // Store file metadata in the database
+    $postule = new PostuleStage();
+    $postule->cv = $cvPath;
+    $postule->lettre_de_motivation = $request->lettre_de_motivation;
+    $postule->etudiant_id = auth()->id();
+    $postule->offer_id = $request->offer_id;
+    $postule->save();
+
+    return redirect()->route('offers.stages')->with('success', 'Postule created successfully.');
+}
+
+
+
+
+public function downloadCV($id)
+{
+    // Retrieve the PostuleStage record by its ID
+    $postule = PostuleStage::findOrFail($id);
+    
+    // Define the file name
+    $fileName = 'cv_' . $postule->id . '.pdf'; // You can adjust the file extension as needed
+
+    // Define the file path
+    $filePath = storage_path('app/cv_files/' . $fileName);
+
+    // Save the binary data to a file
+    file_put_contents($filePath, $postule->cv);
+
+    // Provide a download link for the file
+    return response()->download($filePath, $fileName);
 }
 
     // Method to delete a postule stage

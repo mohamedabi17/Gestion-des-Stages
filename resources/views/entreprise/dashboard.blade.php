@@ -7,22 +7,31 @@
         <h1 style="color: white;">Entreprise Dashboard</h1>
     </header>
     <nav>
-        <ul>
+       <ul>
             <li><a href="/">Accueil</a></li>
-                   <li><a href="{{ route('profile.profile') }}">profile</a></li>
-            <li><a href="{{ route('offers.create') }}">Créer une offre de stage</a></li>
-            <li><a href="{{ route('login') }}">Connexion</a></li>
-            <li><a href="{{ route('register') }}">Register</a></li>
-            <li><a href="{{ route('logout') }}">Déconnexion</a></li>
-            <li>
-                   <form action="{{ route('search.entreprise') }}" method="GET" class="search-form">
-                        <div class="search-input">
-                             <input type="text" name="query" placeholder="Rechercher entreprise..." class="search-input-field">
-                             <button  style="background-color: #cc5500;"  type="submit"class="search-submit-button"><img src="{{ asset('images/search.png') }}" alt="Logo" style="width: 100%;"></button>
+            @auth
+                <li><a href="{{ route('profile.profile') }}">Profile</a></li>
+                <li><a href="{{ route('offers.create') }}">Créer une offre de stage</a></li>
+                <li>
+                    <form action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        <button type="submit">Déconnexion</button>
                     </form>
-               
+                </li>
+            @else
+                <li><a href="{{ route('login') }}">Connexion</a></li>
+                <li><a href="{{ route('register') }}">Register</a></li>
+            @endauth
+            <li>
+                <form action="{{ route('search.entreprise') }}" method="GET" class="search-form">
+                    <div class="search-input">
+                        <input type="text" name="query" placeholder="Rechercher entreprise..." class="search-input-field">
+                        <button style="background-color: #cc5500;" type="submit" class="search-submit-button"><img src="{{ asset('images/search.png') }}" alt="Logo" style="width: 100%;"></button>
+                    </div>
+                </form>
             </li>
         </ul>
+
     </nav>
     <main>
         <div class="container">

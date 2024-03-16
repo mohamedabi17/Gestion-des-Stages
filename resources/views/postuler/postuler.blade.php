@@ -19,9 +19,7 @@
                 <textarea id="lettre_de_motivation" name="lettre_de_motivation" class="form-control" required></textarea>
             </div>
            
-          <div class="form-group">
-            <input type="text" id="offer_id" name="offer_id" value="{{ $offerId }}" hidden>
-        </div>
+            <input type="hidden" id="offer_id" name="offer_id" value="{{ $offerId }}">
 
             <button type="submit" class="btn btn-primary">Soumettre</button>
         </form>

@@ -53,7 +53,7 @@
                             <td>${offer.duree}</td>
                             <td>${offer.lieu}</td> <!-- Assuming lieu is the location -->
                             <td>
-                                  <a href="/offers/${offer.id}/candidates" class="btn btn-primary postuler-btn">Consulter les candidatures</a>
+                                  <a href="/offers/${offer.id}/showCandidates" class="btn btn-primary postuler-btn">Consulter les candidatures</a>
                             </td>
                             <td>
                                 <a href="/evaluations/${offer.entreprise_id}" class="btn btn-primary postuler-btn">Consulter les Evaluations</a>

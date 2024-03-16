@@ -7,29 +7,48 @@
 
          <nav>
             <ul>
-                <li><a href="/">Accueil</a></li>
-                <li><a href="/stageoffers">les Offres de stage</a></li>
-                <li><a href="{{ route('profile.profile') }}">profile</a></li>
-                <li><a href="{{ route('login') }}">Connexion</a></li>
-                <li><a href="{{ route('register') }}">Register</a></li>
-                <li><a href="{{ route('logout') }}">logout</a></li>
-                <li>
-                    <form action="{{ route('search.pilotes') }}" method="GET">
-                        <input type="text" name="query" placeholder="Rechercher pilotes...">
-                        <button type="submit">Rechercher pilotes</button>
-                    </form>
-                </li>
-            </ul>
+                    <li><a href="/">Accueil</a></li>
+                    <li><a href="/stageoffers">les Offres de stage</a></li>
+                    @auth
+                        <li><a href="{{ route('profile.profile') }}">profile</a></li>
+                        <li>
+                            <form action="{{ route('logout') }}" method="POST">
+                                @csrf
+                                <button type="submit">Logout</button>
+                            </form>
+                        </li>
+                    @else
+                        <li><a href="{{ route('login') }}">Connexion</a></li>
+                        <li><a href="{{ route('register') }}">Register</a></li>
+                    @endauth
+                    <li>
+                        <form action="{{ route('search.pilotes') }}" method="GET">
+                            <input type="text" name="query" placeholder="Rechercher pilotes...">
+                            <button type="submit">Rechercher pilotes</button>
+                        </form>
+                    </li>
+                </ul>
+
         </nav>
 
     <div class="container" style="text-align: center;">
-        <h2 >Chercher Un Stage et Postuler Votre Candidature </h2>
+        <h2 style="color: #ff6600;">Chercher Un Stage et Postuler Votre Candidature </h2>
         <p style="color: wheat;">Vous devez Choisir Un stage Selon vous compétances n'oublier pas d'evaluer les entreprise</p>
         <a class="btn-orange " href="/stageoffers"class="action-btn">Offres de stage</a>
         <a class="btn-orange " href="{{ route('profile.profile') }}">profile</a>
         <a class="btn-orange " href="{{ route('profile.profile') }}">Gestion des Pilotes</a>
         <a class="btn-orange " href="{{ route('profile.profile') }}">Nouveau Pilote</a>
         <a class="btn-orange " href="{{ route('pilotePromotion.preview') }}">editer</a>
+        
     </div>
+      <div  style="text-align: center;margin-top:2%">
+                <div class="newcard">
+                    <div class="newcard-body">
+                        <h5 class="newcard-title">Pilotes</h5>
+                        <p class="newcard-text">View, update, and delete pilotes records.</p>
+                        <a href="{{ route('admins.pilotes') }}" class=" btn-primary">Go to Pilotes</a>
+                    </div>
+                </div>
+            </div>
 
 @endsection
