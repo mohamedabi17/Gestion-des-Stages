@@ -58,3 +58,6 @@ td{
 .btn:hover {
     opacity: 0.8;
 }
+.table-container {
+    overflow-x: auto;
+}

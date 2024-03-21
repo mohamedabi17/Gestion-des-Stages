@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@vite(['resources/css/offers.css'])
+@vite(['resources/css/offers.css','resources/css/stages.css'])
 @section('content')
     <div class="container">
         <h2>All Pilotes</h2>
@@ -7,8 +7,8 @@
         @if (session('success'))
             <div class="alert alert-success">{{ session('success') }}</div>
         @endif
-
-        <table class="table">
+        <div class="table-container">
+                <table class="table">
             <thead>
                 <tr>
                     <th>Name</th>
@@ -26,12 +26,14 @@
                             <form action="{{ route('pilotes.destroy', $pilote->pilote_id) }}" method="POST" style="display: inline-block;">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger" style="margin-left: 10px;">Delete</button>
+                                <button type="submit" class="btn btn-primary" >Delete</button>
                             </form>
                         </td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
+        </div>
+        
     </div>
 @endsection

@@ -5,8 +5,9 @@
     @vite(['resources/css/stages.css'])
 
     <h1 class="title">Offres de Stage</h1>
-
-    <table class="table" id="offers-table">
+     
+    <div class="table-container">
+               <table class="table" id="offers-table">
         <thead>
             <tr>
                 <th>Entreprise</th>
@@ -26,6 +27,8 @@
             <!-- Offers will be dynamically added here -->
         </tbody>
     </table>
+    </div>
+   
 </div>
 
 <script>

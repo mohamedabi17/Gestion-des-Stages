@@ -1,9 +1,9 @@
 @extends('layouts.app')
 @section('content')
-    <div class="container">
+    <div class="container" style="position: relative;">
         @vite(['resources/css/dashboardoffers.css'])
         <h1 class="title">Les Offres de Stage de l'Entreprise</h1>
-        <table class="offers-table">
+        <table style="position: absolute;width:100%"class="offers-table" style="width: 100%;">
             <thead>
                 <tr>
                     <th>Titre</th>
@@ -53,4 +53,5 @@
             }
 
     </script>
+  
 @endsection

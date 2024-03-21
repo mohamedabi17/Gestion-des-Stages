@@ -34,11 +34,15 @@
     <div class="container" style="text-align: center;">
         <h2 style="color: #ff6600;">Chercher Un Stage et Postuler Votre Candidature </h2>
         <p style="color: wheat;">Vous devez Choisir Un stage Selon vous compétances n'oublier pas d'evaluer les entreprise</p>
-        <a class="btn-orange " href="/stageoffers"class="action-btn">Offres de stage</a>
-        <a class="btn-orange " href="{{ route('profile.profile') }}">profile</a>
-        <a class="btn-orange " href="{{ route('profile.profile') }}">Gestion des Pilotes</a>
-        <a class="btn-orange " href="{{ route('profile.profile') }}">Nouveau Pilote</a>
-        <a class="btn-orange " href="{{ route('pilotePromotion.preview') }}">editer</a>
+       
+        <div class="links" style="display:flex; justify-content: center;flex-wrap:wrap;" >
+                <a class="btn-orange " href="/stageoffers"class="action-btn">Offres de stage</a>
+                <a class="btn-orange " href="{{ route('profile.profile') }}">profile</a>
+                <a class="btn-orange " href="{{ route('profile.profile') }}">Gestion des Pilotes</a>
+                <!-- <a class="btn-orange " href="{{ route('profile.profile') }}">Nouveau Pilote</a> -->
+                <a class="btn-orange " href="{{ route('pilotePromotion.preview') }}">editer</a>
+        </div>
+        
         
     </div>
       <div  style="text-align: center;margin-top:2%">

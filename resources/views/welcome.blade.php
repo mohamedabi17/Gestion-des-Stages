@@ -45,10 +45,10 @@
 
 
         </nav>
-
-            
-            <table class="offers-table">
-            <caption><h2 style="color: black;width: 100%;">Liste des offres de stage disponibles pour les étudiants gérées par les pôles de management :</h2></caption>
+              <h2 style="color: black;width: 100%;">Liste des offres de stage disponibles pour les étudiants gérées par les pôles de management :</h2>
+            <div class="table-container"><table class="offers-table" >
+              
+            <caption></caption>
             <thead>
                 <tr>
                     <th>Entreprise</th>
@@ -66,6 +66,8 @@
                 <!-- Offers will be dynamically added here -->
             </tbody>
         </table>
+    </div>
+            
 
             <div class="row">
                 <!-- Student Card -->

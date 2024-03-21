@@ -5,8 +5,8 @@
     @vite(['resources/css/stages.css'])
 
     <h1 class="title" style="text-align:center">Offres de Stage dans la Wishlist</h1>
-
-    <table class="table"  style="text-align:center" id="offers-table">
+     <div class="table-container">
+        <table class="table"  style="text-align:center" id="offers-table">
         <thead>
             <tr>
                 <th>Entreprise</th>
@@ -20,6 +20,8 @@
             <!-- Wishlist offers will be dynamically added here -->
         </tbody>
     </table>
+     </div>
+   
 </div>
 
 <script>

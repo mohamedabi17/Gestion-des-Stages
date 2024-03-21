@@ -49,13 +49,17 @@ header {
     text-align: center;
     padding: 10px 0;
 }
-
+.table-container{
+    overflow-x: auto;
+}
 
 table {
     border: wheat solid 1px;
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
+
+
 }
 
 th,
@@ -112,6 +116,7 @@ h5 {
     color: black;
     font-weight: 900;
     font-family: Georgia, 'Times New Roman', Times, serif;
+    width: 100%;
 }
 button[type="submit"]:hover {
     background-color: #555;
@@ -247,4 +252,64 @@ nav ul li:hover a {
 
 .navbar-nav .nav-link:hover {
     color: #ff6600;
+}
+
+/* Common styles for all screen sizes */
+
+/* Styles for screens smaller than 600px (phones) */
+@media only screen and (max-width: 600px) {
+    .welcome {
+        margin-bottom: 10%;
+        /* Adjust margin-bottom for smaller screens */
+        padding-top: 5px;
+        /* Adjust padding-top for smaller screens */
+        padding-bottom: 5px;
+        /* Adjust padding-bottom for smaller screens */
+    }
+     
+    .row{
+        text-align: center;
+    }
+    h1 {
+        margin-top: 5%;
+        /* Adjust margin-top for smaller screens */
+        font-size: 24px;
+        /* Adjust font size for smaller screens */
+    }
+
+    h2 {
+        margin-top: 50px;
+        /* Adjust margin-top for smaller screens */
+        font-size: 20px;
+        /* Adjust font size for smaller screens */
+    }
+
+    .newcard {
+        padding-left: 5%;
+        /* Adjust padding-left for smaller screens */
+        padding-right: 5%;
+        /* Adjust padding-right for smaller screens */
+    }
+
+    .newcard-title {
+        font-size: 18px;
+        /* Adjust font size for smaller screens */
+    }
+
+    .newcard-text {
+        font-size: 14px;
+        /* Adjust font size for smaller screens */
+    }
+
+    .btn-primary {
+        font-size: 14px;
+        /* Adjust font size for smaller screens */
+        padding: 6px 12px;
+        /* Adjust padding for smaller screens */
+    }
+
+    nav ul li {
+        margin: 0 5px;
+        /* Adjust margin for smaller screens */
+    }
 }

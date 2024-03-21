@@ -1,14 +1,14 @@
 @extends('layouts.app')
-
+@vite(['resources/css/welcome.css', 'resources/js/app.js','resources/css/layouts.css'])
 @section('content')
-    <div class="container">
+    <div class="container " >
         <h2>All Admins</h2>
 
         @if (session('success'))
             <div class="alert alert-success">{{ session('success') }}</div>
         @endif
-
-        <table class="table">
+        <div class="table-container"> 
+              <table class="table">
             <thead>
                 <tr>
                     <th>Name</th>
@@ -34,5 +34,7 @@
                 @endforeach
             </tbody>
         </table>
+        </div>
+        
     </div>
 @endsection

@@ -11,7 +11,8 @@
             </div>
         @else
             <div class="candidates-table-container">
-                <table class="candidates-table">
+                <div class="table-container">
+                    <table class="candidates-table">
                     <thead>
                         <tr>
                             <th>Nom de l'Étudiant</th>
@@ -37,6 +38,8 @@
                         </tr>
                     </tbody>
                 </table>
+            </div>
+                
             </div>
         @endif
     </div>

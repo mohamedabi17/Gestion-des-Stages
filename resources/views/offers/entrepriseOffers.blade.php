@@ -5,8 +5,8 @@
     @vite(['resources/css/stages.css', 'resources/css/layouts.css'])
 
     <h1 class="title">Offres de Stage proposé par {{ $entreprise->name }}</h1>
-
-    <table class="table" id="offers-table">
+    <div class="table-container">
+         <table class="table" id="offers-table">
         <thead>
             <tr>
                 <th>Entreprise</th>
@@ -36,6 +36,8 @@
             @endforeach
         </tbody>
     </table>
+    </div>
+    
 </div>
 
 <script>
