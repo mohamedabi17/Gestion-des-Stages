@@ -6,13 +6,20 @@ use Illuminate\Http\Request;
 use App\Models\Entreprise;
   use Illuminate\Support\Facades\Schema;
 use App\Models\Location;
+
+use Illuminate\Support\Facades\Auth;
 class EntrepriseController extends Controller
 {
     // Display a listing of the entreprises.
 public function index()
 {
     $entreprises = Entreprise::all();
-    return view('entreprises.index', compact('entreprises'));
+    return view('entreprise.index', compact('entreprises'));
+}
+public function show($id)
+{
+    $entreprise = Entreprise::find('entreprise_id',$id);
+    return view('entreprise.dashboard', $entreprise);
 }
     
 
@@ -34,24 +41,36 @@ public function index()
         return view('entreprise.search', compact('entreprises'));
     }
     // Store a newly created entreprise in the database.
-    public function store(Request $request)
-    {
-        $request->validate([
-            'name' => 'required|unique:entreprises',
-            'secteur' => 'required',
-        ]);
+public function store(Request $request)
+{
+    $request->validate([
+        'name' => 'required',
+        'secteur' => 'required',
+        'code-postal' => 'nullable', // Make it nullable
+        'numero_de_batiment' => 'required',
+        'ville' => 'required',
+        'pays' => 'required',
+    ]);
 
-        Entreprise::create($request->all());
+    $entreprise = Entreprise::create([
+        'name' => $request->name,
+        'secteur' => $request->secteur,
+    ]);
 
-        return redirect()->route('entreprise.index')
-                         ->with('success', 'Entreprise created successfully.');
-    }
+    // Create location
+  // Create location
+    Location::create([
+        'entreprise_id' => $entreprise->entreprise_id,
+        'code-postal' => $request->input('code-postal'), // Access the correct field with quotes
+        'numero_de_batiment' => $request->input('numero_de_batiment'),
+        'ville' => $request->input('ville'),
+        'pays' => $request->input('pays'),
+    ]);
 
-    // Show the form for editing the specified entreprise.
-    public function edit(Entreprise $entreprise)
-    {
-        return view('entreprise.edit', compact('entreprise'));
-    }
+
+    return redirect()->route('pilotePromotion.dashboard')
+                     ->with('success', 'Entreprise created successfully.');
+}
 public function preview($id)
 {
     // Cast $id to an integer to prevent SQL injection

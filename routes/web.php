@@ -63,6 +63,7 @@ Route::post('/User/register', [RegisterController::class, 'store'])->name('regis
 
 Route::put('/entreprises/{id}', [EntrepriseController::class, 'update'])->name('entreprise.update');
 Route::get('/entreprise/create', [EntrepriseController::class, 'create'])->name('entreprise.create');
+// Route::get('/entreprise/store', [EntrepriseController::class, 'store'])->name('entreprise.store');
 // Route::get('/entreprises/{id}/fiche', [EntrepriseController::class, 'preview'])->name('entreprise.fiche');
 
 // Route::get('/entreprises/{user_id}/fiche', function ($user_id) {
@@ -78,10 +79,13 @@ Route::get('/entreprise/create', [EntrepriseController::class, 'create'])->name(
 //     }
 // });
 Route::get('/entreprises/{id}/getfiche', [EntrepriseController::class, 'preview'])->name('entreprise.fiche');
+Route::get('/entreprises/{id}', [EntrepriseController::class, 'show'])->name('entreprise.dashboard');
 
-Route::get('/entreprises/{user_id}/fiche', function ($user_id) {
+
+
+Route::get('/entreprises/{entreprise_id}/fiche', function ($entreprise_id) {
     // Fetch the entreprise_id based on the user_id
-    $entreprise = Entreprise::where('user_id', $user_id)->first();
+    $entreprise = Entreprise::where('entreprise_id', $entreprise_id)->first();
 
     // If entreprise is found, redirect to the fiche route with the entreprise_id
     if ($entreprise) {
@@ -91,19 +95,7 @@ Route::get('/entreprises/{user_id}/fiche', function ($user_id) {
         return response()->json(['error' => 'Entreprise not found'], 404);
     }
 });
-
-Route::get('/entreprises/{user_id}/fiche', function ($user_id) {
-    // Fetch the entreprise_id based on the user_id
-    $entreprise = Entreprise::where('user_id', $user_id)->first();
-
-    // If entreprise is found, redirect to the fiche route with the entreprise_id
-    if ($entreprise) {
-        return redirect()->route('entreprise.fiche', ['id' => $entreprise->entreprise_id]);
-    } else {
-        // Handle the case where entreprise is not found
-        return response()->json(['error' => 'Entreprise not found'], 404);
-    }
-});
+Route::get('/entreprises', [EntrepriseController::class, 'index'])->name('entreprise.index');
 Route::post('/entreprise', [EntrepriseController::class, 'store'])->name('entreprise.store');
 Route::get('/entreprise/{entreprise}/edit', [EntrepriseController::class, 'edit'])->name('entreprise.edit');
 Route::get('/search/offres-stage', [OffreDeStageController::class, 'search'])->name('search.offres-stage');
@@ -193,9 +185,9 @@ Route::get('/pilotefiche', function () {
 })->name('pilotePromotion.preview');
 
 
-Route::get('/entreprise', function () {
-    return view('entreprise.dashboard');
-})->name('entreprise.dashboard');
+// Route::get('/entreprise', function () {
+//     return view('entreprise.dashboard');
+// })->name('entreprise.dashboard');
 
 Route::get('/get-additional-fields/{userType}', [App\Http\Controllers\Auth\RegisterController::class, 'getAdditionalFields']);
 

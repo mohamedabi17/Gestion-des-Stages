@@ -11,6 +11,7 @@
                     <li><a href="/stageoffers">les Offres de stage</a></li>
                     @auth
                         <li><a href="{{ route('profile.profile') }}">profile</a></li>
+                        <li><a href="{{ route('entreprise.create') }}">Create Entreprise</a></li>
                         <li>
                             <form action="{{ route('logout') }}" method="POST">
                                 @csrf
@@ -41,6 +42,8 @@
                 <a class="btn-orange " href="{{ route('profile.profile') }}">Gestion des Pilotes</a>
                 <!-- <a class="btn-orange " href="{{ route('profile.profile') }}">Nouveau Pilote</a> -->
                 <a class="btn-orange " href="{{ route('pilotePromotion.preview') }}">editer</a>
+                <a class="btn-orange " href="{{ route('entreprise.create') }}">Create Entreprise</a>
+                <a class="btn-orange " href="{{ route('entreprise.index') }}">Les Entreprise</a>
         </div>
         
         

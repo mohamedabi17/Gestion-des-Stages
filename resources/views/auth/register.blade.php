@@ -40,7 +40,7 @@
                     <label for="usertype" class="form-label">{{ __('User Type') }}</label>
                     <select id="usertype" class="form-select" name="usertype" onchange="toggleInputFields(this.value)">
                         <option value="etudiant">Etudiant</option>
-                        <option value="entreprise">Entreprise</option>
+                        <!-- <option value="entreprise">Entreprise</option> -->
                         <option value="pilotedestage">Pilote de Stage</option>
                         <option value="admin">Admin</option>
                     </select>
@@ -49,10 +49,10 @@
                             <label for="promotion" class="form-label">{{ __('Promotion') }}</label>
                             <input id="promotion" type="text" class="form-control" name="promotion">
                         </div>
-                        <div class="mb-3 secteur-field" style="display: none;">
+                        <!-- <div class="mb-3 secteur-field" style="display: none;">
                             <label for="secteur" class="form-label">{{ __('Secteur') }}</label>
                             <input id="secteur" type="text" class="form-control" name="secteur">
-                        </div>
+                        </div> -->
                         <div class="mb-3">
                             <button type="submit" class="btn btn-orange w-100">{{ __('Register') }}</button>
                         </div>
@@ -71,10 +71,12 @@
         if (userType === 'etudiant') {
             promotionField.style.display = 'block';
             secteurField.style.display = 'none';
-        } else if (userType === 'entreprise') {
-            promotionField.style.display = 'none';
-            secteurField.style.display = 'block';
-        } else {
+        } 
+        // else if (userType === 'entreprise') {
+        //     promotionField.style.display = 'none';
+        //     secteurField.style.display = 'block';
+        // } 
+        else {
             promotionField.style.display = 'none';
             secteurField.style.display = 'none';
         }

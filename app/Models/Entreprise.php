@@ -13,12 +13,5 @@ class Entreprise extends Model
     protected $fillable = [
         'name',
         'secteur',
-        'user_id',
     ];
-
-    // Define relationship with User model assuming 'user_id' is the foreign key
-    public function user()
-    {
-        return $this->belongsTo(User::class, 'user_id');
-    }
 }

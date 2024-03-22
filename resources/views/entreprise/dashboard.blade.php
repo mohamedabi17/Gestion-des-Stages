@@ -62,10 +62,14 @@
         }
      
 
-        function viewFiche() {
-            var userId = '{{ Auth::id() }}';
-            window.location.href = `/entreprises/${userId}/fiche`;
-        }
+         function viewFiche() {
+        // Extracting entreprise_id from the URL
+        var url = window.location.href;
+        var entreprise_id = url.substring(url.lastIndexOf('/') + 1);
+        
+        // Redirecting to the fiche page with the extracted entreprise_id
+        window.location.href = `/entreprises/${entreprise_id}/fiche`;
+    }
     </script>
 </body>
 

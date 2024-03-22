@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
     <div class="offers container">
-        @vite(['resources/css/offers.css', ])
+        @vite(['resources/css/welcome.css', 'resources/js/app.js','resources/css/layouts.css'])
         <h1>Create Pilote</h1>
         <form action="{{ route('pilotes.create') }}" method="POST" class="create-form">
             @csrf
