@@ -15,8 +15,8 @@
                     <li><a href="{{ route('profile.profile') }}">Profile</a></li>
                     @if(Auth::user()->usertype === 'etudiant')
                         <li><a href="{{ route('etudiant.etudiant') }}">Dashboard Étudiant</a></li>
-                    @elseif(Auth::user()->usertype === 'entreprise')
-                        <li><a href="{{ route('entreprise.dashboard') }}">Dashboard Entreprise</a></li>
+                    <!-- @elseif(Auth::user()->usertype === 'entreprise')
+                        <li><a href="{{ route('entreprise.dashboard') }}">Dashboard Entreprise</a></li> -->
                     @elseif(Auth::user()->usertype === 'pilotedestage')
                         <li><a href="{{ route('pilotePromotion.dashboard') }}">Dashboard Pilote de Promotion</a></li>
                     @elseif(Auth::user()->usertype === 'admin')
@@ -98,7 +98,6 @@
                         <div class="card-body">
                             <h5 class="card-title">Entreprise</h5>
                             <p class="card-text">Accédez au tableau de bord de l'entreprise.</p>
-                            <a href="{{ route('entreprise.dashboard') }}" class=" btn-primary">Dashboard Entreprise</a>
                         </div>
                     </div>
                 </div>
@@ -146,9 +145,8 @@
                 window.location.href = "{{ route('etudiant.etudiant') }}"; // Redirect to etudiant index page
             } else if (userType === 'pilotedestage') {
                 window.location.href = "{{ route('pilotePromotion.dashboard') }}"; // Redirect to pilotedestage index page
-            } else if (userType === 'entreprise') {
-                window.location.href = "{{ route('entreprise.dashboard') }}"; // Redirect to entreprise index page
-            }
+            } 
+            
             } else if (userType === 'admin') {
                 window.location.href = "{{ route('admins.index') }}"; // Redirect to entreprise index page
             }

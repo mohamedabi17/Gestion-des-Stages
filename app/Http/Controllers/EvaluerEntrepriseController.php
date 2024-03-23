@@ -59,17 +59,22 @@ public function store(Request $request)
 }
 
 
-   public function show($id)
-{
+public function show($id)
+{   
     // Find the entreprise by its ID
     $entreprise = Entreprise::findOrFail($id);
 
     // Find all evaluations associated with the entreprise
-    $evaluations = EvaluerEntreprise::where('entreprise_id', $id)->get();
+    $evaluations1 = EvaluerEntreprise::where('entreprise_id', $id)->get();
+    $evaluations2 = EvaluerParPilote::where('entreprise_id', $id)->get();
+
+    // Merge the two collections of evaluations into a single collection
+    $evaluations = $evaluations1->merge($evaluations2);
 
     // Pass the evaluations and entreprise to the view
     return view('evaluations.show', compact('evaluations', 'entreprise'));
 }
+
 
 
     public function edit($id)

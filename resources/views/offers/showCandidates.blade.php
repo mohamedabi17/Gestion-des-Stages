@@ -24,7 +24,7 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>{{ $postule->etudiant->name }}</td>
+                            <td>{{ $postule->user->name }}</td>
                             <td>
                                 <!-- Assuming $postule->cv contains the file path for CV -->
                                 <a href="{{ asset($postule->cv) }}" target="_blank" class="btn btn-view">Voir CV</a>

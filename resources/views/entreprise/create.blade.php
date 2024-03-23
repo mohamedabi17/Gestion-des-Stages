@@ -11,8 +11,8 @@
                 <input type="text" id="name" name="name" style="width: 100%; padding: 0.5rem; border: 1px solid #ccc; border-radius: 0.25rem;" required>
             </div>
             <div style="margin-bottom: 1rem;">
-                <label for="sector" style="display: block; font-weight: bold;">Sector of Activity:</label>
-                <input type="text" id="sector" name="sector" style="width: 100%; padding: 0.5rem; border: 1px solid #ccc; border-radius: 0.25rem;" required>
+                <label for="secteur" style="display: block; font-weight: bold;">Sector of Activity:</label>
+                <input type="text" id="secteur" name="secteur" style="width: 100%; padding: 0.5rem; border: 1px solid #ccc; border-radius: 0.25rem;" required>
             </div>
             <!-- Include existing locations for modification -->
             <div style="margin-bottom: 1rem;">
@@ -20,8 +20,8 @@
                 <input type="text" id="ville" name="ville" style="width: 100%; padding: 0.5rem; border: 1px solid #ccc; border-radius: 0.25rem;" required>
                 <label for="pays" style="display: block; font-weight: bold;">pays:</label>
                 <input type="text" id="pays" name="pays" style="width: 100%; padding: 0.5rem; border: 1px solid #ccc; border-radius: 0.25rem;" required>
-                <label for="code-postal" style="display: block; font-weight: bold;">code-postal:</label>
-                <input type="text" id="code-postal" name="code-postal" style="width: 100%; padding: 0.5rem; border: 1px solid #ccc; border-radius: 0.25rem;" required>
+                <label for="code_postal" style="display: block; font-weight: bold;">code-postal:</label>
+                <input type="text" id="code_postal" name="code_postal" style="width: 100%; padding: 0.5rem; border: 1px solid #ccc; border-radius: 0.25rem;" required>
                 <label for="numero_de_batiment" style="display: block; font-weight: bold;">numero_de_batiment:</label>
                 <input type="text" id="numero_de_batiment" name="numero_de_batiment" style="width: 100%; padding: 0.5rem; border: 1px solid #ccc; border-radius: 0.25rem;" required>
               

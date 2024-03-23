@@ -4,15 +4,13 @@
 @section('content')
 <body>
     <header>
-        <h1 style="color: white;">Entreprise Dashboard</h1>
+       <h1 style="color: white;">Entreprise {{ $entreprise->name }} </h1>
     </header>
     <nav>
        <ul>
             <li><a href="/">Accueil</a></li>
             @auth
-                <li><a href="{{ route('profile.profile') }}">Profile</a></li>
-                <li><a href="{{ route('offers.create') }}">Créer une offre de stage</a></li>
-                <li>
+                <li><a href="{{ route('profile.profile') }}">Profile</a></li>                <li>
                     <form action="{{ route('logout') }}" method="POST">
                         @csrf
                         <button type="submit">Déconnexion</button>
@@ -48,20 +46,20 @@
         <p>Projet de gestion des stages - Copyright © 2024</p>
     </footer>
     <script>
-
+        var entrepriseId = "{{ $entreprise->entreprise_id }}"; // Assuming 'id' is the primary key of the entreprise model
         function viewStatistics() {
             window.location.href = "{{ route('search.entreprise') }}";
         }
 
         function createOffre() {
-            window.location.href = "{{ route('offers.create') }}";
+            window.location.href = `/offers/create/${entrepriseId}`;
         }
+
+         
 
         function viewOffres() {
-          window.location.href = `/get-offers-by-entreprise`;
+            window.location.href = `/get-offers-by-entreprise/${entrepriseId}`;
         }
-     
-
          function viewFiche() {
         // Extracting entreprise_id from the URL
         var url = window.location.href;

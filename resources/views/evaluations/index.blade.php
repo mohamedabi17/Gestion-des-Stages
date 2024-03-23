@@ -14,7 +14,7 @@
         @endif
 
         <!-- Display list of evaluations if the authenticated user's usertype is entreprise -->
-        @if(auth()->user()->usertype === 'entreprise')
+        @if(auth()->user())
             <table class="table">
                 <thead>
                     <tr>

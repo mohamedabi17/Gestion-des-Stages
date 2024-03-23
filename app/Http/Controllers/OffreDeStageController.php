@@ -31,14 +31,14 @@ class OffreDeStageController extends Controller
         return response()->json(['offers' => $offers]);
     }
 
-    public function create()
+    public function create($id)
     {   
-
+        $entreprise = Entreprise::find($id);
         // Ensure authentication
         if (!Auth::check()) {
             return redirect()->route('login'); // Redirect to login page if user is not authenticated
         }
-        return view('offers.create');
+          return view('offers.create', compact('entreprise'));
     }
 
     public function store(Request $request)
@@ -58,9 +58,10 @@ class OffreDeStageController extends Controller
 
     public function show($id)
     {
-        $offre = Offers::findOrFail($id);
-        return view('offers.show', compact('offre'));
+        $offre = Offers::find($id);
+        return view('offers.showCandidates', compact('offre'));
     }
+
 // public function search(Request $request)
 // {
 //     $query = $request->input('query');

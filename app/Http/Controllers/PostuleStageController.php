@@ -64,7 +64,7 @@ public function indexpostuler($id)
 public function show($id)
 {
     // Retrieve the PostuleStage by its ID along with the associated offer, etudiant, and user
-    $postule = PostuleStage::where('offer_id', $id)->with('offer', 'etudiant.user')->first();
+    $postule = PostuleStage::where('offer_id', $id)->with('offer', 'user')->first();
 
     if (!$postule) {
         // Handle the case where the PostuleStage doesn't exist
@@ -93,7 +93,7 @@ public function storepostuler(Request $request, $id)
     $postule = new PostuleStage();
     $postule->cv = $cvPath;
     $postule->lettre_de_motivation = $request->lettre_de_motivation;
-    $postule->etudiant_id = auth()->id();
+    $postule->user_id = auth()->id();
     $postule->offer_id = $request->offer_id;
     $postule->save();
 

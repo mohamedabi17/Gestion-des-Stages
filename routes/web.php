@@ -63,6 +63,7 @@ Route::post('/User/register', [RegisterController::class, 'store'])->name('regis
 
 Route::put('/entreprises/{id}', [EntrepriseController::class, 'update'])->name('entreprise.update');
 Route::get('/entreprise/create', [EntrepriseController::class, 'create'])->name('entreprise.create');
+// Route::get('/entreprise/{id}', [EntrepriseController::class, 'create'])->name('entreprise.create');
 // Route::get('/entreprise/store', [EntrepriseController::class, 'store'])->name('entreprise.store');
 // Route::get('/entreprises/{id}/fiche', [EntrepriseController::class, 'preview'])->name('entreprise.fiche');
 
@@ -79,7 +80,7 @@ Route::get('/entreprise/create', [EntrepriseController::class, 'create'])->name(
 //     }
 // });
 Route::get('/entreprises/{id}/getfiche', [EntrepriseController::class, 'preview'])->name('entreprise.fiche');
-Route::get('/entreprises/{id}', [EntrepriseController::class, 'show'])->name('entreprise.dashboard');
+Route::get('/entreprises/{id}', [EntrepriseController::class, 'show'])->name('entreprise.show');
 
 
 
@@ -106,8 +107,8 @@ Route::get('/search/entreprise', [EntrepriseController::class, 'search'])->name(
 
 // Routes for OffreDeStageController
 // Route::get('/offersentreprise{id}', [OffreDeStageController::class, 'fetchStageOffersByEntreprise'])->name('offers.index.dashboard');
-// Route::get('/offers/{id}/showCandidates', [OffreDeStageController::class, 'show'])->name('offers.showCandidates');
-Route::get('/offers/create', [OffreDeStageController::class, 'create'])->name('offers.create');
+Route::get('/offers/{id}/showCandidates', [OffreDeStageController::class, 'show'])->name('offers.showCandidates');
+Route::get('/offers/create/{id}', [OffreDeStageController::class, 'create'])->name('offers.create');
 Route::post('/offers', [OffreDeStageController::class, 'store'])->name('offers.store');
 Route::get('/offers/{id}/edit', [OffreDeStageController::class, 'edit'])->name('offers.edit');
 Route::put('/offers/{id}', [OffreDeStageController::class, 'update'])->name('offers.update');
@@ -120,16 +121,17 @@ Route::get('/stageoffers', [OffreDeStageController::class, 'index'])->name('offe
 Route::get('/stages', [OffreDeStageController::class, 'fetchStageOffers'])->name('stages');
 Route::get('/entreprises/{id}/stages', [OffreDeStageController::class, 'fetchStageOffersByEntreprise'])->name('stages.by.entreprise');
 
-Route::get('/get-offers-by-entreprise', function () {
-    // Retrieve the enterprise associated with the authenticated user
-    $entreprise = Entreprise::where('user_id', auth()->id())->first();
-
+Route::get('/get-offers-by-entreprise/{id}', function ($id) {
     // Retrieve offers associated with the enterprise
-    $offers = Offers::where('entreprise_id', $entreprise->id)->get(); // Assuming 'id' is the primary key of the Enterprise model
+    $offers = Offers::where('entreprise_id', $id)->get(); // Assuming 'id' is the primary key of the Enterprise model
+
+    // Assuming you have retrieved the entreprise object using some method
+    $entreprise = Entreprise::findOrFail($id);
 
     // Return to the view with offers and enterprise object
     return view('offers.entrepriseOffers', compact('offers', 'entreprise'));
 });
+
 
 Route::get('/get-all-offers', function () {
 
@@ -140,7 +142,7 @@ Route::get('/get-all-offers', function () {
 });
 
 
-Route::get('/offers/{id}/showCandidates', [PostuleStageController::class, 'show'])->name('offers.candidates');
+// Route::get('/offers/{id}/showCandidates', [PostuleStageController::class, 'show'])->name('offers.candidates');
 Route::get('/candidates/create', [PostuleStageController::class, 'create'])->name('candidates.create');
 Route::post('/candidates/store', [PostuleStageController::class, 'store'])->name('candidates.store');
 Route::delete('/candidates/{postuleStage}', [PostuleStageController::class, 'destroy'])->name('candidates.destroy');
@@ -213,17 +215,26 @@ Route::get('/pilote', [PiloteDePromotion::class, 'fetchPilote'])->name('pilote.f
 // Route to fetch promotions
 Route::get('/getpromotions', [PromotionController::class, 'getPromotions'])->name('promotions.preview');
 
-
-Route::get('/get-entreprise-data', function () {
-    $entreprise = Entreprise::where('user_id', auth()->id())->first();
+Route::get('/get-entreprise-data/{entreprise_id}', function ($entreprise_id) {
+    $entreprise = Entreprise::where('entreprise_id', $entreprise_id)->first();
     return response()->json(['entreprise_id' => $entreprise->entreprise_id]);
 });
+
 
 Route::get('/wishlist', [WishlistController::class, 'index'])->name('wishlist.index');
 Route::post('/wishlist/add/{offer_id}', [WishlistController::class, 'add'])->name('wishlist.add');
 Route::delete('/wishlist/remove/{offer_id}', [WishlistController::class, 'remove'])->name('wishlist.remove');
 
 
+Route::get('/getentreprises', function () {
+    // Retrieve the enterprise associated with the authenticated user
+      
+    $entreprises = Entreprise::all();
+
+    return response()->json([
+        'entreprises' => $entreprises,
+    ]);
+});
 Route::get('/get-offers', function () {
     // Retrieve the enterprise associated with the authenticated user
     $entreprise = Entreprise::where('user_id', auth()->id())->first();

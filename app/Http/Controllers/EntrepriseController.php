@@ -16,11 +16,13 @@ public function index()
     $entreprises = Entreprise::all();
     return view('entreprise.index', compact('entreprises'));
 }
+
 public function show($id)
 {
-    $entreprise = Entreprise::find('entreprise_id',$id);
-    return view('entreprise.dashboard', $entreprise);
+    $entreprise = Entreprise::find($id);
+    return view('entreprise.dashboard', compact('entreprise'));
 }
+
     
 
     // Show the form for creating a new entreprise.
@@ -46,7 +48,7 @@ public function store(Request $request)
     $request->validate([
         'name' => 'required',
         'secteur' => 'required',
-        'code-postal' => 'nullable', // Make it nullable
+        'code_postal' => 'required', // Make it nullable
         'numero_de_batiment' => 'required',
         'ville' => 'required',
         'pays' => 'required',
@@ -60,12 +62,13 @@ public function store(Request $request)
     // Create location
   // Create location
     Location::create([
-        'entreprise_id' => $entreprise->entreprise_id,
-        'code-postal' => $request->input('code-postal'), // Access the correct field with quotes
-        'numero_de_batiment' => $request->input('numero_de_batiment'),
-        'ville' => $request->input('ville'),
-        'pays' => $request->input('pays'),
-    ]);
+    'entreprise_id' => $entreprise->entreprise_id, // Assuming that the primary key of Entreprise model is 'id'
+    'code_postal' => $request->code_postal, // Use underscores instead of dashes
+    'numero_de_batiment' => $request->numero_de_batiment,
+    'ville' => $request->ville,
+    'pays' => $request->pays,
+]);
+
 
 
     return redirect()->route('pilotePromotion.dashboard')

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Location extends Model
 {
     protected $fillable = [
-        'code-postal', 'numero_de_batiment', 'ville', 'pays', 'entreprise_id'
+        'code_postal', 'numero_de_batiment', 'ville', 'pays', 'entreprise_id'
         // Add other fillable attributes as needed
     ];
         public function entreprise()
@@ -22,7 +22,7 @@ class Location extends Model
 
     public function setCodePostalAttribute($value)
     {
-        $this->attributes['code-postal'] = strtoupper($value); // Example: convert the code postal to uppercase
+        $this->attributes['code_postal'] = strtoupper($value); // Example: convert the code postal to uppercase
     }
 
 

@@ -31,10 +31,15 @@
         });
 
         function fetchEntrepriseData() {
-            fetch('/get-entreprise-data') // Route to fetch entreprise data
-                .then(response => response.json())
+            fetch(`/get-entreprise-data/{{ $entreprise->entreprise_id }}`) // Route to fetch entreprise data
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
                 .then(data => {
-                    console.log(data.entreprise_id)
+                    console.log(data.entreprise_id);
                    
                     // Update the value of entreprise_id input field
                     document.getElementById('entreprise_id').value = data.entreprise_id;

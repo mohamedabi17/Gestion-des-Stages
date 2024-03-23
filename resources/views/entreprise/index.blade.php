@@ -14,7 +14,6 @@
                     <th>Secteur</th>
                     <th>Evaluer Entreprise</th>
                     <th>Consulter les Evaluations</th>
-                    <th>Ajouter à Wishlist</th>
                     <th>View Entreprise</th>
                 </tr>
             </thead>
@@ -27,15 +26,16 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        fetch('entreprises') // Update route here
+        fetch('getentreprises') // Update route here
             .then(response => response.json())
             .then(data => {
+                console.log(data.entreprises);
                 const entreprises = document.querySelector('#entreprises-table tbody');
-                data.forEach(entreprise => { // Assuming data structure is an array of objects
+                data.entreprises.forEach(entreprise => { // Assuming data structure is an array of objects
                     const row = `
                         <tr>
                             <td>${entreprise.name}</td>
-                            <td>${entreprise.Secteur}</td>
+                            <td>${entreprise.secteur}</td>
                             <td>
                                 <a class="btn btn-primary postuler-btn" href="/evaluations/${entreprise.entreprise_id}/create">Evaluer Entreprise</a>
                             </td>
@@ -43,14 +43,14 @@
                                 <a class="btn btn-primary postuler-btn" href="/evaluations/${entreprise.entreprise_id}">Evaluations</a>
                             </td>
                             <td>
-                                <a class="btn btn-primary postuler-btn" href="/entreprise/${entreprise.entreprise_id}">View Entreprise</a>
+                                <a class="btn btn-primary postuler-btn" href="/entreprises/${entreprise.entreprise_id}">View Entreprise</a>
                             </td>
 
                      
         
                         </tr>
                     `;
-                    offersBody.innerHTML += row;
+                    entreprises.innerHTML += row;
                 });
             })
             .catch(error => console.error('Error fetching entreprises:', error));
