@@ -61,18 +61,22 @@ public function indexpostuler($id)
     return view('postuler.postuler', compact('candidates', 'offerId'));
 }
 
-public function show($id)
-{
-    // Retrieve the PostuleStage by its ID along with the associated offer, etudiant, and user
-    $postule = PostuleStage::where('offer_id', $id)->with('offer', 'user')->first();
 
-    if (!$postule) {
-        // Handle the case where the PostuleStage doesn't exist
-        $errorMessage = "The PostuleStage with ID $id was not found.";
-        return view('offers.showCandidates', compact('errorMessage'));
+public function show($id)
+{   
+    $offerId = $id;
+
+    // Fetch candidates for the specific offer ID
+    $candidates = PostuleStage::where('offer_id', $offerId)->get();
+    
+    // Check if candidates exist
+    if ($candidates->isEmpty()) {
+        // Handle the case where no candidates are found
+        return view('offers.entrepriseOffers', ['errorMessage' => true]);
     }
 
-    return view('offers.showCandidates', compact('postule'));
+    // Return the view with the candidates
+    return view('offers.entrepriseOffers', compact('candidates'));
 }
 
 

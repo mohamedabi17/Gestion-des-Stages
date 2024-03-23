@@ -14,7 +14,6 @@
     <li><a href="{{ route('login') }}">Connexion</a></li>
     <li><a href="{{ route('entreprise.create') }}">Créer une entreprise</a></li>
     <li><a href="{{ route('etudiant.etudiant') }}">Dashboard Étudiant</a></li>
-    <li><a href="{{ route('entreprise.dashboard') }}">Dashboard Entreprise</a></li>
     <li><a href="{{ route('pilotePromotion.dashboard') }}">Dashboard Pilote</a></li>
     <li><a href="{{ route('register') }}">Register</a></li>
     <li>
@@ -59,16 +58,7 @@
                 </div>
             </div>
 
-            <!-- Entreprises Card -->
-            <div class="col-md-4">
-                <div class="newcard">
-                    <div class="newcard-body">
-                        <h5 class="newcard-title">Entreprises</h5>
-                        <p class="newcard-text">View, update, and delete entreprises records.</p>
-                        <a href="{{ route('admins.entreprises') }}" class="btn-primary">Go to Entreprises</a>
-                    </div>
-                </div>
-            </div>
+      
 
             <!-- Admins Card -->
             <div class="col-md-4">
@@ -88,6 +78,15 @@
                         <h5 class="newcard-title">Users</h5>
                         <p class="newcard-text">View, update, and delete users records.</p>
                         <a href="{{ route('admins.users') }}" class=" btn-primary">Go to Users</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="newcard">
+                    <div class="newcard-body">
+                        <h5 class="newcard-title">offers</h5>
+                        <p class="newcard-text">View, update, and delete users records.</p>
+                        <a href="{{ route('offers.stages') }}" class=" btn-primary">offers</a>
                     </div>
                 </div>
             </div>
@@ -142,16 +141,7 @@
             </div>
         </div>
 
-        <!-- Entreprise Card -->
-        <div class="col-md-4">
-            <div class="newcard">
-                <div class="newcard-body">
-                    <h5 class="newcard-title">Entreprise</h5>
-                    <p class="newcard-text">Accédez au tableau de bord de l'entreprise.</p>
-                    <a href="{{ route('entreprise.dashboard') }}" class=" btn-primary">Dashboard Entreprise</a>
-                </div>
-            </div>
-        </div>
+   
     </div>
 
     </div>
@@ -188,22 +178,17 @@
         .catch(error => console.error('Error fetching offers:', error));
     }
   // JavaScript code to redirect
-    // window.onload = function() {
-    //     // Perform the redirection based on conditions
-    //     // Example: Redirect to the appropriate page based on user type
-    //     let userType = '{{ Auth::user() ? Auth::user()->usertype : null }}'; // Get the user type from the authenticated user
-    //     if (userType !== null) {
-    //         if (userType === 'etudiant') {
-    //             window.location.href = "{{ route('etudiant.etudiant') }}"; // Redirect to etudiant index page
-    //         } else if (userType === 'pilotedestage') {
-    //             window.location.href = "{{ route('pilotePromotion.dashboard') }}"; // Redirect to pilotedestage index page
-    //         } else if (userType === 'entreprise') {
-    //             window.location.href = "{{ route('entreprise.dashboard') }}"; // Redirect to entreprise index page
-    //         }
-    //         } else if (userType === 'admin') {
-    //             window.location.href = "{{ route('admins.index') }}"; // Redirect to entreprise index page
-    //         }
-    //     }
+    window.onload = function() {
+        // Perform the redirection based on conditions
+        // Example: Redirect to the appropriate page based on user type
+        let userType = '{{ Auth::user() ? Auth::user()->usertype : null }}'; // Get the user type from the authenticated user
+        if (userType !== null) {
+            if (userType === 'etudiant') {
+                window.location.href = "{{ route('etudiant.etudiant') }}"; // Redirect to etudiant index page
+            } else if (userType === 'pilotedestage') {
+                window.location.href = "{{ route('pilotePromotion.dashboard') }}"; // Redirect to pilotedestage index page
+            } 
+        }}
 </script>
 
 

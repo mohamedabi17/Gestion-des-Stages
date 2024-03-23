@@ -12,7 +12,7 @@ class EvaluerEntreprise extends Model
         'nom',
         'commentaire',
         'entreprise_id',
-        'etudiant_id',
+        'user_id',
     ];
 
     // Define relationships
@@ -21,9 +21,8 @@ class EvaluerEntreprise extends Model
         return $this->belongsTo(Entreprise::class, 'entreprise_id');
     }
 
-    public function etudiant()
+    public function user()
     {
-        return $this->belongsTo(Etudiant::class, 'etudiant_id');
-    }
+       return $this->belongsTo(User::class, 'user_id');    }
 }
  

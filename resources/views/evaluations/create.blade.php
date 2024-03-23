@@ -47,10 +47,13 @@
             // Populate hidden fields with fetched data
             document.getElementById('entreprise_id').value = data.entreprise.entreprise_id;
             if(data.etudiant.etudiant_id){
-               document.getElementById('etudiant_id').value = data.etudiant.etudiant_id;
+               document.getElementById('etudiant_id').value = data.etudiant.user_id;
+            }
+            else if(data.etudiant.pilote_id){
+                document.getElementById('etudiant_id').value = data.etudiant.pilote_id;
             }
             else{
-                document.getElementById('etudiant_id').value = data.etudiant.pilote_id;
+                document.getElementById('etudiant_id').value = data.etudiant.user_id;
             }
             
         })

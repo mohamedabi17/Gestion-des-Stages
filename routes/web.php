@@ -12,8 +12,7 @@ use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\PromotionController;
 use App\Http\Controllers\EtudiantController;
 use App\Http\Controllers\PiloteDePromotionController;
-
-
+use App\Models\Admins;
 use App\Models\Entreprise;
 use App\Models\Offers;
 use App\Models\Etudiant;
@@ -108,6 +107,7 @@ Route::get('/search/entreprise', [EntrepriseController::class, 'search'])->name(
 // Routes for OffreDeStageController
 // Route::get('/offersentreprise{id}', [OffreDeStageController::class, 'fetchStageOffersByEntreprise'])->name('offers.index.dashboard');
 Route::get('/offers/{id}/showCandidates', [OffreDeStageController::class, 'show'])->name('offers.showCandidates');
+
 Route::get('/offers/create/{id}', [OffreDeStageController::class, 'create'])->name('offers.create');
 Route::post('/offers', [OffreDeStageController::class, 'store'])->name('offers.store');
 Route::get('/offers/{id}/edit', [OffreDeStageController::class, 'edit'])->name('offers.edit');
@@ -275,6 +275,9 @@ Route::get('/get-evaluation_details/{entreprise_id}', function ($entreprise_id) 
     $etudiant = Etudiant::where('user_id', auth()->id())->first();
     if ($etudiant ===null){
         $etudiant = PiloteDePromotion::where('user_id', auth()->id())->first();
+    }
+    if ($etudiant ===null){
+        $etudiant = Admins::where('user_id', auth()->id())->first();
     }
 
     // Return JSON response with enterprise and student details

@@ -20,7 +20,9 @@
                 <th>Postuler</th>
                 <th>Evaluer Entreprise</th>
                 <th> consulter les Evaluations</th>
-                <th> Ajouter  Wishlist</th>
+                @if(auth()->user()->usertype === 'etudiant')
+                    <th> Ajouter  Wishlist</th>
+                @endif
             </tr>
         </thead>
         <tbody>
@@ -58,11 +60,14 @@
                               <a class="btn btn-primary postuler-btn" href="/evaluations/${offer.entreprise_id}/" >Evaluations</a>
                             </td>
                             <td>
-                            <form action="/wishlist/add/${offer.id}" }}" method="POST">
-                                @csrf
-                                <input type="hidden" name="offer_id" value="${offer.id}">
-                                <button type="submit" class="btn btn-primary postuler-btn">Ajouter a Wishlist</button>
-                            </form>
+                            @if(auth()->user()->usertype === 'etudiant')
+                            <form action="/wishlist/add/{{ $offer->id }}" method="POST">
+                                    @csrf
+                                    <input type="hidden" name="offer_id" value="{{ $offer->id }}">
+                                    <button type="submit" class="btn btn-primary postuler-btn">Ajouter a Wishlist</button>
+                                </form>
+                            @endif
+
                         </td>
                         </tr>
                     `;

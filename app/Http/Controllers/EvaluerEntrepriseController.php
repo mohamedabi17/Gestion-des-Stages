@@ -34,29 +34,44 @@ class EvaluerEntrepriseController extends Controller
 
 public function store(Request $request)
 {
-                 $request->validate([
-        'nom' => 'required|unique:evaluer_entreprise|max:255',
+    $request->validate([
+        'nom' => 'required||max:255',
         'commentaire' => 'required',
         'entreprise_id' => 'required',
         'etudiant_id' => 'required',
         // Add validation rules for other attributes as needed
     ]);
-     $user = User::findOrFail(auth()->id());
-    if ($user->usertype === 'pilotedestage') {
-          $evaluerparpilote = EvaluerParPilote::create([
-        'note' => $request->nom,
-        'commentaire' => $request->commentaire,
-        'entreprise_id' =>$request->entreprise_id,
-        'pilote_id' => $request->etudiant_id,
-    ]);
-    } else {
 
-        EvaluerEntreprise::create($request->all());
+    $user = User::findOrFail(auth()->id());
+
+    if ($user->usertype === 'pilotedestage') {
+        $evaluerparpilote = EvaluerParPilote::create([
+            'note' => $request->nom,
+            'commentaire' => $request->commentaire,
+            'entreprise_id' => $request->entreprise_id,
+            'pilote_id' => $request->etudiant_id,
+        ]);
+    } else if ($user->usertype === 'etudiant' ) {
+        $evaluer = EvaluerEntreprise::create([
+            'nom' => $request->nom,
+            'commentaire' => $request->commentaire,
+            'entreprise_id' => $request->entreprise_id,
+            'user_id' =>$request->etudiant_id,
+        ]);
+    }
+    else if  ($user->usertype === 'admin') {
+        $evaluer = EvaluerEntreprise::create([
+            'nom' => $request->nom,
+            'commentaire' => $request->commentaire,
+            'entreprise_id' => $request->entreprise_id,
+            'user_id' =>$request->etudiant_id,
+        ]);
     }
 
     return redirect()->route('evaluations.index')
                      ->with('success', 'Evaluation created successfully.');
 }
+
 
 
 public function show($id)

@@ -17,12 +17,12 @@ return new class extends Migration
             $table->string('lettre_de_motivation');
             $table->timestamps();
 
-             $table->unsignedBigInteger('etudiant_id'); // Ensure it's unsigned
+             $table->unsignedBigInteger('user_id'); // Ensure it's unsigned
 
             // Foreign key constraint referencing the existing "entreprise" table
-            $table->foreign('etudiant_id')
-                ->references('etudiant_id')  // Use the correct column name in "entreprise" table
-                ->on('etudiants')
+            $table->foreign('user_id')
+                ->references('id')  // Use the correct column name in "entreprise" table
+                ->on('users')
                 ->onDelete('CASCADE');
 
              $table->unsignedBigInteger('offer_id'); // Ensure it's unsigned
