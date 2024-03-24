@@ -19,7 +19,7 @@ use App\Models\Etudiant;
 use App\Models\PiloteDePromotion;
 use App\Models\Promotion;
 
-Route::get('/download-cv/{id}', [PostuleStageController::class, 'downloadCV'])->name('download.cv');
+Route::get('/download-cv/{candidate}', [PostuleStageController::class, 'showCV'])->name('cv');
 
 
 Route::get('/etudiants/{etudiant}', [EtudiantController::class, 'show'])->name('etudiants.show');
@@ -106,7 +106,9 @@ Route::get('/search/entreprise', [EntrepriseController::class, 'search'])->name(
 
 // Routes for OffreDeStageController
 // Route::get('/offersentreprise{id}', [OffreDeStageController::class, 'fetchStageOffersByEntreprise'])->name('offers.index.dashboard');
+Route::get('/offers/{id}/candidates', [PostuleStageController::class, 'show'])->name('offers.show');
 Route::get('/offers/{id}/showCandidates', [OffreDeStageController::class, 'show'])->name('offers.showCandidates');
+// Route::get('/offers/{id}/showCandidates', [OffreDeStageController::class, 'show'])->name('offers.show');
 
 Route::get('/offers/create/{id}', [OffreDeStageController::class, 'create'])->name('offers.create');
 Route::post('/offers', [OffreDeStageController::class, 'store'])->name('offers.store');

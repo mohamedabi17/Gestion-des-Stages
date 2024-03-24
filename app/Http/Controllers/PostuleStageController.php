@@ -68,16 +68,21 @@ public function show($id)
 
     // Fetch candidates for the specific offer ID
     $candidates = PostuleStage::where('offer_id', $offerId)->get();
-    
     // Check if candidates exist
     if ($candidates->isEmpty()) {
-        // Handle the case where no candidates are found
-        return view('offers.entrepriseOffers', ['errorMessage' => true]);
+          return response()->json([
+        'errorMessage' => true,
+    ])
+    ;}else{
+          // Return the view with the candidates
+        return response()->json([
+        'candidates' => $candidates,
+        ]);
     }
 
-    // Return the view with the candidates
-    return view('offers.entrepriseOffers', compact('candidates'));
+   
 }
+
 
 
 public function storepostuler(Request $request, $id)
@@ -105,6 +110,11 @@ public function storepostuler(Request $request, $id)
 }
 
 
+
+  public function showCV(PostuleStage $candidate)
+    {
+        return view('offers.cv', compact('candidate'));
+    }
 
 
 public function downloadCV($id)

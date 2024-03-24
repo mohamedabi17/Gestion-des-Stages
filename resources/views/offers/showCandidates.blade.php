@@ -1,5 +1,4 @@
 @extends('layouts.app')
-
 @section('content')
     <div class="container">
         @vite(['resources/css/candidates.css'])
@@ -13,37 +12,62 @@
             <div class="candidates-table-container">
                 <div class="table-container">
                     <table class="candidates-table">
-                        <!-- Table headers -->
                         <thead>
                             <tr>
                                 <th>Nom de l'Étudiant</th>
                                 <th>Curriculum Vitae</th>
                                 <th>Lettre de Motivation</th>
-                                <th>Date de Candidature</th>
+                           
                                 <th>Action</th>
                             </tr>
                         </thead>
-                        <!-- Table body -->
-                        <tbody>
-                            @foreach ($candidates as $candidate)
-                            <tr>
-                                <td>{{ $candidate->user->name }}</td>
-                                <td>
-                                    <!-- Assuming $candidate->cv contains the file path for CV -->
-                                    <a href="{{ asset($candidate->cv) }}" target="_blank" class="btn btn-view">Voir CV</a>
-                                </td>
-                                <td>{{ $candidate->lettre_de_motivation }}</td>
-                                <td>{{ $candidate->created_at->format('d/m/Y H:i:s') }}</td>
-                                <td>
-                                    <a href="#" class="btn btn-accept">Accepter</a>
-                                    <a href="#" class="btn btn-reject">Rejeter</a>
-                                </td>
-                            </tr>
-                            @endforeach
+                        <tbody id="candidates-table-body">
+
                         </tbody>
                     </table>
                 </div>
             </div>
         @endif
     </div>
+<script>
+
+    document.addEventListener('DOMContentLoaded', function () {
+    const imageUrl = "${candidate.cv}";
+    const imageElement = document.getElementById('candidate-image');
+    imageElement.src = imageUrl;
+});
+
+    document.addEventListener('DOMContentLoaded', function () {
+    const url = window.location.href;
+   const offerId = url.match(/\/offers\/(\d+)\/showCandidates$/)[1];
+    console.log(offerId); // Log the extracted offer ID
+    const candidatesBody = document.getElementById('candidates-table-body');
+    console.log(offerId)
+    fetch(`/offers/${offerId}/candidates`)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            data.candidates.forEach(candidate => {
+                const row = `
+                    <tr>
+                        <td>${candidate.user_id}</td>
+                        <td>
+                            <a href="/download-cv/${candidate.offer_id}" target="_blank" class="btn btn-view">Voir CV</a>
+                        </td>
+                        <td>${candidate.lettre_de_motivation}</td>
+                  
+                        <td>
+                            <a href="#" class="btn btn-accept">Accepter</a>
+                            <a href="#" class="btn btn-reject">Rejeter</a>
+                        </td>
+                    </tr>
+                `;
+                candidatesBody.innerHTML += row;
+            });
+        })
+        .catch(error => console.error('Error fetching candidates:', error));
+});
+
+</script>
+
 @endsection

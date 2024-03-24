@@ -25,7 +25,7 @@
                 <td>{{ $offer->name }}</td>
                 <td>{{ $offer->type }}</td>
                 <td>{{ $offer->duree }}</td>
-                <td>{{ $offer->lieu }}</td> <!-- Assuming lieu is the location -->
+                <td>{{ $offer->lieu }}</td> Assuming lieu is the location
                 <td>
                     <a href="{{ route('offers.showCandidates', ['id' => $offer->id]) }}" class="btn btn-primary postuler-btn">Consulter les candidatures</a>
                 </td>
