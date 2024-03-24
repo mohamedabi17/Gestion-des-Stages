@@ -2,10 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Admins;
 use App\Models\Offers;
 use App\Models\Entreprise;
 use App\Models\Etudiant;
+use App\Models\EvaluerEntreprise;
+use App\Models\EvaluerParPilote;
 use App\Models\Location;
+use App\Models\PiloteDePromotion;
+use App\Models\PostuleStage;
+use App\Models\Promotion;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 class OffreDeStageController extends Controller
@@ -88,6 +94,35 @@ class OffreDeStageController extends Controller
 //     // Return the results to the view
 //     return view('etudiant.search', compact('offers'));
 // }
+public function statistics()
+{
+    // Retrieve statistics logic here
+    $totalOffers = Offers::count();
+    $totalCandidates = PostuleStage::count();
+    $totalEntreprises = Entreprise::count();
+    $totalEtudiants = Etudiant::count();
+    $totalPilotes = PiloteDePromotion::count(); // Assuming there's a model named Pilote
+    $totalEvaluationsPilote = EvaluerParPilote::count();
+    $totalEvaluationsEntreprise = EvaluerEntreprise::count();
+    $totalAdmins = Admins::count(); // Assuming there's a model named Admin
+    $totalPromotions = Promotion::count();
+
+    // Return the statistics to a view
+    return view('offers.statistics', [
+        'totalOffers' => $totalOffers,
+        'totalCandidates' => $totalCandidates,
+        'totalEntreprises' => $totalEntreprises,
+        'totalEtudiants' => $totalEtudiants,
+        'totalPilotes' => $totalPilotes,
+        'totalEvaluationsPilote' => $totalEvaluationsPilote,
+        'totalEvaluationsEntreprise' => $totalEvaluationsEntreprise,
+        'totalAdmins' => $totalAdmins,
+        'totalPromotions' => $totalPromotions,
+    ]);
+}
+
+
+
 
 public function search(Request $request)
 {

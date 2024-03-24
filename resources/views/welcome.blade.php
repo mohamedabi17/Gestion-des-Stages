@@ -38,6 +38,11 @@
                         <button type="submit" class="btn-primary">Rechercher</button>
                     </form>
                 </li>
+                   
+                <li>
+                    <a href="/offers/statistics" class="btn-primary" >Statistics</a>
+                </li>
+            
             </ul>
 
 
@@ -67,10 +72,23 @@
             </tbody>
         </table>
     </div>
-            
+
 
             <div class="row">
-                <!-- Student Card -->
+                 @auth
+                 @if(Auth::user()->usertype === 'admin')
+                    <div class="col-md-4">
+                        <div class="card" style="background-color:transparent;">
+                        <div class="card-body">
+                            <h5 class="card-title">Admin Dashboard</h5>
+                            <p class="card-text">Accédez au tableau de bord de l'administrateur.</p>
+                            <a href="{{ route('admins.index') }}" class=" btn-primary">Dashboard administrateur</a>
+                        </div>
+                        </div>
+                    </div>
+                @endif
+                @endauth
+             
                 <div class="col-md-4">
                     <div class="card" style="background-color:transparent;">
                         <div class="card-body">
@@ -137,19 +155,19 @@
         .catch(error => console.error('Error fetching offers:', error));
     }
 //   JavaScript code to redirect
-    // window.onload = function() {
-    //     // Perform the redirection based on conditions
-    //     // Example: Redirect to the appropriate page based on user type
-    //     let userType = '{{ Auth::user() ? Auth::user()->usertype : null }}'; // Get the user type from the authenticated user
-    //     if (userType !== null) {
-    //         if (userType === 'etudiant') {
-    //             window.location.href = "{{ route('etudiant.etudiant') }}"; // Redirect to etudiant index page
-    //         } else if (userType === 'pilotedestage') {
-    //             window.location.href = "{{ route('pilotePromotion.dashboard') }}"; // Redirect to pilotedestage index page
-    //         } 
+    window.onload = function() {
+        // Perform the redirection based on conditions
+        // Example: Redirect to the appropriate page based on user type
+        let userType = '{{ Auth::user() ? Auth::user()->usertype : null }}'; // Get the user type from the authenticated user
+        if (userType !== null) {
+            if (userType === 'etudiant') {
+                window.location.href = "{{ route('etudiant.etudiant') }}"; // Redirect to etudiant index page
+            } else if (userType === 'pilotedestage') {
+                window.location.href = "{{ route('pilotePromotion.dashboard') }}"; // Redirect to pilotedestage index page
+            } 
             
-    //     }
-    // }
+        }
+    }
 </script>
 
 

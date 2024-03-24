@@ -39,11 +39,12 @@
         <div class="links" style="display:flex; justify-content: center;flex-wrap:wrap;" >
                 <a class="btn-orange " href="/stageoffers"class="action-btn">Offres de stage</a>
                 <a class="btn-orange " href="{{ route('profile.profile') }}">profile</a>
-                <a class="btn-orange " href="{{ route('profile.profile') }}">Gestion des Pilotes</a>
+                <a class="btn-orange " href="{{ route('admins.pilotes') }}">Gestion des Pilotes</a>
                 <!-- <a class="btn-orange " href="{{ route('profile.profile') }}">Nouveau Pilote</a> -->
                 <a class="btn-orange " href="{{ route('pilotePromotion.preview') }}">editer</a>
                 <a class="btn-orange " href="{{ route('entreprise.create') }}">Create Entreprise</a>
                 <a class="btn-orange " href="{{ route('entreprise.index') }}">Les Entreprise</a>
+                <!-- <a class="btn-orange " href="{{ route('offers.stat') }}">Les Statistique des entreprise</a> -->
         </div>
         
         

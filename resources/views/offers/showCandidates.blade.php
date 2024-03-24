@@ -18,7 +18,7 @@
                                 <th>Curriculum Vitae</th>
                                 <th>Lettre de Motivation</th>
                            
-                                <th>Action</th>
+                                <!-- <th>Action</th> -->
                             </tr>
                         </thead>
                         <tbody id="candidates-table-body">
@@ -56,10 +56,7 @@
                         </td>
                         <td>${candidate.lettre_de_motivation}</td>
                   
-                        <td>
-                            <a href="#" class="btn btn-accept">Accepter</a>
-                            <a href="#" class="btn btn-reject">Rejeter</a>
-                        </td>
+                        
                     </tr>
                 `;
                 candidatesBody.innerHTML += row;
@@ -71,3 +68,7 @@
 </script>
 
 @endsection
+<!-- <td>
+                            <a href="#" class="btn btn-accept">Accepter</a>
+                            <a href="#" class="btn btn-reject">Rejeter</a>
+                        </td> -->

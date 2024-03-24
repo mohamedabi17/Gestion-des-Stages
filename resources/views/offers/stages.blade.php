@@ -7,30 +7,26 @@
     <h1 class="title">Offres de Stage</h1>
      
     <div class="table-container">
-               <table class="table" id="offers-table">
-        <thead>
-            <tr>
-                <th>Entreprise</th>
-                <th>Titre</th>
-                <th>Type</th>
-                <th>Durée</th>
-                <!-- <th>Lieu</th>
-                <th>Date de Début</th>
-                <th>Date de Fin</th> -->
-                <th>Postuler</th>
-                <th>Evaluer Entreprise</th>
-                <th> consulter les Evaluations</th>
-                @if(auth()->user()->usertype === 'etudiant')
-                    <th> Ajouter  Wishlist</th>
-                @endif
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Offers will be dynamically added here -->
-        </tbody>
-    </table>
+        <table class="table" id="offers-table">
+            <thead>
+                <tr>
+                    <th>Entreprise</th>
+                    <th>Titre</th>
+                    <th>Type</th>
+                    <th>Durée</th>
+                    <th>Postuler</th>
+                    <th>Evaluer Entreprise</th>
+                    <th>Consulter les Evaluations</th>
+                    @if(auth()->user()->usertype === 'etudiant')
+                        <th>Ajouter à Wishlist</th>
+                    @endif
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Offers will be dynamically added here -->
+            </tbody>
+        </table>
     </div>
-   
 </div>
 
 <script>
@@ -38,6 +34,7 @@
         fetch('/stages')
             .then(response => response.json())
             .then(data => {
+                console.log(data.offers)
                 const offersBody = document.querySelector('#offers-table tbody');
                 data.offers.forEach(offer => {
                     const row = `
@@ -47,28 +44,27 @@
                             <td>${offer.type}</td>
                             <td>${offer.duree}</td>
 
-                            <td>
-                              <a class="btn btn-primary postuler-btn" href="/postuler/${offer.id}/candidates" >Postuler</a>
-                              
-                            </td>
-                            <td>
-                        
-                              <a class="btn btn-primary postuler-btn" href="/evaluations/${offer.entreprise_id}/create" >Evaluer Entreprise</a>
-                            </td>
-                            <td>
-                        
-                              <a class="btn btn-primary postuler-btn" href="/evaluations/${offer.entreprise_id}/" >Evaluations</a>
-                            </td>
-                            <td>
-                            @if(auth()->user()->usertype === 'etudiant')
-                            <form action="/wishlist/add/{{ $offer->id }}" method="POST">
-                                    @csrf
-                                    <input type="hidden" name="offer_id" value="{{ $offer->id }}">
-                                    <button type="submit" class="btn btn-primary postuler-btn">Ajouter a Wishlist</button>
-                                </form>
+                            @if(Auth::user()->usertype != 'pilotedestage')
+                                <td>
+                                    <a class="btn btn-primary postuler-btn" href="/postuler/${offer.id}/candidates" data-offer-id="${offer.id}">Postuler</a>
+                                </td>
                             @endif
 
-                        </td>
+                            <td>
+                                <a class="btn btn-primary postuler-btn" href="/evaluations/${offer.entreprise_id}/create">Evaluer Entreprise</a>
+                            </td>
+                            <td>
+                                <a class="btn btn-primary postuler-btn" href="/evaluations/${offer.entreprise_id}">Evaluations</a>
+                            </td>
+                            <td>
+                                @if(auth()->user()->usertype === 'etudiant')
+                                    <form action="/wishlist/add/${offer.id}" method="POST">
+                                        @csrf
+                                        <input type="hidden" name="offer_id" value="${offer.id}">
+                                        <button type="submit" class="btn btn-primary postuler-btn">Ajouter à Wishlist</button>
+                                    </form>
+                                @endif
+                            </td>
                         </tr>
                     `;
                     offersBody.innerHTML += row;

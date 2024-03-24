@@ -43,6 +43,7 @@
                                     <td>
                                         <a href="/offers/${offer.id}/edit" class="btn btn-primary">Modifier</a>
                                         <a href="/offers/${offer.id}/showCandidates" class="btn btn-primary">Voir Candidats</a>
+            
                                     </td>
                                 </tr>
                             `;

@@ -19,18 +19,18 @@
                         <li>
                             <form action="{{ route('logout') }}" method="POST">
                                 @csrf
-                                <button type="submit">Logout</button>
+                                <button class="btn btn-orange" type="submit">Logout</button>
                             </form>
                         </li>
                     @else
-                        <li><a href="{{ route('login') }}">Connexion</a></li>
+                        <li><a class="btn btn-orange" href="{{ route('login') }}">Connexion</a></li>
                         <li><a href="{{ route('register') }}">Register</a></li>
                     @endauth
                     <li>
                         <form action="{{ route('search.offres-stage') }}" method="GET" class="search-form">
                             <div class="search-input">
-                                <input type="text" name="query" placeholder="Rechercher offre de stage..." class="search-input-field">
-                                <button type="submit" class="search-submit-button"><img src="{{ asset('images/search.png') }}" alt="Logo" style="width: 60%;"></button>
+                                <input class="btn btn-orange" type="text" name="query" placeholder="Rechercher offre de stage..." class="search-input-field">
+                                <button  class=" btn-orange" type="submit" class="search-submit-button"><img src="{{ asset('images/search.png') }}" alt="Logo" style="width: 60%;"></button>
                             </div>
                             @auth
                                 <div class="additional-fields">

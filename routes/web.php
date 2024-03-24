@@ -115,6 +115,7 @@ Route::post('/offers', [OffreDeStageController::class, 'store'])->name('offers.s
 Route::get('/offers/{id}/edit', [OffreDeStageController::class, 'edit'])->name('offers.edit');
 Route::put('/offers/{id}', [OffreDeStageController::class, 'update'])->name('offers.update');
 Route::delete('/offers/{id}', [OffreDeStageController::class, 'destroy'])->name('offers.destroy');
+Route::get('/offers/statistics', [OffreDeStageController::class, 'statistics'])->name('offers.stat');
 
 
 Route::get('/stageoffers', [OffreDeStageController::class, 'index'])->name('offers.stages');
