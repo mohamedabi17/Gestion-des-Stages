@@ -46,10 +46,11 @@
         <p>Projet de gestion des stages - Copyright © 2024</p>
     </footer>
     <script>
-    // Assuming 'id' is the primary key of the entreprise model
-        function viewStatistics() {
+        var entrepriseId = "{{ $entreprise->entreprise_id }}"; // Assuming 'id' is the primary key of the entreprise model
+                function viewStatistics() {
             window.location.href = "/offers/statistics";
         }
+
 
         function createOffre() {
             window.location.href = `/offers/create/${entrepriseId}`;
@@ -66,7 +67,7 @@
         var entreprise_id = url.substring(url.lastIndexOf('/') + 1);
         
         // Redirecting to the fiche page with the extracted entreprise_id
-        window.location.href = `/offers/${entreprise_id}/fiche`;
+        window.location.href = `/entreprises/${entreprise_id}/fiche`;
     }
     </script>
 </body>

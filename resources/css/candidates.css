@@ -13,12 +13,7 @@
   }
 .container {
     padding: 20px;
-    .rubik-scribble {
-            font-family: 'Rubik Scribble', sans-serif;
-            font-weight: 400;
-            font-style: normal;
-            /* You can customize additional styles here */
-        }
+    color: white;
     
        
 }
@@ -28,19 +23,18 @@
      font-weight: 400;
      font-style: normal;
  }
- 
+
 .title {
     font-size: 24px;
     margin-bottom: 20px;
     font-family: "Rubik Scribble", system-ui;
         font-weight: 400;
         font-style: normal;
-        color: black;
+        color: #f44336;
 }
 
 td{
     color: #f44336;
-    color: black;
 }
 
 .candidates-table-container {
@@ -61,6 +55,7 @@ td{
 
 .candidates-table th {
     background-color: #f2f2f2;
+        color: #f44336;
 }
 
 .btn {
@@ -68,6 +63,7 @@ td{
     border-radius: 4px;
     text-decoration: none;
     cursor: pointer;
+        background-color: #f44336;
 }
 
 .btn-accept {

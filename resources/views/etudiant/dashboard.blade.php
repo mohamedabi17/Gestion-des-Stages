@@ -19,7 +19,7 @@
                         <li>
                             <form action="{{ route('logout') }}" method="POST">
                                 @csrf
-                                <button class="btn btn-orange" type="submit">Logout</button>
+                                <button class="btn btn-orange bebas-neue-regular" type="submit">Logout</button>
                             </form>
                         </li>
                     @else
@@ -29,14 +29,14 @@
                     <li>
                         <form action="{{ route('search.offres-stage') }}" method="GET" class="search-form">
                             <div class="search-input">
-                                <input class="btn btn-orange" type="text" name="query" placeholder="Rechercher offre de stage..." class="search-input-field">
-                                <button  class=" btn-orange" type="submit" class="search-submit-button"><img src="{{ asset('images/search.png') }}" alt="Logo" style="width: 60%;"></button>
+                                <input class="btn btn-orange bebas-neue-regular" type="text" name="query" placeholder="Rechercher offre de stage..." class="search-input-field">
+                                <button  class=" btn-orange bebas-neue-regular" type="submit" class="search-submit-button"><img src="{{ asset('images/search.png') }}" alt="Logo" style="width: 60%;"></button>
                             </div>
                             @auth
                                 <div class="additional-fields">
-                                    <input type="text" name="name" placeholder="Nom de l'entreprise..." class="additional-field">
-                                    <input type="text" name="location" placeholder="Lieu..." class="additional-field">
-                                    <input type="text" name="competence" placeholder="Compétences..." class="additional-field">
+                                    <input class=" bebas-neue-regular" type="text" name="name" placeholder="Nom de l'entreprise..." class="additional-field">
+                                    <input class=" bebas-neue-regular"  type="text" name="location" placeholder="Lieu..." class="additional-field">
+                                    <input class=" bebas-neue-regular"  type="text" name="competence" placeholder="Compétences..." class="additional-field">
                                 </div>
                             @endauth
                         </form>
@@ -47,9 +47,9 @@
 
     <div class="container">
         <h2 >Chercher Un Stage et Postuler Votre Candidature </h2>
-        <p style="color: wheat;">Vous devez Choisir Un stage Selon vous compétances n'oublier pas d'evaluer les entreprise</p>
-        <a class="btn-orange " href="/stageoffers"class="action-btn">Offres de stage</a>
-        <a class="btn-orange " href="{{ route('profile.profile') }}">profile</a>
+        <p style="color: wheat;" >Vous devez Choisir Un stage Selon vous compétances n'oublier pas d'evaluer les entreprise</p>
+        <a style="color: black;"  class="btn-orange bebas-neue-regular " href="/stageoffers"class="action-btn">Offres de stage</a>
+        <a class="btn-orange bebas-neue-regular "href="{{ route('profile.profile') }}">profile</a>
         <!-- <button  href="/stageoffers" class="action-btn">Search for Offers</button> -->
         <!-- <button class="action-btn">View Profile</button> -->
     </div>
