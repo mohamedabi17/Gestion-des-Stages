@@ -3,6 +3,9 @@
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    font-family: "Rubik Scribble", system-ui;
+        font-weight: 400;
+        font-style: normal;
     /* Soft shadow */
 }
 
@@ -40,11 +43,28 @@
         padding: 15px;
         font-size: 20px;
         font-weight: bold;
+        font-family: "Rubik Scribble", system-ui;
+            font-weight: 400;
+            font-style: normal;
 
 }
+  .rubik-scribble {
+      font-family: 'Rubik Scribble', sans-serif;
+      font-weight: 400;
+      font-style: normal;
+      /* You can customize additional styles here */
+  }
 
+  .bebas-neue-regular {
+      font-family: "Bebas Neue", sans-serif;
+      font-weight: 400;
+      font-style: normal;
+  }
 .card-body {
     padding: 20px;
+    font-family: "Rubik Scribble", system-ui;
+        font-weight: 400;
+        font-style: normal;
 }
 
 /* Form styles */

@@ -7,8 +7,22 @@ body {
     /* Yellow text */
     animation: fadeIn ease 1s;
     animation-iteration-count: 1;
+    font-family: "Rubik Scribble", system-ui;
+        font-weight: 400;
+        font-style: normal;
 }
+  .rubik-scribble {
+      font-family: 'Rubik Scribble', sans-serif;
+      font-weight: 400;
+      font-style: normal;
+      /* You can customize additional styles here */
+  }
 
+  .bebas-neue-regular {
+      font-family: "Bebas Neue", sans-serif;
+      font-weight: 400;
+      font-style: normal;
+  }
 @keyframes fadeIn {
     0% {
         opacity: 0;

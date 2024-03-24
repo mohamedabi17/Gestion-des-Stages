@@ -4,12 +4,31 @@
     color: #fff;
     /* White text */
     padding: 40px;
+    font-family: "Rubik Scribble", system-ui;
+        font-weight: 400;
+        font-style: normal;
 
 }
+ .rubik-scribble {
+     font-family: 'Rubik Scribble', sans-serif;
+     font-weight: 400;
+     font-style: normal;
+     /* You can customize additional styles here */
+ }
 
+ .bebas-neue-regular {
+     font-family: "Bebas Neue", sans-serif;
+     font-weight: 400;
+     font-style: normal;
+ }
 .title {
     color: #f90;
     text-align: center;
+    font-family: "Rubik Scribble", system-ui;
+        font-weight: 400;
+        font-style: normal;
+    
+    
     /* Orange text */
 }
 

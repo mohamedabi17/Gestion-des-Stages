@@ -1,3 +1,15 @@
 .table-container {
     overflow-x: auto;
 }
+  .rubik-scribble {
+      font-family: 'Rubik Scribble', sans-serif;
+      font-weight: 400;
+      font-style: normal;
+      /* You can customize additional styles here */
+  }
+
+  .bebas-neue-regular {
+      font-family: "Bebas Neue", sans-serif;
+      font-weight: 400;
+      font-style: normal;
+  }

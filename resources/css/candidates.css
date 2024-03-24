@@ -1,16 +1,46 @@
 /* Assuming you have CSS classes btn, btn-primary, and btn-danger from your CSS framework */
+  .rubik-scribble {
+      font-family: 'Rubik Scribble', sans-serif;
+      font-weight: 400;
+      font-style: normal;
+      /* You can customize additional styles here */
+  }
 
+  .bebas-neue-regular {
+      font-family: "Bebas Neue", sans-serif;
+      font-weight: 400;
+      font-style: normal;
+  }
 .container {
     padding: 20px;
+    .rubik-scribble {
+            font-family: 'Rubik Scribble', sans-serif;
+            font-weight: 400;
+            font-style: normal;
+            /* You can customize additional styles here */
+        }
+    
+       
 }
 
+ .bebas-neue-regular {
+     font-family: "Bebas Neue", sans-serif;
+     font-weight: 400;
+     font-style: normal;
+ }
+ 
 .title {
     font-size: 24px;
     margin-bottom: 20px;
+    font-family: "Rubik Scribble", system-ui;
+        font-weight: 400;
+        font-style: normal;
+        color: black;
 }
 
 td{
     color: #f44336;
+    color: black;
 }
 
 .candidates-table-container {

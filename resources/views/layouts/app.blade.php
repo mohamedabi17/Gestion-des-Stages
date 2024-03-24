@@ -12,8 +12,28 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
+    <!-- Rubik Scribble font link -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rubik+Scribble&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik+Scribble&display=swap" rel="stylesheet">
+    <!-- CSS style to apply Rubik Scribble font -->
+    <style>
+        .rubik-scribble {
+            font-family: 'Rubik Scribble', sans-serif;
+            font-weight: 400;
+            font-style: normal;
+            /* You can customize additional styles here */
+        }
+        .bebas-neue-regular {
+        font-family: "Bebas Neue", sans-serif;
+        font-weight: 400;
+        font-style: normal;
+        }
 
-    <!-- Scripts -->
+    </style>
     @vite(['resources/sass/app.scss', 'resources/js/app.js','resources/css/layouts.css'])
 </head>
 <body> 

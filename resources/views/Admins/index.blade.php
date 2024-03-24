@@ -3,29 +3,29 @@
 @section('content')
 <div class="welcome" style="background-color: black;">
      <header>
-        <h1>Gestion des offres de stage pour les étudiants</h1>
+        <h1 style="color: black;">Gestion des offres de stage pour les étudiants</h1>
     </header>
 
    <nav>
 <ul>
-    <li><a href="/">Accueil</a></li>
-    <li><a href="#">Offres de stage</a></li>
-    <li><a href="{{ route('profile.profile') }}">Profil</a></li>
-    <li><a href="{{ route('login') }}">Connexion</a></li>
-    <li><a href="{{ route('entreprise.create') }}">Créer une entreprise</a></li>
-    <li><a href="{{ route('etudiant.etudiant') }}">Dashboard Étudiant</a></li>
-    <li><a href="{{ route('pilotePromotion.dashboard') }}">Dashboard Pilote</a></li>
-    <li><a href="{{ route('register') }}">Register</a></li>
+    <li><a style="color: black;" class="bebas-neue-regular" href="/">Accueil</a></li>
+    <li><a style="color: black;" class="bebas-neue-regular" href="#">Offres de stage</a></li>
+    <li><a style="color: black;" class="bebas-neue-regular" href="{{ route('profile.profile') }}">Profil</a></li>
+    <li><a style="color: black;" class="bebas-neue-regular" href="{{ route('login') }}">Connexion</a></li>
+    <li><a style="color: black;" class="bebas-neue-regular" href="{{ route('entreprise.create') }}">Créer une entreprise</a></li>
+    <li><a style="color: black;" class="bebas-neue-regular" href="{{ route('etudiant.etudiant') }}">Dashboard Étudiant</a></li>
+    <li><a style="color: black;" class="bebas-neue-regular" href="{{ route('pilotePromotion.dashboard') }}">Dashboard Pilote</a></li>
+    <li><a style="color: black;" class="bebas-neue-regular" href="{{ route('register') }}">Register</a></li>
     <li>
        <form action="{{ route('search.offres-stage') }}" method="GET" class="search-form">
                         <div class="search-input">
-                            <input type="text" name="query" placeholder="Rechercher offre de stage..." class="search-input-field">
-                            <button type="submit" class="search-submit-button"><img src="{{ asset('images/search.png') }}" alt="Logo" style="width: 60%;"></button>
+                            <input type="text"style="color: #ff6600;" name="query" placeholder="Rechercher offre de stage..." class="search-input-field">
+                            <button type="submit"style="color: #ff6600;" class="search-submit-button"><img src="{{ asset('images/search.png') }}" alt="Logo" style="width: 60%;"></button>
                         </div>
                         <div class="additional-fields">
-                            <input type="text" name="entreprise_name" placeholder="Nom de l'entreprise..." class="additional-field">
-                            <input type="text" name="location" placeholder="Lieu..." class="additional-field">
-                            <input type="text" name="competence" placeholder="Compétences..." class="additional-field">
+                            <input type="text"style="color: #ff6600;" name="entreprise_name" placeholder="Nom de l'entreprise..." class="additional-field">
+                            <input type="text" style="color: #ff6600;"name="location" placeholder="Lieu..." class="additional-field">
+                            <input type="text" style="color: #ff6600;"name="competence" placeholder="Compétences..." class="additional-field">
                         </div>
         </form>
     </li>
@@ -34,13 +34,13 @@
 
 
 </nav>
-     <h1>Gestion des Comptes</h1>
+     <h1 class="bebas-neue-regular"    style="color: black;">Gestion des Comptes</h1>
       <div class="row">
             <!-- Etudiants Card -->
             <div class="col-md-4">
-                <div class="newcard">
+                <div style="color: #ff6600;;background-color:black"class="newcard">
                     <div class="newcard-body">
-                        <h5 class="newcard-title">Etudiants</h5>
+                        <h5 style="color: #ff6600;;" class="newcard-title">Etudiants</h5>
                         <p class="newcard-text">View, update, and delete etudiants records.</p>
                         <a href="{{ route('admins.etudiants') }}" class="btn-primary">Go to Etudiants</a>
                     </div>
@@ -49,9 +49,9 @@
 
             <!-- Pilotes Card -->
             <div class="col-md-4">
-                <div class="newcard">
+                 <div style="color: #ff6600;;background-color:black"class="newcard">
                     <div class="newcard-body">
-                        <h5 class="newcard-title">Pilotes</h5>
+                        <h5 style="color: #ff6600;;" class="newcard-title"class="newcard-title">Pilotes</h5>
                         <p class="newcard-text">View, update, and delete pilotes records.</p>
                         <a href="{{ route('admins.pilotes') }}" class=" btn-primary">Go to Pilotes</a>
                     </div>
@@ -63,8 +63,8 @@
             <!-- Admins Card -->
             <div class="col-md-4">
                 <div class="newcard">
-                    <div class="newcard-body">
-                        <h5 class="newcard-title">Admins</h5>
+                    <div  style="color: #ff6600;;background-color:black"class="newcard">
+                        <h5 style="color: #ff6600;;" class="newcard-title">Admins</h5>
                         <p class="newcard-text">View, update, and delete admins records.</p>
                         <a href="{{ route('admins.admins') }}" class="btn-primary">Go to Admins</a>
                     </div>
@@ -74,8 +74,8 @@
             <!-- Users Card -->
             <div class="col-md-4">
                 <div class="newcard">
-                    <div class="newcard-body">
-                        <h5 class="newcard-title">Users</h5>
+                    <div  style="color: #ff6600;;background-color:black"class="newcard">
+                        <h5 style="color: #ff6600;;" class="newcard-title">Users</h5>
                         <p class="newcard-text">View, update, and delete users records.</p>
                         <a href="{{ route('admins.users') }}" class=" btn-primary">Go to Users</a>
                     </div>
@@ -83,8 +83,8 @@
             </div>
             <div class="col-md-4">
                 <div class="newcard">
-                    <div class="newcard-body">
-                        <h5 class="newcard-title">offers</h5>
+                    <div  style="color: #ff6600;;background-color:black"class="newcard">
+                        <h5 style="color: #ff6600;;" class="newcard-title">offers</h5>
                         <p class="newcard-text">View, update, and delete users records.</p>
                         <a href="{{ route('offers.stages') }}" class=" btn-primary">offers</a>
                     </div>
@@ -93,11 +93,11 @@
         </div>
 
 
-        <h2>Admin Dashboard</h2>
+        <h2 class="bebas-neue-regular " style="color: black;;"> Admin Dashboard</h2>
 
 
     <div class="container">
-        <h2>Liste des offres de stage disponibles pour les étudiants gérées par les pôles de management :</h2>
+        <h2 class="bebas-neue-regular " style="color: black;;">Liste des offres de stage disponibles pour les étudiants gérées par les pôles de management :</h2>
         <table class="offers-table">
             <thead>
                 <tr>
@@ -116,14 +116,14 @@
                 <!-- Offers will be dynamically added here -->
             </tbody>
         </table>
-        <h2>Admin Dashboard</h2>
+        <h2 style="color: black;;" class="newcard-title">Admin Dashboard</h2>
         <div class="row">
                
         <!-- Student Card -->
         <div class="col-md-4">
             <div class="newcard">
-                <div class="newcard-body">
-                    <h5 class="newcard-title">Étudiant</h5>
+                <div  style="color: #ff6600;;background-color:black"class="newcard">
+                    <h5 style="color: #ff6600;;" class="newcard-title">Étudiant</h5>
                     <p class="newcard-text">Accédez au tableau de bord de l'étudiant.</p>
                     <a href="{{ route('etudiant.etudiant') }}" class=" btn-primary">Dashboard Étudiant</a>
                 </div>
@@ -133,8 +133,8 @@
         <!-- Pilote de Promotion Card -->
         <div class="col-md-4">
             <div class="newcard">
-                <div class="newcard-body">
-                    <h5 class="newcard-title">Pilote de Promotion</h5>
+                <div  style="color: #ff6600;;background-color:black"class="newcard">
+                    <h5 style="color: #ff6600;;" class="newcard-title">Pilote de Promotion</h5>
                     <p class="newcard-text">Accédez au tableau de bord du pilote de promotion.</p>
                     <a href="{{ route('pilotePromotion.dashboard') }}" class=" btn-primary">Dashboard Pilote</a>
                 </div>
@@ -162,11 +162,11 @@
             data.offers.forEach((offer, index) => {
                 const row = `
                     <tr>
-                        <td>${offer.name}</td>
-                        <td>${offer.name}</td>
-                        <td>${offer.type}</td>
-                        <td>${offer.duree}</td>
-                        <td>
+                        <td class="bebas-neue-regular " style="color: black;;">${offer.name}</td>
+                        <td class="bebas-neue-regular " style="color: black;;">${offer.name}</td>
+                        <td class="bebas-neue-regular " style="color: black;;">${offer.type}</td>
+                        <td class="bebas-neue-regular " style="color: black;;">${offer.duree}</td>
+                        <td class="bebas-neue-regular " style="color: black;;">
                             <a href="/offers/${offer.id}/edit" class="btn btn-primary">Modifier</a>
                             <a href="/offers/${offer.id}/showCandidates" class="btn btn-primary">Voir Candidats</a>
                         </td>

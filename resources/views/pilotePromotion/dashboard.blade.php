@@ -7,11 +7,11 @@
 
          <nav>
             <ul>
-                    <li><a href="/">Accueil</a></li>
-                    <li><a href="/stageoffers">les Offres de stage</a></li>
+                    <li><a href="/" class="rubik-scribble">Accueil</a></li>
+                    <li><a class="rubik-scribble" href="/stageoffers">les Offres de stage</a></li>
                     @auth
-                        <li><a href="{{ route('profile.profile') }}">profile</a></li>
-                        <li><a href="{{ route('entreprise.create') }}">Create Entreprise</a></li>
+                        <li><a class="rubik-scribble" href="{{ route('profile.profile') }}">profile</a></li>
+                        <li><a class="rubik-scribble" href="{{ route('entreprise.create') }}">Create Entreprise</a></li>
                         <li>
                             <form action="{{ route('logout') }}" method="POST">
                                 @csrf
@@ -19,8 +19,8 @@
                             </form>
                         </li>
                     @else
-                        <li><a href="{{ route('login') }}">Connexion</a></li>
-                        <li><a href="{{ route('register') }}">Register</a></li>
+                        <li><a class="rubik-scribble" href="{{ route('login') }}">Connexion</a></li>
+                        <li><a  class="rubik-scribble" href="{{ route('register') }}">Register</a></li>
                     @endauth
                     <li>
                         <form action="{{ route('search.pilotes') }}" method="GET">
