@@ -5,9 +5,11 @@
     padding: 20px;
     background-color: #000;
     color: #ff6600;
-    font-family: "Rubik Scribble", system-ui;
+    /* font-family: "Rubik Scribble", system-ui; */
         font-weight: 400;
         font-style: normal;
+
+        font-family: monospace;
 }
   .rubik-scribble {
       font-family: 'Rubik Scribble', sans-serif;

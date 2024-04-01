@@ -1,4 +1,4 @@
-@extends('layouts.app')
+    @extends('layouts.app')
 
 @section('content')
 <div class="container">
@@ -55,7 +55,7 @@
                             <td>${offer.duree}</td>
                             <td>${offer.lieu}</td> <!-- Assuming lieu is the location -->
                             <td>
-                                  <a href="{{ route('offers.showCandidates', ['id' => $offer->id]) }}" class="btn btn-primary postuler-btn">Consulter les candidatures</a>
+                                  <a href="/offers/${offer.id}/showCandidates"class="btn btn-primary postuler-btn">Consulter les candidatures</a>
                             </td>
                             <td>
                                 <a href="/evaluations/${offer.entreprise_id}" class="btn btn-primary postuler-btn">Consulter les Evaluations</a>

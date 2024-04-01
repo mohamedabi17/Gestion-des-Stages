@@ -20,7 +20,7 @@
                     <th style="padding: 15px; background-color: #ff6600; text-align: center; font-weight: bold;">Ajouter</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody style="font-family: monospace;">
                 @foreach ($offers as $offer)
                 <tr>
                     <td style="padding: 15px; border-bottom: 1px solid #ffffff;">{{ $offer->name }}</td>

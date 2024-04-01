@@ -17,7 +17,7 @@
                     <th>Postuler</th>
                     <th>Evaluer Entreprise</th>
                     <th>Consulter les Evaluations</th>
-                    @if(auth()->user()->usertype === 'etudiant')
+                    @if(auth()->check() && auth()->user()->usertype === 'etudiant')
                         <th>Ajouter à Wishlist</th>
                     @endif
                 </tr>
@@ -44,7 +44,7 @@
                             <td>${offer.type}</td>
                             <td>${offer.duree}</td>
 
-                            @if(Auth::user()->usertype != 'pilotedestage')
+                            @if( auth()->check() && Auth::user()->usertype != 'pilotedestage')
                                 <td>
                                     <a class="btn btn-primary postuler-btn" href="/postuler/${offer.id}/candidates" data-offer-id="${offer.id}">Postuler</a>
                                 </td>
@@ -57,7 +57,7 @@
                                 <a class="btn btn-primary postuler-btn" href="/evaluations/${offer.entreprise_id}">Evaluations</a>
                             </td>
                             <td>
-                                @if(auth()->user()->usertype === 'etudiant')
+                                @if(auth()->check() && auth()->user()->usertype === 'etudiant')
                                     <form action="/wishlist/add/${offer.id}" method="POST">
                                         @csrf
                                         <input type="hidden" name="offer_id" value="${offer.id}">

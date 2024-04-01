@@ -38,7 +38,7 @@
                         </div>
                   <div class="mb-3">
                     <label for="usertype" class="form-label">{{ __('User Type') }}</label>
-                    <select id="usertype" class="form-select" name="usertype" onchange="toggleInputFields(this.value)">
+                    <select style="font-family:monospace"   id="usertype" class="form-select" name="usertype" onchange="toggleInputFields(this.value)">
                         <option value="etudiant">Etudiant</option>
                         <!-- <option value="entreprise">Entreprise</option> -->
                         <option value="pilotedestage">Pilote de Stage</option>
