@@ -1,5 +1,9 @@
 Guide d'exécution de l'Application de Gestion des Stages
-Pour exécuter correctement l'application de gestion des stages, suivez attentivement les étapes suivantes en vous assurant de respecter les chemins et d'exécuter les commandes dans le bon contexte. Assurez-vous d'avoir installé tous les prérequis nécessaires tels que Node.js, PHP, Composer, Cmder et XAMPP. Veuillez noter que l'application ne fonctionnera pas correctement si ces prérequis ne sont pas installés.
+
+
+Pour exécuter correctement l'application de gestion des stages, suivez attentivement les étapes suivantes en vous assurant de respecter les chemins et d'exécuter les commandes dans le bon contexte. 
+
+Assurez-vous d'avoir installé tous les prérequis nécessaires tels que Node.js, PHP, Composer, Cmder et XAMPP. Veuillez noter que l'application ne fonctionnera pas correctement si ces prérequis ne sont pas installés.
 
 Tout d'abord, cliquez sur le bouton vert en haut de la page GitHub pour copier le lien du code.
 
